@@ -22,17 +22,17 @@
 <link rel="preload" as="image" href="Photo_full.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
-<script>(()=>{let t;try{t=localStorage.getItem('theme')}catch(e){}if(!t)t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.dataset.theme=t})();</script>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,500;9..40,700&family=DM+Mono:wght@400&display=swap" rel="stylesheet">
+<script>document.documentElement.dataset.theme='light'</script>
 <style>
 :root{--bg:#0a0a0b;--card:#111113;--line:#1f1f23;--text:#ededef;--muted:#8f8f98;--accent:#6ee7c8}
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:72px}
-body{font-family:Inter,system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;font-size:16px}
+body{font-family:'DM Sans',system-ui,sans-serif;background:var(--bg);color:var(--text);line-height:1.7;-webkit-font-smoothing:antialiased;font-size:16px}
 a{color:inherit;text-decoration:none}
 a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
 .wrap{max-width:760px;margin:0 auto;padding:0 24px}
-.mono{font-family:'JetBrains Mono',monospace}
+.mono{font-family:'DM Mono',ui-monospace,monospace}
 .skip{position:absolute;left:-999px;top:8px;background:var(--accent);color:#04201a;padding:8px 14px;border-radius:6px;z-index:100}
 .skip:focus{left:8px}
 #progress{position:fixed;top:0;left:0;height:1px;width:0;background:var(--accent);z-index:60}
@@ -111,7 +111,7 @@ h2::after{content:"";position:absolute;left:0;bottom:-8px;height:2px;width:100%;
 
 #worldmap{height:420px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card)}
 @media(max-width:560px){#worldmap{height:320px}}
-.leaflet-container{font-family:Inter,system-ui,sans-serif!important;background:var(--card)!important}
+.leaflet-container{font-family:'DM Sans',system-ui,sans-serif!important;background:var(--card)!important}
 .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--card)!important;color:var(--text)!important;border:1px solid var(--line);box-shadow:none!important}
 .leaflet-popup-content{margin:10px 14px!important;font-size:.85rem;line-height:1.5}
 .leaflet-popup-content b{color:var(--accent)}
@@ -171,7 +171,7 @@ html{transition:background-color .4s}
 .facts div{border:1px solid var(--line);border-radius:10px;padding:14px;background:var(--card)}
 .facts b{display:block;font-size:1.3rem;color:var(--accent);letter-spacing:-.02em}.facts span{font-size:.84rem;color:var(--muted)}
 .k40{font-size:.85rem;margin-bottom:14px;max-width:620px}.k40 b{color:var(--accent);font-variant-numeric:tabular-nums}
-kbd{font-family:'JetBrains Mono',monospace;font-size:.75rem;border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:0 5px;background:var(--card);color:var(--text)}
+kbd{font-family:'DM Mono',ui-monospace,monospace;font-size:.75rem;border:1px solid var(--line);border-bottom-width:2px;border-radius:4px;padding:0 5px;background:var(--card);color:var(--text)}
 #toast{position:fixed;bottom:24px;left:50%;transform:translate(-50%,90px);background:var(--text);color:var(--bg);padding:9px 16px;border-radius:10px;font-size:.88rem;z-index:90;transition:transform .35s;pointer-events:none}
 #toast.show{transform:translate(-50%,0)}
 dialog#keys{margin:auto;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--text);padding:24px 26px;min-width:280px;max-width:90vw}
@@ -183,7 +183,7 @@ dialog#keys ul{list-style:none;margin:14px 0 18px;display:grid;gap:8px;font-size
 .feature .ftop{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-bottom:8px}.feature h3{font-size:1.15rem;margin:0}
 .tag2{color:var(--accent)!important;font-size:.88rem!important}
 .feature p{margin-bottom:12px}
-code{font-family:'JetBrains Mono',monospace;font-size:.85em}
+code{font-family:'DM Mono',ui-monospace,monospace;font-size:.85em}
 .code{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:6px 0 12px;max-width:420px}
 .code code{color:var(--text)}.code code::before{content:"$ ";color:var(--muted)}
 .cp{font:inherit;font-size:.75rem;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:6px;padding:3px 9px;cursor:pointer}.cp:hover{color:var(--text);border-color:var(--muted)}
@@ -257,6 +257,43 @@ nav .wrap{max-width:1200px}
 .avwrap::before{inset:16px -16px -16px 16px!important;border-radius:24px!important;border:1.5px solid color-mix(in srgb,var(--accent) 55%,transparent)!important;animation:none!important;z-index:-1}
 .avwrap::after{display:none!important}
 @media(max-width:860px){.avwrap{width:150px!important;rotate:-2deg}.hero .wrap>.avwrap{margin-left:0;margin-top:0;margin-bottom:44px}}
+
+/* ===== light & playful redesign ===== */
+[data-theme=light]{--bg:#fbf7f1;--card:#ffffff;--line:#ece4d8;--text:#1d1b22;--muted:#6b6672;--navbg:rgba(251,247,241,.85);--mark:#ffd84d}
+#theme{display:none}
+body{font-size:17px;line-height:1.65;letter-spacing:-.005em}
+h1,h2,h3{font-family:'DM Sans',system-ui,sans-serif;letter-spacing:-.025em}
+.hero h1{font-weight:700;letter-spacing:-.04em}
+h2{font-weight:700;font-size:clamp(1.7rem,3.4vw,2.3rem)}
+.mark{background:linear-gradient(transparent 58%,var(--mark) 58%,var(--mark) 92%,transparent 92%);padding:0 .08em;border-radius:2px}
+.hero .lead{font-size:clamp(1.1rem,1.8vw,1.35rem);color:var(--text);opacity:.85}
+.label{display:inline-block;background:var(--accent);color:#fff;font-size:.72rem;padding:3px 10px;border-radius:99px;letter-spacing:.04em}
+h2::after{height:3px;border-radius:3px}
+.card{border:0;border-radius:20px;box-shadow:0 1px 2px rgba(30,20,10,.04),0 8px 24px rgba(30,20,10,.06);transition:transform .25s,box-shadow .25s}
+a.card:hover,.card:hover{transform:translateY(-3px) rotate(-.4deg);box-shadow:0 2px 4px rgba(30,20,10,.05),0 16px 40px rgba(30,20,10,.10)}
+.card h3{font-size:1.08rem}
+#research .grid .card:nth-child(1){background:#e9f7f1}#research .grid .card:nth-child(2){background:#eef0ff}#research .grid .card:nth-child(3){background:#fff0e8}
+#research .grid .card p{font-size:1.02rem;color:var(--text);opacity:.75}
+.btn{border-radius:99px;font-weight:500}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover,[data-theme=light] .btn.primary:hover{background:#c9431f}
+.pub,.pub-list li,.facts div,.skills span,.code{border-radius:16px}
+.pub{border:0;box-shadow:0 8px 24px rgba(30,20,10,.06);background:#fff}
+.pub::after{display:none}
+.pub-list li{border-bottom:1px dashed var(--line)}
+.facts div{border:0;box-shadow:0 8px 24px rgba(30,20,10,.06)}
+.facts b{color:var(--accent);font-size:1.6rem}
+.skills span{background:#fff;border:1px solid var(--line);color:var(--text)}
+.pill{border-radius:99px}
+.pill.talk{color:#0e8f74;border-color:#bfe7dc;background:#e9f7f1}
+.big{font-size:clamp(1.3rem,2.6vw,1.8rem);line-height:1.4;font-weight:500;color:var(--text)!important;max-width:28ch!important}
+.k40{font-size:.9rem}
+.avwrap .avatar{box-shadow:0 24px 50px rgba(30,20,10,.22)}
+.avwrap::before{border-color:var(--accent)!important;border-style:dashed!important}
+.ext{color:inherit}
+nav ul a.active{color:var(--accent);background:transparent}
+#worldmap{border:0;border-radius:20px;box-shadow:0 8px 24px rgba(30,20,10,.06)}
+#progress{height:3px}
 </style>
 </head>
 <body>
@@ -280,23 +317,21 @@ nav .wrap{max-width:1200px}
   <canvas id="trail" aria-hidden="true"></canvas>
   <div class="wrap">
     <span class="avwrap"><img class="avatar" fetchpriority="high" decoding="async" src="Photo_full.jpg" alt="Portrait of Satyam Tiwari" width="280" height="424"></span>
-    <p class="greet mono" id="greet"></p>
     <p class="eyebrow mono">PhD Researcher · Biophysics · Jagiellonian University</p>
-    <h1>Hi, I am Satyam <span class="wave" aria-hidden="true">👋</span><span class="sr">Satyam Tiwari</span></h1>
-    <p class="lead">I am developing algorithms for reconstructing attenuation maps from detector-scattered coincidences in PET imaging: photons that scanners usually throw away. The goal is CT-less PET, across the J-PET scanner family and its prototypes.</p>
+    <h1>Hi, I am <span class="mark">Satyam</span> <span class="wave" aria-hidden="true">👋</span><span class="sr">Satyam Tiwari</span></h1>
+    <p class="lead">I am developing algorithms for reconstructing attenuation maps from <span class="mark">detector-scattered coincidences</span> in PET imaging.</p>
     <p class="facts-line mono">16 publications · 9 conference contributions · 1 patent pending</p>
     <div class="btns">
       <a class="btn primary" href="#publications">Publications</a>
       <a class="btn" href="cv.pdf">Download CV</a>
       <a class="btn" href="mailto:satyam.tiwari@doctoral.uj.edu.pl">Email</a>
-      <button class="btn" type="button" id="tldr-open">30-second version</button>
     </div>
   </div>
 </header>
 
 <div id="toast" role="status" aria-live="polite"></div>
 <dialog id="keys" aria-labelledby="keys-h"><h3 id="keys-h">Shortcuts</h3>
-  <ul><li><kbd>1</kbd>–<kbd>7</kbd> jump to sections</li><li><kbd>t</kbd> switch light / dark</li><li><kbd>e</kbd> copy my email</li><li><kbd>c</kbd> open my CV</li><li><kbd>?</kbd> show this · <kbd>Esc</kbd> close</li></ul>
+  <ul><li><kbd>1</kbd>–<kbd>7</kbd> jump to sections</li><li><kbd>e</kbd> copy my email</li><li><kbd>c</kbd> open my CV</li><li><kbd>?</kbd> show this · <kbd>Esc</kbd> close</li></ul>
   <form method="dialog"><button class="btn">Close</button></form></dialog>
 <dialog id="tldr" class="dlg" aria-labelledby="tldr-h">
   <h3 id="tldr-h">The 30-second version</h3>
@@ -312,13 +347,12 @@ nav .wrap{max-width:1200px}
 <section id="research"><div class="wrap">
   <div class="label mono">01</div>
   <h2>Research Interests</h2>
-  <button class="eli5" id="eli5" type="button" aria-pressed="false">Explain like I'm 5</button>
   <div class="grid">
-    <div class="card"><h3>CT-less PET</h3><p data-pro="Quantitative attenuation correction from detector-scattered and annihilation data in plastic-scintillator PET." data-eli5="PET scans usually need an extra X-ray (CT) scan. I am teaching the PET scanner to do without it.">Quantitative attenuation correction from detector-scattered and annihilation data in plastic-scintillator PET.</p></div>
-    <div class="card"><h3>Image reconstruction</h3><p data-pro="Simulation-driven methods (GATE / Monte Carlo) for attenuation-map estimation and better lesion localisation." data-eli5="I simulate millions of particles on a computer to turn messy detector signals into sharp pictures.">Simulation-driven methods (GATE / Monte Carlo) for attenuation-map estimation and better lesion localisation.</p></div>
-    <div class="card"><h3>AI for medical imaging</h3><p data-pro="Deep-learning denoising and enhancement of attenuation maps for robust CT-less workflows." data-eli5="I train neural networks to clean up blurry images so doctors can trust them.">Deep-learning denoising and enhancement of attenuation maps for robust CT-less workflows.</p></div>
+    <div class="card"><h3>CT-less PET</h3><p>PET without the extra CT scan.</p></div>
+    <div class="card"><h3>Image reconstruction</h3><p>Monte Carlo + iterative algorithms.</p></div>
+    <div class="card"><h3>AI for medical imaging</h3><p>Deep learning for cleaner maps.</p></div>
   </div>
-  <p style="color:var(--muted);margin-top:20px;font-size:.92rem">Supervisors: Prof. Paweł Moskal &amp; Dr. Sushil K. Sharma · Team member, MAESTRO grant project</p>
+  <p style="color:var(--muted);margin-top:20px;font-size:.92rem">Supervised by Prof. Paweł Moskal &amp; Dr. Sushil K. Sharma</p>
 </div></section>
 
 <section id="publications"><div class="wrap">
@@ -431,28 +465,27 @@ nav .wrap{max-width:1200px}
   <h2>Fun Projects</h2>
   <div class="card feature">
       <div class="ftop"><h3>BiblioAudit <span class="pill talk">Open source</span></h3><p class="tag2">A fix for AI-hallucinated references</p></div>
-      <p>AI tools invent citations that look real but don't exist. BiblioAudit checks every entry in your <code>.bib</code> file against multiple academic databases: it confirms each paper exists, flags missing or broken DOIs, wrong years and journal names, and finds legal open-access PDFs.</p>
+      <p>Catches fake and wrong references in your <code>.bib</code> file.</p>
       <div class="code"><code>pip install biblioaudit</code><button type="button" class="cp" data-copy="pip install biblioaudit" aria-label="Copy install command">Copy</button></div>
       <p class="badges"><img src="https://img.shields.io/pypi/v/biblioaudit?label=PyPI&amp;color=2a7a6a" alt="PyPI version" height="20" loading="lazy"> <img src="https://img.shields.io/pepy/dt/biblioaudit?label=downloads&amp;color=2a7a6a" alt="Total downloads" height="20" loading="lazy"></p>
       <p class="flinks"><a href="https://github.com/Official-Satyam-Tiwari/Reference-Architect" target="_blank" rel="noopener">GitHub ↗</a> · <a href="https://pypi.org/project/biblioaudit/" target="_blank" rel="noopener">PyPI ↗</a> · <a href="https://doi.org/10.5281/zenodo.18155557" target="_blank" rel="noopener">Zenodo DOI ↗</a></p>
-      <p class="cite">Tiwari, S. (2025). <i>BiblioAudit: Automated Citation Integrity &amp; Verification Tool</i> (Version 2.2.2) [Software]. Zenodo. https://doi.org/10.5281/zenodo.18155557</p>
     </div>
   <div class="grid">
     
-    <a class="card" href="https://github.com/Official-Satyam-Tiwari/ROOT-Viewer"><h3>ROOT-Viewer ↗</h3><p>A quick viewer for ROOT files, for when opening a full analysis session is overkill.</p></a>
-    <a class="card" href="https://github.com/Official-Satyam-Tiwari/MC_Codes"><h3>Monte Carlo playground ↗</h3><p>Mathematica experiments in random sampling: the toys behind my Monte Carlo lectures.</p></a>
-    <a class="card" href="https://github.com/Official-Satyam-Tiwari/Advanced_Mathematical_Physics_Simulations"><h3>Physics simulations ↗</h3><p>Mathematical physics problems brought to life in Scilab and Python.</p></a>
-    <div class="card"><h3>Chaotic oscillators</h3><p>Forced and anharmonic oscillators solved with Euler, RK2 and RK4, to watch order turn into chaos.</p></div>
-    <div class="card"><h3>Bluetooth notice board</h3><p>An Arduino notice board you update from your phone over Bluetooth.</p></div>
-    <div class="card"><h3>Manim animations</h3><p>Animated maths and physics explainers for school students, made with Manim at Vizuara.</p></div>
-    <a class="card" href="https://github.com/Official-Satyam-Tiwari/System-Matrix-Generation-for-PET-Imaging"><h3>PET system matrix ↗</h3><p>Building the system matrix for tomographic reconstruction from scratch, to really understand it.</p></a>
+    <a class="card" href="https://github.com/Official-Satyam-Tiwari/ROOT-Viewer"><h3>ROOT-Viewer ↗</h3><p>Peek inside ROOT files, fast.</p></a>
+    <a class="card" href="https://github.com/Official-Satyam-Tiwari/MC_Codes"><h3>Monte Carlo playground ↗</h3><p>Randomness, but make it physics.</p></a>
+    <a class="card" href="https://github.com/Official-Satyam-Tiwari/Advanced_Mathematical_Physics_Simulations"><h3>Physics simulations ↗</h3><p>Equations brought to life.</p></a>
+    <div class="card"><h3>Chaotic oscillators</h3><p>Watching order turn into chaos.</p></div>
+    <div class="card"><h3>Bluetooth notice board</h3><p>Update a sign from your phone.</p></div>
+    <div class="card"><h3>Manim animations</h3><p>Maths explainers for kids.</p></div>
+    <a class="card" href="https://github.com/Official-Satyam-Tiwari/System-Matrix-Generation-for-PET-Imaging"><h3>PET system matrix ↗</h3><p>Reconstruction from scratch.</p></a>
   </div>
   <h3 class="sub">Fun facts</h3>
   <div class="facts">
-    <div><b>AIR 15</b><span>in IIT JAM Physics out of tens of thousands</span></div>
-    <div><b>4 countries</b><span>where I have presented: Poland, Spain, Slovenia, USA</span></div>
-    <div><b>3 meetings</b><span>co-organised in Kraków</span></div>
-    <div><b>2 journals</b><span>I peer-review for</span></div>
+    <div><b>AIR 15</b><span>IIT JAM Physics</span></div>
+    <div><b>4 countries</b><span>presented in</span></div>
+    <div><b>3 meetings</b><span>co-organised</span></div>
+    <div><b>2 journals</b><span>I review for</span></div>
   </div>
   <p style="color:var(--muted);margin-top:22px;font-size:.92rem">Off the clock: table tennis.</p>
 </div></section>
@@ -460,14 +493,14 @@ nav .wrap{max-width:1200px}
 <section id="contact"><div class="wrap">
   <div class="label mono">07</div>
   <h2>Let's collaborate</h2>
-  <p style="color:var(--muted)">I'm looking to collaborate on <b style="color:var(--text)">PET detector instrumentation</b>. So far my experience is in image reconstruction and attenuation correction: Monte Carlo simulation, iterative algorithms and deep learning for CT-less PET. Next, I want to broaden my horizon to the hardware side, from scintillators and readout electronics to timing and detector characterisation, so I understand the whole chain from photon to image. If you work on detectors and see a fit, I'd love to hear from you.</p>
+  <p class="big">Next up: <span class="mark">PET detector instrumentation</span>. Working on detectors? Let's talk.</p>
   <div class="btns"><a class="btn primary" href="mailto:satyam.tiwari@doctoral.uj.edu.pl">Email me</a><button class="btn" id="copymail" type="button">Copy email</button><a class="btn" href="satyam-tiwari.vcf" download>Save contact</a><a class="btn" href="cv.pdf">Download CV</a></div>
 </div></section>
 
 </main>
 
 <footer><div class="wrap">
-  <p class="k40" aria-live="off">While you've been here, about <b id="k40">0</b> potassium-40 atoms decayed inside your body, and roughly <b id="pos">0</b> of them emitted a positron. You are a tiny PET source.</p>
+  <p class="k40" aria-live="off"><b id="k40">0</b> potassium-40 decays in your body since you arrived <span id="pos" hidden></span></p>
   <div class="links mono">
     <a href="mailto:satyam.tiwari@doctoral.uj.edu.pl">Email</a>
     <a href="https://orcid.org/0009-0006-2293-3946">ORCID</a>
@@ -516,9 +549,9 @@ const io=new IntersectionObserver(([e])=>{if(e.isIntersecting){io.disconnect();i
 
 <script>
 (()=>{const D={top:['#6ee7c8','rgba(110,231,200,.07)','#0a0a0b'],research:['#6ee7c8','rgba(110,231,200,.09)','#090c0d'],publications:['#a99bff','rgba(150,130,255,.09)','#0b0a10'],talks:['#7cc4ff','rgba(110,180,255,.09)','#090b10'],map:['#7cc4ff','rgba(110,180,255,.06)','#09090c'],background:['#ffb86b','rgba(255,170,90,.08)','#0f0b09'],skills:['#a99bff','rgba(150,130,255,.07)','#0b0a0f'],projects:['#ff8fb1','rgba(255,130,170,.08)','#0f090c'],contact:['#6ee7c8','rgba(110,231,200,.10)','#090d0c']};
-const L={top:['#0f9a7c','rgba(15,154,124,.08)','#fafaf9'],research:['#0f9a7c','rgba(15,154,124,.10)','#f6faf8'],publications:['#6a55d6','rgba(106,85,214,.09)','#f8f7fd'],talks:['#2a73cc','rgba(42,115,204,.09)','#f5f8fd'],map:['#2a73cc','rgba(42,115,204,.06)','#f7f8fa'],background:['#b8600c','rgba(214,130,40,.10)','#fdf8f2'],skills:['#6a55d6','rgba(106,85,214,.08)','#f8f7fc'],projects:['#c23a6e','rgba(194,58,110,.08)','#fcf5f8'],contact:['#0f9a7c','rgba(15,154,124,.10)','#f5faf8']};
+const L={top:['#e4572e','rgba(255,170,120,.18)','#fbf7f1'],research:['#e4572e','rgba(110,210,190,.20)','#f6faf6'],publications:['#e4572e','rgba(170,150,255,.18)','#f8f6fc'],talks:['#e4572e','rgba(120,180,255,.18)','#f5f8fc'],map:['#e4572e','rgba(120,180,255,.12)','#f7f7f8'],background:['#e4572e','rgba(255,200,90,.22)','#fdf8ee'],skills:['#e4572e','rgba(170,150,255,.15)','#f8f6fc'],projects:['#e4572e','rgba(255,140,170,.18)','#fcf5f7'],contact:['#e4572e','rgba(255,170,120,.20)','#fbf6f0']};
 const b=document.body,R=document.documentElement,btn=document.getElementById('theme');let cur='top';
-function apply(){const P=R.dataset.theme==='light'?L:D,[a,g,c]=P[cur]||P.top;b.style.setProperty('--accent',R.dataset.theme==='light'?'#0f9a7c':'#6ee7c8');b.style.setProperty('--glow',g);b.style.setProperty('--bgc',c);
+function apply(){const P=R.dataset.theme==='light'?L:D,[a,g,c]=P[cur]||P.top;b.style.setProperty('--accent','#e4572e');b.style.setProperty('--glow',g);b.style.setProperty('--bgc',c);
  const lt=R.dataset.theme==='light';btn.textContent=lt?'☾':'☀';btn.setAttribute('aria-label',lt?'Switch to dark theme':'Switch to light theme');document.querySelector('meta[name=theme-color]').content=lt?'#fafaf9':'#0a0a0b'}
 function f(){let id='top';document.querySelectorAll('section[id]').forEach(x=>{if(x.getBoundingClientRect().top<innerHeight*.55)id=x.id});if(id!==cur){cur=id;apply()}}
 btn.onclick=()=>{R.dataset.theme=R.dataset.theme==='light'?'dark':'light';try{localStorage.setItem('theme',R.dataset.theme)}catch(e){}apply()};
