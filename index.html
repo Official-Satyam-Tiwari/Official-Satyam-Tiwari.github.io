@@ -19,6 +19,7 @@
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
+<script>(()=>{let t;try{t=localStorage.getItem('theme')}catch(e){}if(!t)t=matchMedia('(prefers-color-scheme: light)').matches?'light':'dark';document.documentElement.dataset.theme=t})();</script>
 <style>
 :root{--bg:#0a0a0b;--card:#111113;--line:#1f1f23;--text:#ededef;--muted:#8f8f98;--accent:#6ee7c8}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -31,7 +32,7 @@ a:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius
 .skip{position:absolute;left:-999px;top:8px;background:var(--accent);color:#04201a;padding:8px 14px;border-radius:6px;z-index:100}
 .skip:focus{left:8px}
 #progress{position:fixed;top:0;left:0;height:1px;width:0;background:var(--accent);z-index:60}
-nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(10,10,11,.82);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
+nav{position:fixed;top:0;left:0;right:0;z-index:50;background:var(--navbg);backdrop-filter:blur(12px);border-bottom:1px solid var(--line)}
 nav .wrap{display:flex;justify-content:space-between;align-items:center;height:58px;gap:20px;max-width:960px}
 nav .logo{font-weight:600;font-size:.95rem;white-space:nowrap}
 nav .logo span{color:var(--accent)}
@@ -104,9 +105,9 @@ h2::after{content:"";position:absolute;left:0;bottom:-8px;height:2px;width:100%;
 .card:hover{transform:translateY(-3px)}
 @media(prefers-reduced-motion:reduce){.hero .wrap>*{opacity:1;transform:none;animation:none}.st{opacity:1;transform:none}h2::after{transform:scaleX(.18)}}
 
-#worldmap{height:420px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#0d0d0f}
+#worldmap{height:420px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card)}
 @media(max-width:560px){#worldmap{height:320px}}
-.leaflet-container{font-family:Inter,system-ui,sans-serif!important;background:#0d0d0f!important}
+.leaflet-container{font-family:Inter,system-ui,sans-serif!important;background:var(--card)!important}
 .leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--card)!important;color:var(--text)!important;border:1px solid var(--line);box-shadow:none!important}
 .leaflet-popup-content{margin:10px 14px!important;font-size:.85rem;line-height:1.5}
 .leaflet-popup-content b{color:var(--accent)}
@@ -140,6 +141,17 @@ a.ext:hover{color:var(--accent)}
 
 @media(max-width:560px){.wrap{padding:0 18px}.hero{padding:110px 0 60px}h1{font-size:2.3rem}.lead{font-size:1rem}section{padding:56px 0}h2{font-size:1.35rem}.btns .btn{flex:1 1 auto;justify-content:center}.pub{padding:18px}.pub-list li{font-size:.9rem}nav ul a{padding:6px 8px}}
 img{max-width:100%}html,body{overflow-x:hidden}
+
+:root{--navbg:rgba(10,10,11,.82);color-scheme:dark}
+[data-theme=light]{--bg:#fafaf9;--card:#ffffff;--line:#e5e5ea;--text:#121216;--muted:#5b5b66;--navbg:rgba(250,250,249,.85);color-scheme:light}
+[data-theme=light] .btn.primary:hover{background:#000}
+[data-theme=light] a.card:hover{border-color:#c9c9d2}
+[data-theme=light] #worldmap .leaflet-tile-pane{filter:grayscale(.5) brightness(1.02)}
+[data-theme=light] .leaflet-control-attribution{background:rgba(255,255,255,.8)!important}
+#theme{margin-left:6px;width:34px;height:34px;flex:none;display:grid;place-items:center;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--text);cursor:pointer;font-size:15px;transition:border-color .2s,transform .3s}
+#theme:hover{border-color:var(--muted);transform:rotate(-20deg)}
+#theme:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+html{transition:background-color .4s}
 </style>
 </head>
 <body>
@@ -156,6 +168,7 @@ img{max-width:100%}html,body{overflow-x:hidden}
     <li><a href="#projects">Fun Projects</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
+  <button id="theme" type="button" aria-label="Switch to light theme">☀</button>
 </div></nav>
 
 <header class="hero" id="top">
@@ -365,10 +378,14 @@ const io=new IntersectionObserver(([e])=>{if(e.isIntersecting){io.disconnect();i
 </script>
 
 <script>
-(()=>{const V={top:['#6ee7c8','rgba(110,231,200,.07)','#0a0a0b'],research:['#6ee7c8','rgba(110,231,200,.09)','#090c0d'],publications:['#a99bff','rgba(150,130,255,.09)','#0b0a10'],talks:['#7cc4ff','rgba(110,180,255,.09)','#090b10'],map:['#7cc4ff','rgba(110,180,255,.06)','#09090c'],background:['#ffb86b','rgba(255,170,90,.08)','#0f0b09'],skills:['#a99bff','rgba(150,130,255,.07)','#0b0a0f'],projects:['#ff8fb1','rgba(255,130,170,.08)','#0f090c'],contact:['#6ee7c8','rgba(110,231,200,.10)','#090d0c']};
-const b=document.body;let cur='';function set(id){if(id===cur||!V[id])return;cur=id;const[a,g,c]=V[id];b.style.setProperty('--accent',a);b.style.setProperty('--glow',g);b.style.setProperty('--bgc',c)}
-function f(){let id='top';document.querySelectorAll('section[id]').forEach(x=>{if(x.getBoundingClientRect().top<innerHeight*.55)id=x.id});set(id)}
-addEventListener('scroll',f,{passive:true});f();})();
+(()=>{const D={top:['#6ee7c8','rgba(110,231,200,.07)','#0a0a0b'],research:['#6ee7c8','rgba(110,231,200,.09)','#090c0d'],publications:['#a99bff','rgba(150,130,255,.09)','#0b0a10'],talks:['#7cc4ff','rgba(110,180,255,.09)','#090b10'],map:['#7cc4ff','rgba(110,180,255,.06)','#09090c'],background:['#ffb86b','rgba(255,170,90,.08)','#0f0b09'],skills:['#a99bff','rgba(150,130,255,.07)','#0b0a0f'],projects:['#ff8fb1','rgba(255,130,170,.08)','#0f090c'],contact:['#6ee7c8','rgba(110,231,200,.10)','#090d0c']};
+const L={top:['#0f9a7c','rgba(15,154,124,.08)','#fafaf9'],research:['#0f9a7c','rgba(15,154,124,.10)','#f6faf8'],publications:['#6a55d6','rgba(106,85,214,.09)','#f8f7fd'],talks:['#2a73cc','rgba(42,115,204,.09)','#f5f8fd'],map:['#2a73cc','rgba(42,115,204,.06)','#f7f8fa'],background:['#b8600c','rgba(214,130,40,.10)','#fdf8f2'],skills:['#6a55d6','rgba(106,85,214,.08)','#f8f7fc'],projects:['#c23a6e','rgba(194,58,110,.08)','#fcf5f8'],contact:['#0f9a7c','rgba(15,154,124,.10)','#f5faf8']};
+const b=document.body,R=document.documentElement,btn=document.getElementById('theme');let cur='top';
+function apply(){const P=R.dataset.theme==='light'?L:D,[a,g,c]=P[cur]||P.top;b.style.setProperty('--accent',a);b.style.setProperty('--glow',g);b.style.setProperty('--bgc',c);
+ const lt=R.dataset.theme==='light';btn.textContent=lt?'☾':'☀';btn.setAttribute('aria-label',lt?'Switch to dark theme':'Switch to light theme');document.querySelector('meta[name=theme-color]').content=lt?'#fafaf9':'#0a0a0b'}
+function f(){let id='top';document.querySelectorAll('section[id]').forEach(x=>{if(x.getBoundingClientRect().top<innerHeight*.55)id=x.id});if(id!==cur){cur=id;apply()}}
+btn.onclick=()=>{R.dataset.theme=R.dataset.theme==='light'?'dark':'light';try{localStorage.setItem('theme',R.dataset.theme)}catch(e){}apply()};
+addEventListener('scroll',f,{passive:true});apply();f();})();
 </script>
 </body>
 </html>
