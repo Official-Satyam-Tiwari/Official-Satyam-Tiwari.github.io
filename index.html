@@ -11,7 +11,11 @@
 <meta property="og:description" content="PhD researcher at Jagiellonian University developing CT-less attenuation correction for the J-PET scanners.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://official-satyam-tiwari.github.io/">
-<meta property="og:image" content="https://official-satyam-tiwari.github.io/Photo.jpg">
+<meta property="og:image" content="https://official-satyam-tiwari.github.io/og.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://official-satyam-tiwari.github.io/og.png">
 <link rel="canonical" href="https://official-satyam-tiwari.github.io/">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
@@ -185,6 +189,22 @@ code{font-family:'JetBrains Mono',monospace;font-size:.85em}
 .cp{font:inherit;font-size:.75rem;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:6px;padding:3px 9px;cursor:pointer}.cp:hover{color:var(--text);border-color:var(--muted)}
 .flinks a{color:var(--accent)}.flinks a:hover{text-decoration:underline}
 .cite{font-size:.8rem!important;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin:0!important;word-break:break-word}
+
+.greet{font-size:.8rem;color:var(--muted);margin-bottom:6px;min-height:1.2em}
+.dlg{margin:auto;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--text);padding:24px 26px;width:min(520px,92vw)}
+.dlg::backdrop{background:rgba(0,0,0,.5);backdrop-filter:blur(3px)}
+.dlg h3{font-size:1.1rem;margin-bottom:12px}
+.dlg dl{display:grid;grid-template-columns:100px 1fr;gap:10px 14px;font-size:.92rem;margin-bottom:18px}
+.dlg dt{color:var(--accent);font-size:.8rem;padding-top:2px}.dlg dd{color:var(--muted)}.dlg dd a{color:var(--accent)}
+@media(max-width:480px){.dlg dl{grid-template-columns:1fr;gap:2px}.dlg dd{margin-bottom:8px}}
+#pongc{width:100%;height:auto;aspect-ratio:8/5;background:#0b3d2e;border-radius:8px;display:block;touch-action:none;cursor:none}
+.pong-help{font-size:.84rem;color:var(--muted);margin-bottom:10px}
+#pong-score{text-align:center;margin:10px 0 14px;font-size:.95rem}
+.linkbtn{font:inherit;background:none;border:0;padding:0;color:var(--accent);cursor:pointer;border-bottom:1px dotted var(--accent)}
+.badges{display:flex;gap:6px;flex-wrap:wrap;margin:-2px 0 10px}
+.cite-btn{font:inherit;font-size:.74rem;margin-left:8px;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:6px;padding:1px 8px;cursor:pointer;vertical-align:1px}
+.cite-btn:hover{color:var(--text);border-color:var(--muted)}
+.cites{font-size:.78rem;color:var(--accent);margin-left:8px;white-space:nowrap}
 </style>
 </head>
 <body>
@@ -207,7 +227,8 @@ code{font-family:'JetBrains Mono',monospace;font-size:.85em}
 <header class="hero" id="top">
   <canvas id="trail" aria-hidden="true"></canvas>
   <div class="wrap">
-    <span class="avwrap" data-hi="Hi, I'm Satyam 👋"><img class="avatar" fetchpriority="high" decoding="async" src="Photo.jpg" alt="Portrait of Satyam Tiwari" width="80" height="80"></span>
+    <span class="avwrap" data-hi="Hi, I'm Satyam"><img class="avatar" fetchpriority="high" decoding="async" src="Photo.jpg" alt="Portrait of Satyam Tiwari" width="80" height="80"></span>
+    <p class="greet mono" id="greet"></p>
     <p class="eyebrow mono">PhD Researcher · Biophysics · Jagiellonian University</p>
     <h1>Satyam Tiwari</h1>
     <p class="lead">I am developing algorithms for reconstructing attenuation maps from detector-scattered coincidences in PET imaging: photons that scanners usually throw away. The goal is CT-less PET, across the J-PET scanner family and its prototypes.</p>
@@ -215,19 +236,37 @@ code{font-family:'JetBrains Mono',monospace;font-size:.85em}
       <a class="btn primary" href="#publications">Publications</a>
       <a class="btn" href="cv.pdf">Download CV</a>
       <a class="btn" href="mailto:satyam.tiwari@doctoral.uj.edu.pl">Email</a>
+      <button class="btn" type="button" id="tldr-open">30-second version</button>
     </div>
   </div>
 </header>
 
 <div id="toast" role="status" aria-live="polite"></div>
 <dialog id="keys" aria-labelledby="keys-h"><h3 id="keys-h">Shortcuts</h3>
-  <ul><li><kbd>1</kbd>–<kbd>7</kbd> jump to sections</li><li><kbd>t</kbd> switch light / dark</li><li><kbd>e</kbd> copy my email</li><li><kbd>c</kbd> open my CV</li><li><kbd>?</kbd> show this · <kbd>Esc</kbd> close</li></ul>
+  <ul><li><kbd>1</kbd>–<kbd>7</kbd> jump to sections</li><li><kbd>t</kbd> switch light / dark</li><li><kbd>e</kbd> copy my email</li><li><kbd>c</kbd> open my CV</li><li><kbd>p</kbd> play table tennis</li><li><kbd>?</kbd> show this · <kbd>Esc</kbd> close</li></ul>
   <form method="dialog"><button class="btn">Close</button></form></dialog>
+<dialog id="tldr" class="dlg" aria-labelledby="tldr-h">
+  <h3 id="tldr-h">The 30-second version</h3>
+  <dl>
+    <dt>Who</dt><dd>Satyam Tiwari, PhD researcher in Biophysics, J-PET group, Jagiellonian University, Kraków.</dd>
+    <dt>What</dt><dd>Algorithms that reconstruct attenuation maps from detector-scattered coincidences, making PET possible without a CT scan. Patent pending; 16 publications.</dd>
+    <dt>Looking for</dt><dd>Collaborations in PET detector instrumentation: scintillators, readout and timing.</dd>
+    <dt>Contact</dt><dd><a href="mailto:satyam.tiwari@doctoral.uj.edu.pl">satyam.tiwari@doctoral.uj.edu.pl</a> · <a href="cv.pdf">CV</a> · <a href="https://orcid.org/0009-0006-2293-3946">ORCID</a></dd>
+  </dl>
+  <form method="dialog"><button class="btn">Close</button></form>
+</dialog>
+<dialog id="pong" class="dlg" aria-labelledby="pong-h">
+  <h3 id="pong-h">Table tennis</h3>
+  <p class="pong-help">Move your mouse, finger or the arrow keys. First to 5 wins.</p>
+  <canvas id="pongc" width="480" height="300" aria-label="Table tennis game"></canvas>
+  <p id="pong-score" class="mono" aria-live="polite">You 0 : 0 Satyam</p>
+  <form method="dialog"><button class="btn">Close</button></form>
+</dialog>
 <main id="main">
 <section id="research"><div class="wrap">
   <div class="label mono">// research</div>
   <h2>Research Interests</h2>
-  <button class="eli5" id="eli5" type="button" aria-pressed="false">🧸 Explain like I'm 5</button>
+  <button class="eli5" id="eli5" type="button" aria-pressed="false">Explain like I'm 5</button>
   <div class="grid">
     <div class="card"><h3>CT-less PET</h3><p data-pro="Quantitative attenuation correction from detector-scattered and annihilation data in plastic-scintillator PET." data-eli5="PET scans usually need an extra X-ray (CT) scan. I am teaching the PET scanner to do without it.">Quantitative attenuation correction from detector-scattered and annihilation data in plastic-scintillator PET.</p></div>
     <div class="card"><h3>Image reconstruction</h3><p data-pro="Simulation-driven methods (GATE / Monte Carlo) for attenuation-map estimation and better lesion localisation." data-eli5="I simulate millions of particles on a computer to turn messy detector signals into sharp pictures.">Simulation-driven methods (GATE / Monte Carlo) for attenuation-map estimation and better lesion localisation.</p></div>
@@ -353,6 +392,7 @@ code{font-family:'JetBrains Mono',monospace;font-size:.85em}
       <div class="ftop"><h3>BiblioAudit <span class="pill talk">Open source</span></h3><p class="tag2">A fix for AI-hallucinated references</p></div>
       <p>AI tools invent citations that look real but don't exist. BiblioAudit checks every entry in your <code>.bib</code> file against multiple academic databases: it confirms each paper exists, flags missing or broken DOIs, wrong years and journal names, and finds legal open-access PDFs.</p>
       <div class="code"><code>pip install biblioaudit</code><button type="button" class="cp" data-copy="pip install biblioaudit" aria-label="Copy install command">Copy</button></div>
+      <p class="badges"><img src="https://img.shields.io/pypi/v/biblioaudit?label=PyPI&amp;color=2a7a6a" alt="PyPI version" height="20" loading="lazy"> <img src="https://img.shields.io/pepy/dt/biblioaudit?label=downloads&amp;color=2a7a6a" alt="Total downloads" height="20" loading="lazy"> <img src="https://img.shields.io/pypi/dm/biblioaudit?label=monthly&amp;color=2a7a6a" alt="Monthly downloads" height="20" loading="lazy"></p>
       <p class="flinks"><a href="https://github.com/Official-Satyam-Tiwari/Reference-Architect" target="_blank" rel="noopener">GitHub ↗</a> · <a href="https://pypi.org/project/biblioaudit/" target="_blank" rel="noopener">PyPI ↗</a> · <a href="https://doi.org/10.5281/zenodo.18155557" target="_blank" rel="noopener">Zenodo DOI ↗</a></p>
       <p class="cite">Tiwari, S. (2025). <i>BiblioAudit: Automated Citation Integrity &amp; Verification Tool</i> (Version 2.2.2) [Software]. Zenodo. https://doi.org/10.5281/zenodo.18155557</p>
     </div>
@@ -373,20 +413,20 @@ code{font-family:'JetBrains Mono',monospace;font-size:.85em}
     <div><b>3 meetings</b><span>co-organised in Kraków</span></div>
     <div><b>2 journals</b><span>I peer-review for</span></div>
   </div>
-  <p style="color:var(--muted);margin-top:22px;font-size:.92rem">Off the clock: table tennis 🏓</p>
+  <p style="color:var(--muted);margin-top:22px;font-size:.92rem">Off the clock: table tennis. <button type="button" class="linkbtn" id="pong-open">Fancy a rally?</button></p>
 </div></section>
 
 <section id="contact"><div class="wrap">
   <div class="label mono">// contact</div>
   <h2>Let's collaborate</h2>
   <p style="color:var(--muted);max-width:560px">I'm looking to collaborate on <b style="color:var(--text)">PET detector instrumentation</b>. So far my experience is in image reconstruction and attenuation correction: Monte Carlo simulation, iterative algorithms and deep learning for CT-less PET. Next, I want to broaden my horizon to the hardware side, from scintillators and readout electronics to timing and detector characterisation, so I understand the whole chain from photon to image. If you work on detectors and see a fit, I'd love to hear from you.</p>
-  <div class="btns"><a class="btn primary" href="mailto:satyam.tiwari@doctoral.uj.edu.pl">Email me</a><button class="btn" id="copymail" type="button">📋 Copy email</button><a class="btn" href="cv.pdf">Download CV</a></div>
+  <div class="btns"><a class="btn primary" href="mailto:satyam.tiwari@doctoral.uj.edu.pl">Email me</a><button class="btn" id="copymail" type="button">Copy email</button><a class="btn" href="satyam-tiwari.vcf" download>Save contact</a><a class="btn" href="cv.pdf">Download CV</a></div>
 </div></section>
 
 </main>
 
 <footer><div class="wrap">
-  <p class="k40" aria-live="off">⚛️ While you've been here, about <b id="k40">0</b> potassium-40 atoms decayed inside your body, and roughly <b id="pos">0</b> of them emitted a positron. You are a tiny PET source.</p>
+  <p class="k40" aria-live="off">While you've been here, about <b id="k40">0</b> potassium-40 atoms decayed inside your body, and roughly <b id="pos">0</b> of them emitted a positron. You are a tiny PET source.</p>
   <div class="links mono">
     <a href="mailto:satyam.tiwari@doctoral.uj.edu.pl">Email</a>
     <a href="https://orcid.org/0009-0006-2293-3946">ORCID</a>
@@ -447,11 +487,11 @@ addEventListener('scroll',f,{passive:true});apply();f();})();
 <script>
 (()=>{const RM=matchMedia('(prefers-reduced-motion: reduce)').matches,$=q=>document.querySelector(q),mail='satyam.tiwari@doctoral.uj.edu.pl';
 const toast=$('#toast');function say(m){toast.textContent=m;toast.classList.add('show');clearTimeout(say.t);say.t=setTimeout(()=>toast.classList.remove('show'),2200)}
-function copy(){(navigator.clipboard?navigator.clipboard.writeText(mail):Promise.reject()).then(()=>say('Email copied ✓'),()=>say(mail))}
+function copy(){(navigator.clipboard?navigator.clipboard.writeText(mail):Promise.reject()).then(()=>say('Email copied'),()=>say(mail))}
 $('#copymail').onclick=copy;
 /* ELI5 */
 const el=$('#eli5'),ps=[...document.querySelectorAll('#research .card p[data-eli5]')];
-el.onclick=()=>{const on=el.getAttribute('aria-pressed')!=='true';el.setAttribute('aria-pressed',on);el.textContent=on?'🎓 Back to grown-up mode':"🧸 Explain like I'm 5";
+el.onclick=()=>{const on=el.getAttribute('aria-pressed')!=='true';el.setAttribute('aria-pressed',on);el.textContent=on?'Back to expert mode':"Explain like I'm 5";
  ps.forEach(p=>{p.classList.add('fade');setTimeout(()=>{p.textContent=on?p.dataset.eli5:p.dataset.pro;p.classList.remove('fade')},RM?0:250)})};
 /* K-40 counter: ~4400 Bq in a 70 kg adult; beta+ branch ~1e-5 */
 const t0=performance.now(),k=$('#k40'),q=$('#pos');setInterval(()=>{const s=(performance.now()-t0)/1000,n=s*4400;k.textContent=Math.round(n).toLocaleString();q.textContent=(n*1e-5).toFixed(2)},250);
@@ -471,10 +511,56 @@ addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey||e.altKey||/input|textare
  if(/^[1-7]$/.test(e.key)){document.getElementById(ids[e.key-1]).scrollIntoView({behavior:RM?'auto':'smooth'})}
  else if(e.key==='t')$('#theme').click();else if(e.key==='e')copy();else if(e.key==='c')open('cv.pdf','_blank')});
 /* console easter egg */
-console.log('%c👋 Hello, curious one.','font:600 16px Inter,sans-serif;color:#6ee7c8');
+console.log('%cHello, curious one.','font:600 16px Inter,sans-serif;color:#6ee7c8');
 console.log('%cLooking for a collaborator on PET imaging or detector instrumentation?\nWrite to '+mail+'  (or press ? on the page for shortcuts)','font:13px Inter,sans-serif');
 })();
 </script>
 <script>document.querySelectorAll('.cp').forEach(b=>b.onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText(b.dataset.copy).then(()=>{b.textContent='Copied ✓';setTimeout(()=>b.textContent='Copy',1600)})});</script>
+<script>
+(()=>{const $=q=>document.querySelector(q),RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+const say=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(say.t);say.t=setTimeout(()=>t.classList.remove('show'),2200)};
+/* greeting in Krakow time */
+function greet(){const now=new Date(),h=+now.toLocaleString('en-GB',{timeZone:'Europe/Warsaw',hour:'2-digit',hour12:false}),tm=now.toLocaleTimeString('en-GB',{timeZone:'Europe/Warsaw',hour:'2-digit',minute:'2-digit'});
+ const g=h<5?'Working late in Kraków':h<12?'Good morning from Kraków':h<18?'Good afternoon from Kraków':'Good evening from Kraków';$('#greet').textContent=g+' · '+tm+' local time'}
+greet();setInterval(greet,30000);
+/* dialogs */
+$('#tldr-open').onclick=()=>$('#tldr').showModal();
+/* DOIs: citations + cite buttons */
+const items=[...document.querySelectorAll('#publications .pub, #publications .pub-list li')].map(el=>{const a=el.querySelector('a[href*="doi.org/"]');if(!a)return null;return{el,a,doi:a.href.split('doi.org/')[1].toLowerCase()}}).filter(Boolean);
+items.forEach(it=>{const b=document.createElement('button');b.type='button';b.className='cite-btn';b.textContent='Cite';b.setAttribute('aria-label','Copy BibTeX');it.a.after(b);
+ b.onclick=async()=>{b.textContent='…';let bib='';
+  try{const r=await fetch('https://api.crossref.org/works/'+encodeURIComponent(it.doi)+'/transform/application/x-bibtex');if(r.ok)bib=await r.text()}catch(e){}
+  if(!bib){try{const r=await fetch('https://doi.org/'+it.doi,{headers:{Accept:'application/x-bibtex'}});if(r.ok)bib=await r.text()}catch(e){}}
+  if(!bib)bib='@misc{'+it.doi.replace(/\W/g,'_')+',\n  doi = {'+it.doi+'},\n  url = {https://doi.org/'+it.doi+'}\n}';
+  try{await navigator.clipboard.writeText(bib.trim());say('BibTeX copied')}catch(e){say('Could not copy')}b.textContent='Cite'}});
+(async()=>{try{const d=items.map(i=>i.doi).filter(x=>!x.startsWith('10.48550')&&!x.startsWith('10.5281'));if(!d.length)return;
+ const r=await fetch('https://api.openalex.org/works?filter=doi:'+d.join('|')+'&select=doi,cited_by_count&per-page=50&mailto=satyam.tiwari@doctoral.uj.edu.pl');const j=await r.json();
+ const m={};j.results.forEach(w=>m[w.doi.replace('https://doi.org/','').toLowerCase()]=w.cited_by_count);
+ items.forEach(it=>{const c=m[it.doi];if(c>0){const s=document.createElement('span');s.className='cites';s.textContent=c+(c===1?' citation':' citations');it.a.after(s)}})}catch(e){}})();
+/* table tennis */
+const dlg=$('#pong'),cv=$('#pongc'),c=cv.getContext('2d'),W=480,H=300,PH=56,PW=8;let st,raf;
+function reset(dir){st.bx=W/2;st.by=H/2;const a=(Math.random()*.6-.3);st.vx=4.2*dir*Math.cos(a);st.vy=4.2*Math.sin(a)}
+function start(){st={py:H/2,ay:H/2,you:0,me:0,over:false,serve:0};reset(1);loop()}
+function draw(){c.fillStyle='#0b3d2e';c.fillRect(0,0,W,H);c.strokeStyle='rgba(255,255,255,.55)';c.lineWidth=2;c.strokeRect(3,3,W-6,H-6);c.setLineDash([6,8]);c.beginPath();c.moveTo(W/2,6);c.lineTo(W/2,H-6);c.stroke();c.setLineDash([]);
+ c.fillStyle='#ededef';c.fillRect(14,st.py-PH/2,PW,PH);c.fillStyle='#ffb86b';c.fillRect(W-14-PW,st.ay-PH/2,PW,PH);
+ c.fillStyle='#fff';c.beginPath();c.arc(st.bx,st.by,6,0,6.283);c.fill();
+ if(st.over){c.fillStyle='rgba(0,0,0,.55)';c.fillRect(0,0,W,H);c.fillStyle='#fff';c.font='600 22px Inter,sans-serif';c.textAlign='center';c.fillText(st.you>st.me?'You win. Rematch?':'Satyam wins. Rematch?',W/2,H/2-4);c.font='14px Inter,sans-serif';c.fillText('Click or press space',W/2,H/2+22);c.textAlign='start'}}
+function loop(){if(!dlg.open)return;if(!st.over){
+ st.bx+=st.vx;st.by+=st.vy;if(st.by<9||st.by>H-9){st.vy*=-1;st.by=Math.max(9,Math.min(H-9,st.by))}
+ const sp=3.1+st.me*.15;st.ay+=Math.max(-sp,Math.min(sp,(st.by-st.ay)*.12));st.ay=Math.max(PH/2,Math.min(H-PH/2,st.ay));
+ if(st.vx<0&&st.bx<14+PW+6&&st.bx>10&&Math.abs(st.by-st.py)<PH/2+6){st.vx=Math.abs(st.vx)*1.05;st.vy+=(st.by-st.py)*.09}
+ if(st.vx>0&&st.bx>W-14-PW-6&&st.bx<W-10&&Math.abs(st.by-st.ay)<PH/2+6){st.vx=-Math.abs(st.vx)*1.04;st.vy+=(st.by-st.ay)*.07}
+ st.vx=Math.max(-11,Math.min(11,st.vx));
+ if(st.bx<-10){st.me++;reset(1)}else if(st.bx>W+10){st.you++;reset(-1)}
+ $('#pong-score').textContent='You '+st.you+' : '+st.me+' Satyam';if(st.you>=5||st.me>=5)st.over=true}
+ draw();raf=requestAnimationFrame(loop)}
+function aim(e){const r=cv.getBoundingClientRect();st.py=Math.max(PH/2,Math.min(H-PH/2,(e.clientY-r.top)/r.height*H))}
+cv.addEventListener('pointermove',aim);cv.addEventListener('pointerdown',e=>{aim(e);if(st.over)start()});
+dlg.addEventListener('keydown',e=>{if(!st)return;if(e.key==='ArrowUp'){st.py=Math.max(PH/2,st.py-24);e.preventDefault()}if(e.key==='ArrowDown'){st.py=Math.min(H-PH/2,st.py+24);e.preventDefault()}if(e.key===' '&&st.over){e.preventDefault();start()}});
+dlg.addEventListener('close',()=>cancelAnimationFrame(raf));
+const openPong=()=>{dlg.showModal();cancelAnimationFrame(raf);start()};$('#pong-open').onclick=openPong;
+addEventListener('keydown',e=>{if(e.key==='p'&&!e.ctrlKey&&!e.metaKey&&!document.querySelector('dialog[open]')&&!/input|textarea/i.test(e.target.tagName))openPong()});
+})();
+</script>
 </body>
 </html>

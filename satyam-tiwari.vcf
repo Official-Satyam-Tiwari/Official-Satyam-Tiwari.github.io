@@ -1,0 +1,12 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Tiwari;Satyam;;;
+FN:Satyam Tiwari
+TITLE:PhD Researcher, Biophysics
+ORG:Jagiellonian University;J-PET Group
+EMAIL;TYPE=INTERNET,WORK:satyam.tiwari@doctoral.uj.edu.pl
+URL:https://official-satyam-tiwari.github.io/
+URL:https://orcid.org/0009-0006-2293-3946
+ADR;TYPE=WORK:;;;Kraków;;;Poland
+NOTE:CT-less PET imaging and attenuation correction (J-PET)
+END:VCARD
