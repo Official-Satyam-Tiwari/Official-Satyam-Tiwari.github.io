@@ -223,8 +223,10 @@ a.ext:hover,footer .links a:hover,.pub a:hover,.pub-list a:hover,.flinks a:hover
  .hero .wrap{padding:0;max-width:none}
  .hero h1{font-size:3.4rem}
  .hero .lead{font-size:.98rem}
- .hero .btns{flex-direction:column;align-items:stretch;max-width:260px}
- .hero .btns .btn{justify-content:center}
+ .hero{align-self:start;padding:100px 0 28px!important}
+ .hero .avatar{margin-bottom:18px}
+ .hero .btns{gap:8px;margin-top:22px}
+ .hero .btn{padding:8px 14px;font-size:.84rem}
  main,footer{grid-column:2;min-width:0}
  main .wrap,footer .wrap{padding:0;margin:0}
  section{border-top:1px solid var(--line)}
@@ -232,6 +234,8 @@ a.ext:hover,footer .links a:hover,.pub a:hover,.pub-list a:hover,.flinks a:hover
  .avwrap::after{display:none}
 }
 @media(prefers-reduced-motion:reduce){h2{clip-path:none;transform:none}.avatar{animation:none}}
+button.btn{background:transparent;color:var(--text);font:inherit;font-size:.9rem;cursor:pointer}
+.btn.primary{background:var(--text);color:var(--bg)}
 </style>
 </head>
 <body>
