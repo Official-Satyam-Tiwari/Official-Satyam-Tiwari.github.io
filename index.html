@@ -152,6 +152,7 @@ img{max-width:100%}html,body{overflow-x:hidden}
     <li><a href="#publications">Publications</a></li>
     <li><a href="#talks">Conferences</a></li>
     <li><a href="#background">Background</a></li>
+    <li><a href="#skills">Skills</a></li>
     <li><a href="#projects">Fun Projects</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
@@ -272,6 +273,18 @@ img{max-width:100%}html,body{overflow-x:hidden}
   </div>
 </div></section>
 
+<section id="skills"><div class="wrap">
+  <div class="label mono">// toolkit</div>
+  <h2>Skills &amp; Training</h2>
+  <div class="grid"><div class="card"><h3>Imaging &amp; simulation</h3><div class="skills"><span>GATE / Geant4</span><span>Monte Carlo</span><span>Image reconstruction</span><span>ROOT</span></div></div><div class="card"><h3>Programming</h3><div class="skills"><span>Python</span><span>C++</span><span>SQL</span><span>Fortran</span><span>Mathematica</span></div></div><div class="card"><h3>Machine learning</h3><div class="skills"><span>TensorFlow</span><span>scikit-learn</span><span>Deep learning</span></div></div><div class="card"><h3>Data &amp; visualisation</h3><div class="skills"><span>NumPy</span><span>Pandas</span><span>Matplotlib</span><span>Seaborn</span><span>Power BI</span><span>Tableau</span></div></div></div>
+  <h3 class="sub">Certifications</h3>
+  <div class="item"><div class="when mono">Coursera</div><div><h3>Machine Learning Specialization <span>· Andrew Ng, Stanford / DeepLearning.AI</span></h3></div></div>
+  <div class="item"><div class="when mono">Coursera</div><div><h3>Neural Networks and Deep Learning <span>· DeepLearning.AI</span></h3></div></div>
+  <div class="item"><div class="when mono">IIT Bombay</div><div><h3>Natural Language Processing <span>· Summer of Science, Maths &amp; Physics Club</span></h3></div></div>
+  <h3 class="sub">Key coursework (MSc, IIT Bombay)</h3>
+  <div class="skills"><span>Nuclear &amp; Particle Physics</span><span>Quantum Mechanics</span><span>Statistical Physics</span><span>Mathematical Physics</span><span>Electromagnetic Theory</span><span>Light–Matter Interaction</span><span>Advanced Simulation Techniques</span><span>Numerical Analysis</span></div>
+</div></section>
+
 <section id="projects"><div class="wrap">
   <div class="label mono">// side quests</div>
   <h2>Fun Projects</h2>
@@ -284,9 +297,6 @@ img{max-width:100%}html,body{overflow-x:hidden}
     <div class="card"><h3>Bluetooth notice board</h3><p>An Arduino notice board you update from your phone over Bluetooth.</p></div>
     <div class="card"><h3>Manim animations</h3><p>Animated maths and physics explainers for school students, made with Manim at Vizuara.</p></div>
     <a class="card" href="https://github.com/Official-Satyam-Tiwari/System-Matrix-Generation-for-PET-Imaging"><h3>PET system matrix ↗</h3><p>Building the system matrix for tomographic reconstruction from scratch, to really understand it.</p></a>
-  </div>
-  <div class="skills">
-    <span>Python</span><span>C++</span><span>GATE / Geant4</span><span>ROOT</span><span>TensorFlow</span><span>scikit-learn</span><span>Mathematica</span><span>Arduino</span><span>Manim</span>
   </div>
 </div></section>
 
@@ -347,7 +357,7 @@ const io=new IntersectionObserver(([e])=>{if(e.isIntersecting){io.disconnect();i
 </script>
 
 <script>
-(()=>{const V={top:['#6ee7c8','rgba(110,231,200,.07)','#0a0a0b'],research:['#6ee7c8','rgba(110,231,200,.09)','#090c0d'],publications:['#a99bff','rgba(150,130,255,.09)','#0b0a10'],talks:['#7cc4ff','rgba(110,180,255,.09)','#090b10'],map:['#7cc4ff','rgba(110,180,255,.06)','#09090c'],background:['#ffb86b','rgba(255,170,90,.08)','#0f0b09'],projects:['#ff8fb1','rgba(255,130,170,.08)','#0f090c'],contact:['#6ee7c8','rgba(110,231,200,.10)','#090d0c']};
+(()=>{const V={top:['#6ee7c8','rgba(110,231,200,.07)','#0a0a0b'],research:['#6ee7c8','rgba(110,231,200,.09)','#090c0d'],publications:['#a99bff','rgba(150,130,255,.09)','#0b0a10'],talks:['#7cc4ff','rgba(110,180,255,.09)','#090b10'],map:['#7cc4ff','rgba(110,180,255,.06)','#09090c'],background:['#ffb86b','rgba(255,170,90,.08)','#0f0b09'],skills:['#a99bff','rgba(150,130,255,.07)','#0b0a0f'],projects:['#ff8fb1','rgba(255,130,170,.08)','#0f090c'],contact:['#6ee7c8','rgba(110,231,200,.10)','#090d0c']};
 const b=document.body;let cur='';function set(id){if(id===cur||!V[id])return;cur=id;const[a,g,c]=V[id];b.style.setProperty('--accent',a);b.style.setProperty('--glow',g);b.style.setProperty('--bgc',c)}
 function f(){let id='top';document.querySelectorAll('section[id]').forEach(x=>{if(x.getBoundingClientRect().top<innerHeight*.55)id=x.id});set(id)}
 addEventListener('scroll',f,{passive:true});f();})();
