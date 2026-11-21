@@ -294,6 +294,23 @@ a.card:hover,.card:hover{transform:translateY(-3px) rotate(-.4deg);box-shadow:0 
 nav ul a.active{color:var(--accent);background:transparent}
 #worldmap{border:0;border-radius:20px;box-shadow:0 8px 24px rgba(30,20,10,.06)}
 #progress{height:3px}
+
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin:8px 0 14px}
+.chip{font:inherit;font-size:.86rem;border:1px solid var(--line);background:#fff;color:var(--text);border-radius:99px;padding:6px 14px;cursor:pointer;transition:.2s}
+.chip span{color:var(--muted);font-size:.8rem;margin-left:4px}
+.chip:hover{border-color:var(--accent)}
+.chip.on{background:var(--text);color:#fff;border-color:var(--text)}.chip.on span{color:#ffffffaa}
+.clist{list-style:none;background:#fff;border-radius:20px;box-shadow:0 8px 24px rgba(30,20,10,.06);padding:6px 22px}
+.clist li{display:grid;grid-template-columns:56px 1fr auto;gap:14px;align-items:baseline;padding:13px 0;border-bottom:1px dashed var(--line)}
+.clist li:last-child{border-bottom:0}
+.clist li.hide{display:none}
+.yr{color:var(--accent);font-size:.85rem}
+.ct a{color:var(--text);font-weight:500;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .3s}
+.ct a:hover{background-size:100% 1px}
+.ct .v{display:block;font-size:.84rem;color:var(--muted);margin-top:2px}
+.tg{font-size:.72rem;color:var(--muted);border:1px solid var(--line);border-radius:99px;padding:1px 9px;white-space:nowrap}
+.more{margin-top:14px}
+@media(max-width:560px){.clist{padding:4px 16px}.clist li{grid-template-columns:44px 1fr}.tg{display:none}}
 </style>
 </head>
 <body>
@@ -365,27 +382,26 @@ nav ul a.active{color:var(--accent);background:transparent}
   </div>
   <h3 class="sub">Software</h3>
   <ul class="pub-list"><li>BiblioAudit: Automated Citation Integrity &amp; Verification Tool (v2.2.2)<div class="j"><b>S. Tiwari</b> · <i>Zenodo (2025)</i> · <code>pip install biblioaudit</code></div><a href="https://doi.org/10.5281/zenodo.18155557">10.5281/zenodo.18155557 →</a></li></ul>
-  <h3 class="sub">Co-authored journal articles &amp; preprints</h3>
-  <ul class="pub-list">
-<li>First-in-human quantum entanglement imaging<div class="j">Paweł Moskal et al. (incl. <b>S. Tiwari</b>) · <i>arXiv preprint (2026)</i></div><a href="https://arxiv.org/abs/2606.29421">arXiv:2606.29421 →</a></li>
-<li>Experimental determination of the Dalitz plot for positronium decay using the J-PET detection system<div class="j">Magdalena Skurzok et al. (incl. <b>S. Tiwari</b>) · <i>Physics Letters B 882, 141018 (2026)</i></div><a href="https://koza.if.uj.edu.pl/staff/stiwari">koza.if.uj.edu.pl →</a></li>
-<li>Feasibility simulation study of positronium lifetime imaging with the Biograph Vision Quadra and J-PET tomographs<div class="j">Szymon Parzych et al. (incl. <b>S. Tiwari</b>) · <i>EJNMMI Physics 13, 102 (2026)</i></div><a href="https://doi.org/10.1186/s40658-026-00920-1">10.1186/s40658-026-00920-1 →</a></li>
-<li>First direct determination of the pick-off contribution to the ortho-positronium decay rate<div class="j">Sushil K. Sharma et al. (incl. <b>S. Tiwari</b>) · <i>Physics Letters B 879, 140610 (2026)</i></div><a href="https://doi.org/10.1016/j.physletb.2026.140610">10.1016/j.physletb.2026.140610 →</a></li>
-<li>Methodology for time and TOT calibration of a modular J-PET scanner with prompt gamma emitters <sup>22</sup>Na and <sup>44</sup>Sc<div class="j">Krzysztof Kacprzak et al. (incl. <b>S. Tiwari</b>) · <i>Bio-Algorithms and Med-Systems 22, 36 (2026)</i></div><a href="https://doi.org/10.5604/01.3001.0055.6703">10.5604/01.3001.0055.6703 →</a></li>
-<li>Monte Carlo-based scatter correction for the plastic-based modular PET scanner J-PET<div class="j">Reimund Bayerlein, Manish Das et al. (incl. <b>S. Tiwari</b>) · <i>Physics in Medicine &amp; Biology 71, 075026 (2026)</i></div><a href="https://doi.org/10.1088/1361-6560/ae54fb">10.1088/1361-6560/ae54fb →</a></li>
-<li>First positronium imaging using <sup>44</sup>Sc with the J-PET scanner: a case study on the NEMA image quality phantom<div class="j">Manish Das et al. (incl. <b>S. Tiwari</b>) · <i>IEEE Trans. Radiat. Plasma Med. Sci. 10(4), 593 (2026)</i></div><a href="https://doi.org/10.1109/TRPMS.2025.3621554">10.1109/TRPMS.2025.3621554 →</a></li>
-<li>First positronium lifetime imaging using <sup>52</sup>Mn and <sup>55</sup>Co with a plastic-based PET scanner<div class="j">Manish Das et al. (incl. <b>S. Tiwari</b>) · <i>Scientific Reports 16, 16230 (2026)</i></div><a href="https://doi.org/10.1038/s41598-026-43965-z">10.1038/s41598-026-43965-z →</a></li>
-<li>First ex-vivo positronium imaging of tissues with modular J-PET scanner using <sup>44</sup>Sc radionuclide<div class="j">Karol Kubat et al. (incl. <b>S. Tiwari</b>) · <i>Z. Med. Phys. 36, 357–365 (2026)</i></div><a href="https://doi.org/10.1016/j.zemedi.2026.03.004">10.1016/j.zemedi.2026.03.004 →</a></li>
-<li>Studies of CPT symmetry in positronium decays with the 192 plastic strip J-PET detector<div class="j">Neha Chug et al. (incl. <b>S. Tiwari</b>) · <i>Physical Review D 113, 032003 (2026)</i></div><a href="https://doi.org/10.1103/wy7r-xgl9">10.1103/wy7r-xgl9 →</a></li>
-<li>µPPET: Investigating the muon puzzle with J-PET detectors<div class="j">Alessio Porcelli et al. (incl. <b>S. Tiwari</b>) · <i>Universe 11, 180 (2025)</i></div><a href="https://doi.org/10.3390/universe11060180">10.3390/universe11060180 →</a></li>
+  <h3 class="sub">Co-authored · J-PET Collaboration</h3>
+  <div class="chips" role="group" aria-label="Filter co-authored papers"><button type="button" class="chip on" data-f="all">All <span>15</span></button><button type="button" class="chip" data-f="pos">Positronium & quantum imaging <span>6</span></button><button type="button" class="chip" data-f="scan">Scanner & methods <span>5</span></button><button type="button" class="chip" data-f="fund">Fundamental physics <span>4</span></button></div>
+  <ul class="clist collapsed" id="clist">
+<li data-f="pos"><span class="yr mono">2026</span><div class="ct"><a href="https://arxiv.org/abs/2606.29421" target="_blank" rel="noopener">First-in-human quantum entanglement imaging</a><span class="v">Paweł Moskal et al. · arXiv</span></div><span class=tg>Preprint</span></li>
+<li data-f="fund"><span class="yr mono">2026</span><div class="ct"><a href="https://koza.if.uj.edu.pl/staff/stiwari" target="_blank" rel="noopener">Experimental determination of the Dalitz plot for positronium decay using the J-PET detection system</a><span class="v">Magdalena Skurzok et al. · Physics Letters B 882, 141018</span></div></li>
+<li data-f="pos"><span class="yr mono">2026</span><div class="ct"><a href="https://doi.org/10.1186/s40658-026-00920-1" target="_blank" rel="noopener">Feasibility simulation study of positronium lifetime imaging with the Biograph Vision Quadra and J-PET tomographs</a><span class="v">Szymon Parzych et al. · EJNMMI Physics 13, 102</span></div></li>
+<li data-f="fund"><span class="yr mono">2026</span><div class="ct"><a href="https://doi.org/10.1016/j.physletb.2026.140610" target="_blank" rel="noopener">First direct determination of the pick-off contribution to the ortho-positronium decay rate</a><span class="v">Sushil K. Sharma et al. · Physics Letters B 879, 140610</span></div></li>
+<li data-f="scan"><span class="yr mono">2026</span><div class="ct"><a href="https://doi.org/10.5604/01.3001.0055.6703" target="_blank" rel="noopener">Methodology for time and TOT calibration of a modular J-PET scanner with prompt gamma emitters <sup>22</sup>Na and <sup>44</sup>Sc</a><span class="v">Krzysztof Kacprzak et al. · Bio-Algorithms and Med-Systems 22, 36</span></div></li>
+<li data-f="scan"><span class="yr mono">2026</span><div class="ct"><a href="https://doi.org/10.1088/1361-6560/ae54fb" target="_blank" rel="noopener">Monte Carlo-based scatter correction for the plastic-based modular PET scanner J-PET</a><span class="v">Reimund Bayerlein, Manish Das et al. · Physics in Medicine &amp; Biology 71, 075026</span></div></li>
+<li data-f="pos"><span class="yr mono">2026</span><div class="ct"><a href="https://doi.org/10.1109/TRPMS.2025.3621554" target="_blank" rel="noopener">First positronium imaging using <sup>44</sup>Sc with the J-PET scanner: a case study on the NEMA image quality phantom</a><span class="v">Manish Das et al. · IEEE Trans. Radiat. Plasma Med. Sci. 10(4), 593</span></div></li>
+<li data-f="pos"><span class="yr mono">2026</span><div class="ct"><a href="https://doi.org/10.1038/s41598-026-43965-z" target="_blank" rel="noopener">First positronium lifetime imaging using <sup>52</sup>Mn and <sup>55</sup>Co with a plastic-based PET scanner</a><span class="v">Manish Das et al. · Scientific Reports 16, 16230</span></div></li>
+<li data-f="pos"><span class="yr mono">2026</span><div class="ct"><a href="https://doi.org/10.1016/j.zemedi.2026.03.004" target="_blank" rel="noopener">First ex-vivo positronium imaging of tissues with modular J-PET scanner using <sup>44</sup>Sc radionuclide</a><span class="v">Karol Kubat et al. · Z. Med. Phys. 36, 357–365</span></div></li>
+<li data-f="fund"><span class="yr mono">2025</span><div class="ct"><a href="https://doi.org/10.3390/universe11060180" target="_blank" rel="noopener">µPPET: Investigating the muon puzzle with J-PET detectors</a><span class="v">Alessio Porcelli et al. · Universe 11, 180</span></div></li>
+<li data-f="pos"><span class="yr mono">2025</span><div class="ct"><a href="https://doi.org/10.1109/NSS/MIC/RTSD57106.2025.11286751" target="_blank" rel="noopener">First experimental demonstration of positronium lifetime imaging with <sup>44</sup>Sc using the J-PET scanner</a><span class="v">Manish Das et al. · IEEE NSS/MIC 2025</span></div><span class=tg>Proceedings</span></li>
+<li data-f="scan"><span class="yr mono">2025</span><div class="ct"><a href="https://doi.org/10.1109/NSS/MIC/RTSD57106.2025.11287221" target="_blank" rel="noopener">Development of a cost-effective Total Body J-PET from plastic scintillators: definitive design</a><span class="v">Keyvan Tayefi Ardebili et al. · IEEE NSS/MIC 2025</span></div><span class=tg>Proceedings</span></li>
+<li data-f="scan"><span class="yr mono">2025</span><div class="ct"><a href="https://doi.org/10.1109/NSS/MIC/RTSD57106.2025.11286628" target="_blank" rel="noopener">Simulation studies of a brain PET insert for the Total Body J-PET tomograph</a><span class="v">M. Rädler et al. · IEEE NSS/MIC 2025</span></div><span class=tg>Proceedings</span></li>
+<li data-f="scan"><span class="yr mono">2025</span><div class="ct"><a href="https://doi.org/10.1109/NSS/MIC/RTSD57106.2025.11287184" target="_blank" rel="noopener">Monte Carlo-based scatter correction for J-PET</a><span class="v">Reimund Bayerlein et al. · IEEE NSS/MIC 2025</span></div><span class=tg>Proceedings</span></li>
+<li data-f="fund"><span class="yr mono">2003</span><div class="ct"><a href="https://doi.org/10.1103/wy7r-xgl9" target="_blank" rel="noopener">Studies of CPT symmetry in positronium decays with the 192 plastic strip J-PET detector</a><span class="v">Neha Chug et al. · Physical Review D 113, 032003</span></div></li>
   </ul>
-  <h3 class="sub">Conference proceedings</h3>
-  <ul class="pub-list">
-<li>First experimental demonstration of positronium lifetime imaging with <sup>44</sup>Sc using the J-PET scanner<div class="j">Manish Das et al. (incl. <b>S. Tiwari</b>) · <i>2025 IEEE NSS/MIC/RTSD, Yokohama</i></div><a href="https://doi.org/10.1109/NSS/MIC/RTSD57106.2025.11286751">10.1109/NSS/MIC/RTSD57106.2025.11286751 →</a></li>
-<li>Development of a cost-effective Total Body J-PET from plastic scintillators: definitive design<div class="j">Keyvan Tayefi Ardebili et al. (incl. <b>S. Tiwari</b>) · <i>2025 IEEE NSS/MIC/RTSD, Yokohama</i></div><a href="https://doi.org/10.1109/NSS/MIC/RTSD57106.2025.11287221">10.1109/NSS/MIC/RTSD57106.2025.11287221 →</a></li>
-<li>Simulation studies of a brain PET insert for the Total Body J-PET tomograph<div class="j">M. Rädler et al. (incl. <b>S. Tiwari</b>) · <i>2025 IEEE NSS/MIC/RTSD, Yokohama</i></div><a href="https://doi.org/10.1109/NSS/MIC/RTSD57106.2025.11286628">10.1109/NSS/MIC/RTSD57106.2025.11286628 →</a></li>
-<li>Monte Carlo-based scatter correction for J-PET<div class="j">Reimund Bayerlein et al. (incl. <b>S. Tiwari</b>) · <i>2025 IEEE NSS/MIC/RTSD, Yokohama</i></div><a href="https://doi.org/10.1109/NSS/MIC/RTSD57106.2025.11287184">10.1109/NSS/MIC/RTSD57106.2025.11287184 →</a></li>
-  </ul>
+  <button type="button" class="btn more" id="cmore">Show all 15</button>
 </div></section>
 
 <section id="talks"><div class="wrap">
@@ -598,6 +614,13 @@ items.forEach(it=>{const b=document.createElement('button');b.type='button';b.cl
  items.forEach(it=>{const c=m[it.doi];if(c>0){const s=document.createElement('span');s.className='cites';s.textContent=c+(c===1?' citation':' citations');it.a.after(s)}})}catch(e){}})();
 
 })();
+</script>
+<script>
+(()=>{const L=document.getElementById('clist'),M=document.getElementById('cmore'),items=[...L.children];let f='all',open=false;
+function draw(){let n=0;items.forEach(li=>{const ok=f==='all'||li.dataset.f===f;const show=ok&&(open||n<5);li.classList.toggle('hide',!show);if(ok)n++});
+ M.hidden=n<=5;M.textContent=open?'Show fewer':'Show all '+n}
+document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===c));f=c.dataset.f;draw()});
+M.onclick=()=>{open=!open;draw();if(!open)L.scrollIntoView({block:'nearest'})};draw()})();
 </script>
 </body>
 </html>
