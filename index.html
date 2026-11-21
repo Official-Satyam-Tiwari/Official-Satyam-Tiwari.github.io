@@ -202,6 +202,36 @@ code{font-family:'JetBrains Mono',monospace;font-size:.85em}
 .cite-btn{font:inherit;font-size:.74rem;margin-left:8px;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:6px;padding:1px 8px;cursor:pointer;vertical-align:1px}
 .cite-btn:hover{color:var(--text);border-color:var(--muted)}
 .cites{font-size:.78rem;color:var(--accent);margin-left:8px;white-space:nowrap}
+
+/* ---- minimal refresh ---- */
+.avatar{filter:none;animation:tocolor 1.4s ease .2s both}
+@keyframes tocolor{from{filter:grayscale(1)}to{filter:grayscale(0)}}
+h1{font-weight:300;font-size:clamp(2.8rem,7vw,4.6rem);letter-spacing:-.045em;line-height:1}
+.label{font-size:.78rem;color:var(--accent);letter-spacing:.08em}
+.facts-line{font-size:.8rem;color:var(--muted);margin-top:18px}
+.wrap{max-width:680px}
+.card:hover,a.card:hover{transform:none}
+.reveal{transform:none!important;transition:opacity .9s ease}
+h2{clip-path:inset(0 0 100% 0);transform:translateY(18px);transition:clip-path .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
+.reveal.in h2{clip-path:inset(0 0 -20% 0);transform:none}
+a.ext{border-bottom:0}
+a.ext,footer .links a,.pub a,.pub-list a,.flinks a,.ref .rc a,.dlg dd a{background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .35s ease,color .2s;text-decoration:none!important}
+a.ext:hover,footer .links a:hover,.pub a:hover,.pub-list a:hover,.flinks a:hover,.ref .rc a:hover,.dlg dd a:hover{background-size:100% 1px}
+@media(min-width:1100px){
+ .layout{display:grid;grid-template-columns:380px minmax(0,1fr);gap:0 56px;max-width:1220px;margin:0 auto;padding:0 32px}
+ .hero{position:sticky;top:0;height:100vh;padding:120px 0 40px;display:block;overflow:hidden}
+ .hero .wrap{padding:0;max-width:none}
+ .hero h1{font-size:3.4rem}
+ .hero .lead{font-size:.98rem}
+ .hero .btns{flex-direction:column;align-items:stretch;max-width:260px}
+ .hero .btns .btn{justify-content:center}
+ main,footer{grid-column:2;min-width:0}
+ main .wrap,footer .wrap{padding:0;margin:0}
+ section{border-top:1px solid var(--line)}
+ main section:first-child{border-top:0;padding-top:120px}
+ .avwrap::after{display:none}
+}
+@media(prefers-reduced-motion:reduce){h2{clip-path:none;transform:none}.avatar{animation:none}}
 </style>
 </head>
 <body>
@@ -221,6 +251,7 @@ code{font-family:'JetBrains Mono',monospace;font-size:.85em}
   <button id="theme" type="button" aria-label="Switch to light theme">☀</button>
 </div></nav>
 
+<div class="layout">
 <header class="hero" id="top">
   <canvas id="trail" aria-hidden="true"></canvas>
   <div class="wrap">
@@ -229,6 +260,7 @@ code{font-family:'JetBrains Mono',monospace;font-size:.85em}
     <p class="eyebrow mono">PhD Researcher · Biophysics · Jagiellonian University</p>
     <h1>Satyam Tiwari</h1>
     <p class="lead">I am developing algorithms for reconstructing attenuation maps from detector-scattered coincidences in PET imaging: photons that scanners usually throw away. The goal is CT-less PET, across the J-PET scanner family and its prototypes.</p>
+    <p class="facts-line mono">16 publications · 9 conference contributions · 1 patent pending</p>
     <div class="btns">
       <a class="btn primary" href="#publications">Publications</a>
       <a class="btn" href="cv.pdf">Download CV</a>
@@ -254,7 +286,7 @@ code{font-family:'JetBrains Mono',monospace;font-size:.85em}
 </dialog>
 <main id="main">
 <section id="research"><div class="wrap">
-  <div class="label mono">// research</div>
+  <div class="label mono">01</div>
   <h2>Research Interests</h2>
   <button class="eli5" id="eli5" type="button" aria-pressed="false">Explain like I'm 5</button>
   <div class="grid">
@@ -262,16 +294,11 @@ code{font-family:'JetBrains Mono',monospace;font-size:.85em}
     <div class="card"><h3>Image reconstruction</h3><p data-pro="Simulation-driven methods (GATE / Monte Carlo) for attenuation-map estimation and better lesion localisation." data-eli5="I simulate millions of particles on a computer to turn messy detector signals into sharp pictures.">Simulation-driven methods (GATE / Monte Carlo) for attenuation-map estimation and better lesion localisation.</p></div>
     <div class="card"><h3>AI for medical imaging</h3><p data-pro="Deep-learning denoising and enhancement of attenuation maps for robust CT-less workflows." data-eli5="I train neural networks to clean up blurry images so doctors can trust them.">Deep-learning denoising and enhancement of attenuation maps for robust CT-less workflows.</p></div>
   </div>
-  <div class="grid" style="margin-top:16px">
-    <div class="card"><div class="stat">16</div><p>publications, preprints &amp; proceedings</p></div>
-    <div class="card"><div class="stat">9</div><p>conference talks &amp; posters</p></div>
-    <div class="card"><div class="stat">1</div><p>US patent application pending (DSAC)</p></div>
-  </div>
   <p style="color:var(--muted);margin-top:20px;font-size:.92rem">Supervisors: Prof. Paweł Moskal &amp; Dr. Sushil K. Sharma · Team member, MAESTRO grant project</p>
 </div></section>
 
 <section id="publications"><div class="wrap">
-  <div class="label mono">// publications</div>
+  <div class="label mono">02</div>
   <h2>Publications</h2>
   <h3 class="sub" style="margin-top:0">Patent</h3>
   <div class="pub" id="patent">
@@ -314,7 +341,7 @@ code{font-family:'JetBrains Mono',monospace;font-size:.85em}
 </div></section>
 
 <section id="talks"><div class="wrap">
-  <div class="label mono">// talks &amp; posters</div>
+  <div class="label mono">03</div>
   <h2>Conferences</h2>
 <div class="item"><div class="when mono">Nov 2026</div><div><h3>CT-less J-PET with the full detector-scatter framework (incl. MLTR) · DSAC in LYSO vs plastic scintillators <span class="pill">Poster</span></h3><div class="where"><a class="ext" href="https://nssmic.ieee.org/2026/" target="_blank" rel="noopener">IEEE NSS/MIC/RTSD 2026 ↗</a> · Granada, Spain</div></div></div>
 <div class="item"><div class="when mono">Sep 2026</div><div><h3>CT-Less Attenuation Correction Using Detector-Scattered Photons in Plastic Scintillator-Based Total-Body PET: A Monte Carlo Study <span class="pill">Poster</span> <span class="pill">Presentation Award</span></h3><div class="where"><a class="ext" href="https://tbpet2026.ucdavis.edu/" target="_blank" rel="noopener">Total-Body PET 2026 ↗</a> · UC Davis, USA</div></div></div>
@@ -336,7 +363,7 @@ code{font-family:'JetBrains Mono',monospace;font-size:.85em}
 </div></section>
 
 <section id="background" class="edu"><div class="wrap">
-  <div class="label mono">// background</div>
+  <div class="label mono">04</div>
   <h2>Education, service &amp; awards</h2>
   <div class="item"><div class="when mono">2024–2028</div><div><h3>PhD, Biophysics <span>· <a class="ext" href="https://www.uj.edu.pl/en" target="_blank" rel="noopener">Jagiellonian University ↗</a></span></h3><div class="where">J-PET Research Group, Kraków</div></div></div>
   <div class="item"><div class="when mono">2022–2024</div><div><h3>MSc, Physics <span>· <a class="ext" href="https://www.iitb.ac.in/" target="_blank" rel="noopener">IIT Bombay ↗</a></span></h3><div class="where">Thesis: using scattered data in PET imaging (Prof. Pragya Das)</div></div></div>
@@ -363,7 +390,7 @@ code{font-family:'JetBrains Mono',monospace;font-size:.85em}
 </div></section>
 
 <section id="skills"><div class="wrap">
-  <div class="label mono">// toolkit</div>
+  <div class="label mono">05</div>
   <h2>Skills &amp; Training</h2>
   <div class="grid"><div class="card"><h3>Imaging &amp; simulation</h3><div class="skills"><span>GATE / Geant4</span><span>Monte Carlo</span><span>Image reconstruction</span><span>ROOT</span></div></div><div class="card"><h3>Programming</h3><div class="skills"><span>Python</span><span>C++</span><span>SQL</span><span>Fortran</span><span>Mathematica</span></div></div><div class="card"><h3>Machine learning</h3><div class="skills"><span>TensorFlow</span><span>scikit-learn</span><span>Deep learning</span></div></div><div class="card"><h3>Data &amp; visualisation</h3><div class="skills"><span>NumPy</span><span>Pandas</span><span>Matplotlib</span><span>Seaborn</span><span>Power BI</span><span>Tableau</span></div></div></div>
   <h3 class="sub">Certifications</h3>
@@ -376,7 +403,7 @@ code{font-family:'JetBrains Mono',monospace;font-size:.85em}
 </div></section>
 
 <section id="projects"><div class="wrap">
-  <div class="label mono">// side quests</div>
+  <div class="label mono">06</div>
   <h2>Fun Projects</h2>
   <div class="card feature">
       <div class="ftop"><h3>BiblioAudit <span class="pill talk">Open source</span></h3><p class="tag2">A fix for AI-hallucinated references</p></div>
@@ -407,7 +434,7 @@ code{font-family:'JetBrains Mono',monospace;font-size:.85em}
 </div></section>
 
 <section id="contact"><div class="wrap">
-  <div class="label mono">// contact</div>
+  <div class="label mono">07</div>
   <h2>Let's collaborate</h2>
   <p style="color:var(--muted);max-width:560px">I'm looking to collaborate on <b style="color:var(--text)">PET detector instrumentation</b>. So far my experience is in image reconstruction and attenuation correction: Monte Carlo simulation, iterative algorithms and deep learning for CT-less PET. Next, I want to broaden my horizon to the hardware side, from scintillators and readout electronics to timing and detector characterisation, so I understand the whole chain from photon to image. If you work on detectors and see a fit, I'd love to hear from you.</p>
   <div class="btns"><a class="btn primary" href="mailto:satyam.tiwari@doctoral.uj.edu.pl">Email me</a><button class="btn" id="copymail" type="button">Copy email</button><a class="btn" href="satyam-tiwari.vcf" download>Save contact</a><a class="btn" href="cv.pdf">Download CV</a></div>
@@ -426,19 +453,19 @@ code{font-family:'JetBrains Mono',monospace;font-size:.85em}
     <a href="https://www.researchgate.net/profile/Satyam-Tiwari-35/research">ResearchGate</a>
     <a href="https://x.com/SatyamTiwariJi">X</a>
   </div>
-  © 2026 Satyam Tiwari · J-PET Collaboration · press <kbd>?</kbd> for shortcuts
+  © 2026 Satyam Tiwari · J-PET Collaboration
 </div></footer>
+</div>
 
 <script>
 (()=>{const RM=matchMedia('(prefers-reduced-motion: reduce)').matches,$$=q=>[...document.querySelectorAll(q)],bar=document.getElementById('progress'),links=$$('nav ul a'),hero=document.querySelector('.hero .wrap');
 function f(){const y=scrollY,h=document.documentElement.scrollHeight-innerHeight;bar.style.width=(h>0?y/h*100:0)+'%';
- if(!RM&&y<innerHeight){const k=y/innerHeight;hero.style.opacity=1-k*1.1;hero.style.transform=`translateY(${y*.25}px) scale(${1-k*.04})`}
+ if(innerWidth>=1100){hero.style.opacity='';hero.style.transform=''}else if(!RM&&y<innerHeight){const k=y/innerHeight;hero.style.opacity=1-k*1.1;hero.style.transform=`translateY(${y*.25}px) scale(${1-k*.04})`}
  let c='';$$('section[id]').forEach(s=>{if(s.getBoundingClientRect().top<innerHeight*.4)c=s.id});links.forEach(a=>a.classList.toggle('active',a.getAttribute('href')==='#'+c))}
 addEventListener('scroll',f,{passive:true});f();
 const io=new IntersectionObserver(es=>es.forEach(e=>{if(!e.isIntersecting)return;const t=e.target;t.classList.add('in');io.unobserve(t);
  if(t.classList.contains('reveal'))t.querySelectorAll('.stat').forEach(el=>{const n=+el.textContent;if(!n||RM)return;let t0;const g=x=>{t0??=x;const k=Math.min(1,(x-t0)/1100);el.textContent=Math.round(n*(1-Math.pow(1-k,3)));if(k<1)requestAnimationFrame(g)};el.textContent=0;requestAnimationFrame(g)})}),{threshold:.1,rootMargin:'0px 0px -40px 0px'});
 $$('section > .wrap').forEach(w=>{w.classList.add('reveal');io.observe(w)});
-$$('.grid,.pub-list,.skills,#talks .wrap,#background .wrap').forEach(g=>{[...g.children].filter(c=>c.matches('.card,li,span,.item')).forEach((c,i)=>{c.classList.add('st');c.style.setProperty('--d',Math.min(i,8)*.07+'s');io.observe(c)})});
 })();
 </script>
 
@@ -468,7 +495,7 @@ const io=new IntersectionObserver(([e])=>{if(e.isIntersecting){io.disconnect();i
 (()=>{const D={top:['#6ee7c8','rgba(110,231,200,.07)','#0a0a0b'],research:['#6ee7c8','rgba(110,231,200,.09)','#090c0d'],publications:['#a99bff','rgba(150,130,255,.09)','#0b0a10'],talks:['#7cc4ff','rgba(110,180,255,.09)','#090b10'],map:['#7cc4ff','rgba(110,180,255,.06)','#09090c'],background:['#ffb86b','rgba(255,170,90,.08)','#0f0b09'],skills:['#a99bff','rgba(150,130,255,.07)','#0b0a0f'],projects:['#ff8fb1','rgba(255,130,170,.08)','#0f090c'],contact:['#6ee7c8','rgba(110,231,200,.10)','#090d0c']};
 const L={top:['#0f9a7c','rgba(15,154,124,.08)','#fafaf9'],research:['#0f9a7c','rgba(15,154,124,.10)','#f6faf8'],publications:['#6a55d6','rgba(106,85,214,.09)','#f8f7fd'],talks:['#2a73cc','rgba(42,115,204,.09)','#f5f8fd'],map:['#2a73cc','rgba(42,115,204,.06)','#f7f8fa'],background:['#b8600c','rgba(214,130,40,.10)','#fdf8f2'],skills:['#6a55d6','rgba(106,85,214,.08)','#f8f7fc'],projects:['#c23a6e','rgba(194,58,110,.08)','#fcf5f8'],contact:['#0f9a7c','rgba(15,154,124,.10)','#f5faf8']};
 const b=document.body,R=document.documentElement,btn=document.getElementById('theme');let cur='top';
-function apply(){const P=R.dataset.theme==='light'?L:D,[a,g,c]=P[cur]||P.top;b.style.setProperty('--accent',a);b.style.setProperty('--glow',g);b.style.setProperty('--bgc',c);
+function apply(){const P=R.dataset.theme==='light'?L:D,[a,g,c]=P[cur]||P.top;b.style.setProperty('--accent',R.dataset.theme==='light'?'#0f9a7c':'#6ee7c8');b.style.setProperty('--glow',g);b.style.setProperty('--bgc',c);
  const lt=R.dataset.theme==='light';btn.textContent=lt?'☾':'☀';btn.setAttribute('aria-label',lt?'Switch to dark theme':'Switch to light theme');document.querySelector('meta[name=theme-color]').content=lt?'#fafaf9':'#0a0a0b'}
 function f(){let id='top';document.querySelectorAll('section[id]').forEach(x=>{if(x.getBoundingClientRect().top<innerHeight*.55)id=x.id});if(id!==cur){cur=id;apply()}}
 btn.onclick=()=>{R.dataset.theme=R.dataset.theme==='light'?'dark':'light';try{localStorage.setItem('theme',R.dataset.theme)}catch(e){}apply()};
