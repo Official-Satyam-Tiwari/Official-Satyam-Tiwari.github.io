@@ -154,12 +154,11 @@ h2::after{content:"";position:absolute;left:0;bottom:-8px;height:2px;width:100%;
 <nav aria-label="Main"><div class="wrap">
   <a href="#top" class="logo">satyam<span>.</span>tiwari</a>
   <ul>
-    <li><a href="#research">Research</a></li>
+    <li><a href="#research">Research Interests</a></li>
     <li><a href="#publications">Publications</a></li>
-    <li><a href="#talks">Talks</a></li>
-    <li><a href="#map">Map</a></li>
+    <li><a href="#talks">Conferences</a></li>
     <li><a href="#background">Background</a></li>
-    <li><a href="#projects">Fun</a></li>
+    <li><a href="#projects">Fun Projects</a></li>
     <li><a href="#contact">Contact</a></li>
   </ul>
 </div></nav>
@@ -185,7 +184,7 @@ h2::after{content:"";position:absolute;left:0;bottom:-8px;height:2px;width:100%;
 <main id="main">
 <section id="research"><div class="wrap">
   <div class="label mono">// research</div>
-  <h2>What I work on</h2>
+  <h2>Research Interests</h2>
   <div class="grid">
     <div class="card"><h3>CT-less PET</h3><p>Quantitative attenuation correction from detector-scattered and annihilation data in plastic-scintillator PET.</p></div>
     <div class="card"><h3>Image reconstruction</h3><p>Simulation-driven methods (GATE / Monte Carlo) for attenuation-map estimation and better lesion localisation.</p></div>
@@ -257,9 +256,7 @@ h2::after{content:"";position:absolute;left:0;bottom:-8px;height:2px;width:100%;
   <div class="item"><div class="when mono">Mar 2024</div><div><h3>SymPhy 2024</h3><div class="where">IIT Bombay</div></div></div>
 </div></section>
 
-<section id="map" aria-labelledby="map-h"><div class="wrap">
-  <div class="label mono">// on the map</div>
-  <h2 id="map-h">Where research took me</h2>
+<section id="map" aria-label="Map of places research took me"><div class="wrap">
   <div id="worldmap" role="region" aria-label="Map of conferences, schools and universities"></div>
   <p class="maplegend"><span><i></i>Conference</span><span><i class="s"></i>School &amp; study</span><span><i class="h"></i>Home base</span></p>
 </div></section>
@@ -287,7 +284,7 @@ h2::after{content:"";position:absolute;left:0;bottom:-8px;height:2px;width:100%;
 
 <section id="projects"><div class="wrap">
   <div class="label mono">// side quests</div>
-  <h2>Fun projects</h2>
+  <h2>Fun Projects</h2>
   <div class="grid">
     <a class="card" href="https://github.com/Official-Satyam-Tiwari/Reference-Architect"><h3>Reference-Architect ↗</h3><p>Tired of formatting references by hand, I wrote a tool that pulls them from Crossref, OpenAlex and PubMed.</p></a>
     <a class="card" href="https://github.com/Official-Satyam-Tiwari/ROOT-Viewer"><h3>ROOT-Viewer ↗</h3><p>A quick viewer for ROOT files, for when opening a full analysis session is overkill.</p></a>
@@ -306,7 +303,7 @@ h2::after{content:"";position:absolute;left:0;bottom:-8px;height:2px;width:100%;
 <section id="contact"><div class="wrap">
   <div class="label mono">// contact</div>
   <h2>Let's collaborate</h2>
-  <p style="color:var(--muted);max-width:560px">Open to collaborations on CT-less PET, attenuation correction and plastic-scintillator PET. J-PET group, Jagiellonian University, Kraków.</p>
+  <p style="color:var(--muted);max-width:560px">I'm looking to collaborate on <b style="color:var(--text)">PET detector instrumentation</b>. So far my experience is in image reconstruction and attenuation correction: Monte Carlo simulation, iterative algorithms and deep learning for CT-less PET. Next, I want to broaden my horizon to the hardware side, from scintillators and readout electronics to timing and detector characterisation, so I understand the whole chain from photon to image. If you work on detectors and see a fit, I'd love to hear from you.</p>
 </div></section>
 
 </main>
@@ -361,7 +358,7 @@ const io=new IntersectionObserver(([e])=>{if(e.isIntersecting){io.disconnect();i
 
 <script>
 (()=>{const b=document.getElementById('buddy'),t=document.getElementById('bubbleText'),hero=document.querySelector('.hero'),RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const msg={research:'Now look at my research 🔬',publications:'Here are my patent & papers 📄',talks:"Places I've presented 🎤",map:'Where research took me ✈️',background:'How I got here 🎓',projects:'Now the fun stuff 🛠️',contact:"Let's talk! 👋"};
+const msg={research:'Now look at my research 🔬',publications:'Here are my patent & papers 📄',talks:"Places I've presented 🎤",map:'Places research took me ✈️',background:'How I got here 🎓',projects:'Now the fun stuff 🛠️',contact:"Let's talk! 👋"};
 const order=Object.keys(msg);let cur='',side='';
 function place(){const wide=innerWidth>1100,m=wide?28:12,w=b.offsetWidth,h=b.offsetHeight;
  const el=document.getElementById(cur),r=el?el.getBoundingClientRect():{top:0,height:1};
