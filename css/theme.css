@@ -1,5 +1,5 @@
 /* ---- theme system: mode + intensity (--k) ---- */
-:root{--k:60%;--surface:var(--card)}
+:root{--k:0%;--surface:var(--card)}
 [data-theme=light]{--bg:color-mix(in srgb,#ffffff var(--k),#e9dfcc);--card:color-mix(in srgb,#ffffff var(--k),#f3ead9);--surface:var(--card);--line:color-mix(in srgb,#e8e8ee var(--k),#dccfb8);--text:color-mix(in srgb,#0b0b10 var(--k),#2e2a26);--muted:color-mix(in srgb,#55555f var(--k),#6f665b);--navbg:color-mix(in srgb,var(--bg) 85%,transparent);--mark:#ffd84d;color-scheme:light}
 [data-theme=dark]{--bg:color-mix(in srgb,#000000 var(--k),#2a2c33);--card:color-mix(in srgb,#0e0e11 var(--k),#353841);--surface:var(--card);--line:color-mix(in srgb,#1e1e24 var(--k),#4a4d57);--text:color-mix(in srgb,#f5f5f7 var(--k),#d2d3d8);--muted:color-mix(in srgb,#9b9ba6 var(--k),#a6a8b0);--navbg:color-mix(in srgb,var(--bg) 82%,transparent);--mark:rgba(255,200,60,.38);color-scheme:dark}
 [data-theme=dark] #research .grid .card:nth-child(1){background:color-mix(in srgb,#2fbf95 12%,var(--card))}
