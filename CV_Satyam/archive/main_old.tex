@@ -1,0 +1,73 @@
+\documentclass[a4paper,11pt]{article}
+
+\usepackage[top=14.11mm, bottom=14.11mm, left=14.11mm, right=14.11mm]{geometry}
+\usepackage{graphicx, float}
+\usepackage{booktabs, multicol}
+\usepackage{url}
+\usepackage{enumitem}
+\usepackage{setspace}
+\usepackage{palatino}
+\usepackage{tabularx}
+\usepackage{xcolor}
+\usepackage{array}
+\selectfont
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+
+\usepackage{hyperref}
+\definecolor{headinggrey}{gray}{0.88}
+\definecolor{accentblue}{RGB}{26, 70, 120}
+\hypersetup{
+    colorlinks=true,
+    urlcolor=accentblue,
+    linkcolor=accentblue
+}
+\textheight=9.75in
+\raggedbottom
+
+% Consistent spacing settings
+\setstretch{1.12}
+\setlength{\tabcolsep}{4pt}
+\setlist[itemize]{leftmargin=*, topsep=4pt, parsep=1pt, partopsep=0pt, itemsep=4pt}
+\setlist[itemize,2]{topsep=2pt, itemsep=2pt}
+
+\pagestyle{empty}
+%-----------------------------------------------------------
+% Custom commands
+\newcommand{\resheading}[1]{%
+    \par\addvspace{0.18cm}%
+    \noindent{\colorbox{headinggrey}{\begin{minipage}{\dimexpr\linewidth-2\fboxsep\relax}\textcolor{accentblue}{\textbf{\MakeUppercase{#1}}}\end{minipage}}}%
+    \par\vspace{0.08cm}%
+}
+
+\newcommand{\cvdated}[2]{\textbf{#1}\hfill\emph{#2}}
+
+\newcommand{\ressubheading}[3]{
+\begin{tabular*}{6.62in}{l @{\extracolsep{\fill}} r}
+\textsc{{\textbf{#1}}} & \textsc{\textit{[#2]}} \\
+\end{tabular*}\vspace{-4pt}}
+%-----------------------------------------------------------
+
+\begin{document}
+
+\input{00_header_summary.tex}
+
+\input{01_education_achievements.tex}
+
+\input{02_research_experience.tex}
+
+\input{02a_publications.tex}
+
+\input{03_conferences_internships.tex}
+
+\input{04_projects_interests_certs.tex}
+
+\input{05_skills_courses.tex}
+
+%\newpage
+\input{05a_techinal_courses.tex}
+
+\input{06_responsibilities_volunteering_hobbies.tex}
+
+\end{document}
