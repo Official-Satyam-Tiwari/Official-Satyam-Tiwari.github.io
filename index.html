@@ -119,6 +119,10 @@ h2::after{content:"";position:absolute;left:0;bottom:-8px;height:2px;width:100%;
 .maplegend span{display:inline-flex;align-items:center;gap:6px}
 .maplegend i{width:8px;height:8px;border-radius:50%;background:var(--accent)}.maplegend i.s{background:#8aa8ff}.maplegend i.h{background:#ffb86b}
 @media(prefers-reduced-motion:reduce){.pin{animation:none}}
+
+.ref{display:flex;gap:16px;align-items:flex-start}
+.ini{flex:none;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-weight:600;font-size:.9rem;color:var(--accent);border:1px solid rgba(110,231,200,.35);background:rgba(110,231,200,.06)}
+.ref .rc{margin-top:10px;font-size:.85rem}.ref .rc a{color:var(--accent)}.ref .rc a:hover{text-decoration:underline}
 </style>
 </head>
 <body>
@@ -251,11 +255,12 @@ h2::after{content:"";position:absolute;left:0;bottom:-8px;height:2px;width:100%;
     <span>TBPET 2026 Presentation Award</span><span>TBPET 2026 Travel Grant</span><span>NAWA STER Mobility Grant (2026)</span><span>TD-UJ Grant ×4 (2024–2026)</span><span>ID UJ Visibility &amp; Mobility Grant 2026</span><span>NAWA PROM Grant 2025</span><span>MAESTRO Project Team</span><span>NGPE National Topper, Top 1% (2022)</span><span>IIT JAM Physics AIR 15</span>
   </div>
   <h3 class="sub">References</h3>
-  <div class="grid" style="margin-top:10px">
-    <div class="card"><h3>Prof. Paweł Moskal</h3><p>PhD Supervisor · J-PET Group Leader, Jagiellonian University</p></div>
-    <div class="card"><h3>Dr. Sushil K. Sharma</h3><p>PhD Co-Supervisor · J-PET Group, Jagiellonian University</p></div>
+  <div class="grid refs" style="margin-top:10px">
+    <div class="card ref"><div class="ini" aria-hidden="true">PM</div><div><h3>Prof. dr hab. Paweł Moskal</h3><p>PhD Supervisor<br>Professor, Jagiellonian University · Head of the Cluster of Nuclear Physics Departments · Leader of the J-PET group</p>
+      <p class="rc"><a href="mailto:p.moskal@uj.edu.pl">p.moskal@uj.edu.pl</a><br><a href="https://koza.if.uj.edu.pl/staff/pmoskal">Staff page ↗</a> · <a href="https://orcid.org/0000-0002-4229-3548">ORCID ↗</a></p></div></div>
+    <div class="card ref"><div class="ini" aria-hidden="true">SS</div><div><h3>Dr. Sushil K. Sharma</h3><p>PhD Co-Supervisor<br>Assistant Professor, Institute of Physics, Faculty of Physics, Astronomy and Applied Computer Science, Jagiellonian University · J-PET group</p>
+      <p class="rc"><a href="mailto:sushil.sharma@uj.edu.pl">sushil.sharma@uj.edu.pl</a><br><a href="https://koza.if.uj.edu.pl/staff/ssharma">Staff page ↗</a> · <a href="https://dr-sushil-sharma.github.io/">Website ↗</a></p></div></div>
   </div>
-  <p style="color:var(--muted);font-size:.9rem;margin-top:10px">Contact details available on request.</p>
 </div></section>
 
 <section id="projects"><div class="wrap">
