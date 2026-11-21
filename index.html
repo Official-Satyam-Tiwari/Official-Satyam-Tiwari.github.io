@@ -428,6 +428,10 @@ a.ext .fav,.flinks .fav{width:14px;height:14px;margin-right:5px;vertical-align:-
 .avwrap.zooming{transition:scale .12s ease-out!important}
 .drag-hint{position:absolute;left:50%;bottom:-34px;transform:translateX(-50%);font-size:.75rem;color:var(--muted);white-space:nowrap;opacity:0;transition:opacity .3s;pointer-events:none;font-family:'DM Mono',monospace}
 .avwrap:hover .drag-hint{opacity:1}.avwrap.moved .drag-hint{opacity:0!important}
+
+.avwrap .avatar{transition:transform .25s ease-out,box-shadow .3s}
+.btn{translate:var(--mx,0) var(--my,0);transition:translate .25s cubic-bezier(.3,1.5,.5,1),transform .2s,box-shadow .2s,background .2s,border-color .2s}
+.confetti{position:fixed;width:8px;height:12px;border-radius:2px;pointer-events:none;z-index:200;left:0;top:0}
 </style>
 </head>
 <body>
@@ -759,13 +763,25 @@ document.querySelectorAll('.flinks a, a.ext').forEach(a=>{
  i.src='https://www.google.com/s2/favicons?domain='+h+'&sz=64';i.onerror=()=>i.remove();a.prepend(i)});})();
 </script>
 <script>
-(()=>{const a=document.querySelector('.avwrap');if(!a)return;let sx,sy,ox=0,oy=0,x=0,y=0,lx=0,drag=false;
-a.addEventListener('pointerdown',e=>{if(e.button)return;drag=true;a.setPointerCapture(e.pointerId);sx=e.clientX;sy=e.clientY;ox=x;oy=y;lx=e.clientX;a.classList.remove('back');a.classList.add('dragging')});
-a.addEventListener('pointermove',e=>{if(!drag)return;x=ox+e.clientX-sx;y=oy+e.clientY-sy;const v=Math.max(-15,Math.min(15,(e.clientX-lx)*.8));lx=e.clientX;
- a.style.setProperty('--dx',x+'px');a.style.setProperty('--dy',y+'px');a.style.rotate=(-3+v)+'deg';if(Math.hypot(x,y)>8)a.classList.add('moved')});
-const end=()=>{if(!drag)return;drag=false;a.classList.remove('dragging');a.style.rotate=''};
+(()=>{const a=document.querySelector('.avwrap');if(!a)return;const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let sx,sy,ox=0,oy=0,x=0,y=0,drag=false,vx=0,vy=0,lt=0,lx=0,ly=0,raf=0;
+const put=()=>{a.style.setProperty('--dx',x+'px');a.style.setProperty('--dy',y+'px')};
+a.addEventListener('pointerdown',e=>{if(e.button)return;cancelAnimationFrame(raf);drag=true;a.setPointerCapture(e.pointerId);sx=e.clientX;sy=e.clientY;ox=x;oy=y;lx=e.clientX;ly=e.clientY;lt=performance.now();vx=vy=0;a.classList.remove('back');a.classList.add('dragging')});
+a.addEventListener('pointermove',e=>{if(!drag)return;const t=performance.now(),dt=Math.max(1,t-lt);vx=.7*vx+.3*(e.clientX-lx)/dt*16;vy=.7*vy+.3*(e.clientY-ly)/dt*16;lx=e.clientX;ly=e.clientY;lt=t;
+ x=ox+e.clientX-sx;y=oy+e.clientY-sy;put();a.style.rotate=(-3+Math.max(-15,Math.min(15,vx*1.2)))+'deg';if(Math.hypot(x,y)>8)a.classList.add('moved')});
+function fly(){vx*=.95;vy*=.95;x+=vx;y+=vy;const r=a.getBoundingClientRect(),top=64;
+ if(r.left<0&&vx<0){vx=-vx*.6;x-=r.left}if(r.right>innerWidth&&vx>0){vx=-vx*.6;x-=r.right-innerWidth}
+ if(r.top<top&&vy<0){vy=-vy*.6;y+=top-r.top}if(r.bottom>innerHeight&&vy>0){vy=-vy*.6;y-=r.bottom-innerHeight}
+ put();a.style.rotate=(-3+vx*.8)+'deg';if(Math.hypot(vx,vy)>.3)raf=requestAnimationFrame(fly);else a.style.rotate=''}
+const end=()=>{if(!drag)return;drag=false;a.classList.remove('dragging');if(!RM&&performance.now()-lt<80&&Math.hypot(vx,vy)>2)raf=requestAnimationFrame(fly);else a.style.rotate=''};
 a.addEventListener('pointerup',end);a.addEventListener('pointercancel',end);
-a.addEventListener('dblclick',()=>{x=y=0;a.classList.add('back');a.style.setProperty('--dx','0px');a.style.setProperty('--dy','0px');a.classList.remove('moved')});})();
+a.addEventListener('dblclick',()=>{cancelAnimationFrame(raf);x=y=0;a.classList.add('back');put();a.style.rotate='';a.classList.remove('moved')});
+/* 3D parallax tilt from header */
+const hero=document.querySelector('.hero'),img=a.querySelector('.avatar');
+if(!RM&&matchMedia('(pointer:fine)').matches)hero.addEventListener('pointermove',e=>{if(drag||a.classList.contains('moved'))return;const r=hero.getBoundingClientRect(),px=(e.clientX-r.left)/r.width-.5,py=(e.clientY-r.top)/r.height-.5;
+ img.style.transform=`perspective(800px) rotateY(${(px*14).toFixed(2)}deg) rotateX(${(-py*12).toFixed(2)}deg)`});
+hero.addEventListener('pointerleave',()=>{img.style.transform=''});
+})();
 </script>
 <script>
 (()=>{const a=document.querySelector('.avwrap');if(!a)return;let z=1;const set=v=>{z=Math.min(3,Math.max(.6,v));a.style.setProperty('--z',z.toFixed(3));a.classList.toggle('moved',z!==1||a.classList.contains('moved'))};
@@ -775,6 +791,20 @@ a.addEventListener('pointerdown',e=>{pts.set(e.pointerId,e);if(pts.size===2){con
 a.addEventListener('pointermove',e=>{if(!pts.has(e.pointerId))return;pts.set(e.pointerId,e);if(pts.size===2&&d0){const[p,q]=[...pts.values()];set(z0*Math.hypot(p.clientX-q.clientX,p.clientY-q.clientY)/d0)}});
 const up=e=>{pts.delete(e.pointerId);if(pts.size<2)d0=0};a.addEventListener('pointerup',up);a.addEventListener('pointercancel',up);
 a.addEventListener('dblclick',()=>{z=1;a.style.setProperty('--z','1')});})();
+</script>
+<script>
+(()=>{const RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
+/* magnetic buttons */
+if(!RM&&matchMedia('(pointer:fine)').matches){const bs=[...document.querySelectorAll('.btn')];
+ addEventListener('pointermove',e=>{bs.forEach(b=>{const r=b.getBoundingClientRect(),cx=r.left+r.width/2,cy=r.top+r.height/2,dx=e.clientX-cx,dy=e.clientY-cy,d=Math.hypot(dx,dy),R=Math.max(r.width,r.height)*.9;
+  if(d<R){const k=(1-d/R)*.35;b.style.setProperty('--mx',(dx*k).toFixed(1)+'px');b.style.setProperty('--my',(dy*k).toFixed(1)+'px')}else if(b.style.getPropertyValue('--mx')){b.style.removeProperty('--mx');b.style.removeProperty('--my')}})},{passive:true})}
+/* confetti */
+const cols=['#e4572e','#ffd84d','#2bb39a','#8aa8ff','#ff8fb1'];
+function burst(x,y){if(RM)return;for(let i=0;i<26;i++){const c=document.createElement('i');c.className='confetti';c.style.background=cols[i%cols.length];document.body.appendChild(c);
+ const a=Math.random()*Math.PI*2,v=80+Math.random()*120,dx=Math.cos(a)*v,dy=Math.sin(a)*v-120,rot=Math.random()*720-360;
+ c.animate([{transform:`translate(${x}px,${y}px) rotate(0)`,opacity:1},{transform:`translate(${x+dx}px,${y+dy+260}px) rotate(${rot}deg)`,opacity:0}],{duration:900+Math.random()*500,easing:'cubic-bezier(.2,.6,.4,1)'}).onfinish=()=>c.remove()}}
+document.addEventListener('click',e=>{const t=e.target.closest('#copymail,.cp,a[href="cv.pdf"],a[href^="mailto:"],a[download]');if(t)burst(e.clientX,e.clientY)});
+})();
 </script>
 </body>
 </html>
