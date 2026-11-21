@@ -114,6 +114,7 @@ h2::after{content:"";position:absolute;left:0;bottom:-8px;height:2px;width:100%;
 .pin{width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(110,231,200,.6);animation:ping 2.4s infinite}
 .pin.s{background:#8aa8ff;animation:none}.pin.h{background:#ffb86b;width:14px;height:14px}
 @keyframes ping{70%{box-shadow:0 0 0 12px rgba(110,231,200,0)}100%{box-shadow:0 0 0 0 rgba(110,231,200,0)}}
+#worldmap .leaflet-tile-pane{filter:invert(1) hue-rotate(180deg) grayscale(.6) brightness(.8) contrast(.95)}
 .maplegend{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;font-size:.8rem;color:var(--muted)}
 .maplegend span{display:inline-flex;align-items:center;gap:6px}
 .maplegend i{width:8px;height:8px;border-radius:50%;background:var(--accent)}.maplegend i.s{background:#8aa8ff}.maplegend i.h{background:#ffb86b}
@@ -323,7 +324,7 @@ const P=[
 function init(){const css=document.createElement('link');css.rel='stylesheet';css.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';document.head.appendChild(css);
  const sc=document.createElement('script');sc.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';sc.onload=()=>{
   const m=L.map(el,{scrollWheelZoom:false,worldCopyJump:true,zoomControl:true,attributionControl:true});
-  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png',{attribution:'&copy; OpenStreetMap &copy; CARTO',subdomains:'abcd',maxZoom:12}).addTo(m);
+  L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png',{attribution:'&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',maxZoom:12}).addTo(m);
   const home=[P[0][0],P[0][1]];
   P.forEach(([la,lo,k,t,d],i)=>{if(i)L.polyline([home,[la,lo]],{color:k==='c'?'#6ee7c8':'#8aa8ff',weight:1,opacity:.35,dashArray:'3 5'}).addTo(m);
    L.marker([la,lo],{icon:L.divIcon({className:'',html:`<div class="pin ${k==='c'?'':k}"></div>`,iconSize:[14,14]}),title:t,keyboard:true}).bindPopup(`<b>${t}</b><br>${d}`).addTo(m)});
