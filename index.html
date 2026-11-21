@@ -101,6 +101,23 @@ h2::after{content:"";position:absolute;left:0;bottom:-8px;height:2px;width:100%;
 .card{transition:border-color .2s,transform .25s}
 .card:hover{transform:translateY(-3px)}
 @media(prefers-reduced-motion:reduce){.hero .wrap>*{opacity:1;transform:none;animation:none}.st{opacity:1;transform:none}h2::after{transform:scaleX(.18)}}
+
+#worldmap{height:420px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:#0d0d0f}
+@media(max-width:560px){#worldmap{height:320px}}
+.leaflet-container{font-family:Inter,system-ui,sans-serif!important;background:#0d0d0f!important}
+.leaflet-popup-content-wrapper,.leaflet-popup-tip{background:var(--card)!important;color:var(--text)!important;border:1px solid var(--line);box-shadow:none!important}
+.leaflet-popup-content{margin:10px 14px!important;font-size:.85rem;line-height:1.5}
+.leaflet-popup-content b{color:var(--accent)}
+.leaflet-control-attribution{background:rgba(10,10,11,.7)!important;color:#666!important;font-size:10px}
+.leaflet-control-attribution a{color:#888!important}
+.leaflet-bar a{background:var(--card)!important;color:var(--text)!important;border-color:var(--line)!important}
+.pin{width:12px;height:12px;border-radius:50%;background:var(--accent);box-shadow:0 0 0 0 rgba(110,231,200,.6);animation:ping 2.4s infinite}
+.pin.s{background:#8aa8ff;animation:none}.pin.h{background:#ffb86b;width:14px;height:14px}
+@keyframes ping{70%{box-shadow:0 0 0 12px rgba(110,231,200,0)}100%{box-shadow:0 0 0 0 rgba(110,231,200,0)}}
+.maplegend{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;font-size:.8rem;color:var(--muted)}
+.maplegend span{display:inline-flex;align-items:center;gap:6px}
+.maplegend i{width:8px;height:8px;border-radius:50%;background:var(--accent)}.maplegend i.s{background:#8aa8ff}.maplegend i.h{background:#ffb86b}
+@media(prefers-reduced-motion:reduce){.pin{animation:none}}
 </style>
 </head>
 <body>
@@ -113,6 +130,7 @@ h2::after{content:"";position:absolute;left:0;bottom:-8px;height:2px;width:100%;
     <li><a href="#patent">Patent</a></li>
     <li><a href="#publications">Publications</a></li>
     <li><a href="#talks">Talks</a></li>
+    <li><a href="#map">Map</a></li>
     <li><a href="#background">Background</a></li>
     <li><a href="#projects">Fun</a></li>
     <li><a href="#contact">Contact</a></li>
@@ -212,6 +230,13 @@ h2::after{content:"";position:absolute;left:0;bottom:-8px;height:2px;width:100%;
   <div class="item"><div class="when mono">Mar 2024</div><div><h3>SymPhy 2024</h3><div class="where">IIT Bombay</div></div></div>
 </div></section>
 
+<section id="map" aria-labelledby="map-h"><div class="wrap">
+  <div class="label mono">// on the map</div>
+  <h2 id="map-h">Where research took me</h2>
+  <div id="worldmap" role="region" aria-label="Map of conferences, schools and universities"></div>
+  <p class="maplegend"><span><i></i>Conference</span><span><i class="s"></i>School &amp; study</span><span><i class="h"></i>Home base</span></p>
+</div></section>
+
 <section id="background" class="edu"><div class="wrap">
   <div class="label mono">// background</div>
   <h2>Education, teaching &amp; awards</h2>
@@ -284,5 +309,26 @@ $$('.grid,.pub-list,.skills,#talks .wrap,#background .wrap').forEach(g=>{[...g.c
 })();
 </script>
 
+<script>
+(()=>{const el=document.getElementById('worldmap');if(!el)return;
+const P=[
+[50.0647,19.9450,'h','Kraków, Poland','PhD at Jagiellonian University (J-PET)<br>JS2026 · J-PET General Meetings · MCSB 2026 · New Trends 2025'],
+[38.5449,-121.7405,'c','Davis, USA','Total-Body PET 2026: poster + <b>Presentation Award</b>'],
+[37.1773,-3.5986,'c','Granada, Spain','IEEE NSS/MIC/RTSD 2026: poster'],
+[39.4699,-0.3763,'c','Valencia, Spain','FTMI-TBPET-PSMR 2026: talk'],
+[46.0569,14.5058,'c','Ljubljana, Slovenia','EMIM 2026: poster'],
+[51.8126,5.8372,'s','Nijmegen, Netherlands','AI in Medical Imaging Summer School 2025 (Radboud)'],
+[19.1334,72.9133,'s','Mumbai, India','MSc Physics, IIT Bombay'],
+[28.6139,77.2090,'s','Delhi, India','BSc (Hons.) Physics, University of Delhi']];
+function init(){const css=document.createElement('link');css.rel='stylesheet';css.href='https://unpkg.com/leaflet@1.9.4/dist/leaflet.css';document.head.appendChild(css);
+ const sc=document.createElement('script');sc.src='https://unpkg.com/leaflet@1.9.4/dist/leaflet.js';sc.onload=()=>{
+  const m=L.map(el,{scrollWheelZoom:false,worldCopyJump:true,zoomControl:true,attributionControl:true});
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_nolabels/{z}/{x}/{y}{r}.png',{attribution:'&copy; OpenStreetMap &copy; CARTO',subdomains:'abcd',maxZoom:12}).addTo(m);
+  const home=[P[0][0],P[0][1]];
+  P.forEach(([la,lo,k,t,d],i)=>{if(i)L.polyline([home,[la,lo]],{color:k==='c'?'#6ee7c8':'#8aa8ff',weight:1,opacity:.35,dashArray:'3 5'}).addTo(m);
+   L.marker([la,lo],{icon:L.divIcon({className:'',html:`<div class="pin ${k==='c'?'':k}"></div>`,iconSize:[14,14]}),title:t,keyboard:true}).bindPopup(`<b>${t}</b><br>${d}`).addTo(m)});
+  m.fitBounds(P.map(p=>[p[0],p[1]]),{padding:[30,30]})};document.body.appendChild(sc)}
+const io=new IntersectionObserver(([e])=>{if(e.isIntersecting){io.disconnect();init()}},{rootMargin:'300px'});io.observe(el)})();
+</script>
 </body>
 </html>
