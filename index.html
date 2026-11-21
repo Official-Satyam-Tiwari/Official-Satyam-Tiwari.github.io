@@ -419,6 +419,14 @@ a.ext .fav,.flinks .fav{width:14px;height:14px;margin-right:5px;vertical-align:-
  .cp{padding:8px 12px;min-height:34px}
 }
 @media(max-width:340px){#projects .grid{grid-template-columns:1fr}}
+
+/* draggable portrait */
+.avwrap{cursor:grab;touch-action:none;user-select:none;z-index:5;translate:var(--dx,0) var(--dy,0)}
+.avwrap.dragging{cursor:grabbing;z-index:80;transition:none!important;animation-play-state:paused}
+.avwrap.dragging .avatar{box-shadow:0 40px 80px rgba(30,20,10,.35)}
+.avwrap.back{transition:translate .7s cubic-bezier(.3,1.4,.5,1),rotate .5s!important}
+.drag-hint{position:absolute;left:50%;bottom:-34px;transform:translateX(-50%);font-size:.75rem;color:var(--muted);white-space:nowrap;opacity:0;transition:opacity .3s;pointer-events:none;font-family:'DM Mono',monospace}
+.avwrap:hover .drag-hint{opacity:1}.avwrap.moved .drag-hint{opacity:0!important}
 </style>
 </head>
 <body>
@@ -440,7 +448,7 @@ a.ext .fav,.flinks .fav{width:14px;height:14px;margin-right:5px;vertical-align:-
 <header class="hero" id="top">
   <canvas id="trail" aria-hidden="true"></canvas>
   <div class="wrap">
-    <span class="avwrap"><img class="avatar" fetchpriority="high" decoding="async" src="Photo_full.jpg" alt="Portrait of Satyam Tiwari" width="280" height="424"></span>
+    <span class="avwrap" title="Drag me around. Double-click to send me home."><img class="avatar" draggable="false" fetchpriority="high" decoding="async" src="Photo_full.jpg" alt="Portrait of Satyam Tiwari" width="280" height="424"><span class="drag-hint" aria-hidden="true">drag me</span></span>
     <p class="eyebrow mono">PhD Researcher · Biophysics · Jagiellonian University</p>
     <h1>Hi, I am <span class="mark">Satyam</span> <span class="wave" aria-hidden="true">👋</span><span class="sr">Satyam Tiwari</span></h1>
     <p class="lead">I am developing algorithms for reconstructing attenuation maps from <span class="mark">detector-scattered coincidences</span> in PET imaging.</p>
@@ -748,6 +756,15 @@ document.querySelectorAll('.flinks a, a.ext').forEach(a=>{
  let h;try{h=new URL(a.href).hostname}catch(e){return}
  const i=new Image();i.className='fav';i.alt='';i.width=16;i.height=16;i.loading='lazy';i.decoding='async';
  i.src='https://www.google.com/s2/favicons?domain='+h+'&sz=64';i.onerror=()=>i.remove();a.prepend(i)});})();
+</script>
+<script>
+(()=>{const a=document.querySelector('.avwrap');if(!a)return;let sx,sy,ox=0,oy=0,x=0,y=0,lx=0,drag=false;
+a.addEventListener('pointerdown',e=>{if(e.button)return;drag=true;a.setPointerCapture(e.pointerId);sx=e.clientX;sy=e.clientY;ox=x;oy=y;lx=e.clientX;a.classList.remove('back');a.classList.add('dragging')});
+a.addEventListener('pointermove',e=>{if(!drag)return;x=ox+e.clientX-sx;y=oy+e.clientY-sy;const v=Math.max(-15,Math.min(15,(e.clientX-lx)*.8));lx=e.clientX;
+ a.style.setProperty('--dx',x+'px');a.style.setProperty('--dy',y+'px');a.style.rotate=(-3+v)+'deg';if(Math.hypot(x,y)>8)a.classList.add('moved')});
+const end=()=>{if(!drag)return;drag=false;a.classList.remove('dragging');a.style.rotate=''};
+a.addEventListener('pointerup',end);a.addEventListener('pointercancel',end);
+a.addEventListener('dblclick',()=>{x=y=0;a.classList.add('back');a.style.setProperty('--dx','0px');a.style.setProperty('--dy','0px');a.classList.remove('moved')});})();
 </script>
 </body>
 </html>
