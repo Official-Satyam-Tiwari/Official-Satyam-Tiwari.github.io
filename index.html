@@ -209,7 +209,6 @@ code{font-family:'JetBrains Mono',monospace;font-size:.85em}
   <div class="wrap">
     <span class="avwrap" data-hi="Hi, I'm Satyam 👋"><img class="avatar" fetchpriority="high" decoding="async" src="Photo.jpg" alt="Portrait of Satyam Tiwari" width="80" height="80"></span>
     <p class="eyebrow mono">PhD Researcher · Biophysics · Jagiellonian University</p>
-    <p class="now"><span>📍 Kraków</span><span>🔬 CT-less PET with J-PET</span><span>🛠️ learning detector instrumentation</span><span>🏸 badminton &amp; table tennis</span></p>
     <h1>Satyam Tiwari</h1>
     <p class="lead">I am developing algorithms for reconstructing attenuation maps from detector-scattered coincidences in PET imaging: photons that scanners usually throw away. The goal is CT-less PET, across the J-PET scanner family and its prototypes.</p>
     <div class="btns">
@@ -374,7 +373,7 @@ code{font-family:'JetBrains Mono',monospace;font-size:.85em}
     <div><b>3 meetings</b><span>co-organised in Kraków</span></div>
     <div><b>2 journals</b><span>I peer-review for</span></div>
   </div>
-  <p style="color:var(--muted);margin-top:22px;font-size:.92rem">Off the clock: badminton and table tennis 🏸🏓</p>
+  <p style="color:var(--muted);margin-top:22px;font-size:.92rem">Off the clock: table tennis 🏓</p>
 </div></section>
 
 <section id="contact"><div class="wrap">
@@ -457,12 +456,14 @@ el.onclick=()=>{const on=el.getAttribute('aria-pressed')!=='true';el.setAttribut
 /* K-40 counter: ~4400 Bq in a 70 kg adult; beta+ branch ~1e-5 */
 const t0=performance.now(),k=$('#k40'),q=$('#pos');setInterval(()=>{const s=(performance.now()-t0)/1000,n=s*4400;k.textContent=Math.round(n).toLocaleString();q.textContent=(n*1e-5).toFixed(2)},250);
 /* photon trail in header */
-const cv=$('#trail'),hero=$('.hero');if(!RM&&matchMedia('(pointer:fine)').matches){const c=cv.getContext('2d');let W,H,pts=[],run=false;
+const cv=$('#trail'),hero=$('.hero');if(!RM&&matchMedia('(pointer:fine)').matches){const c=cv.getContext('2d');let W,H,pts=[],run=false,col='#6ee7c8';
+ const upCol=()=>{col=getComputedStyle(document.body).getPropertyValue('--accent').trim()||col};upCol();setInterval(upCol,600);
  function size(){const d=Math.min(devicePixelRatio||1,2);W=hero.clientWidth;H=hero.clientHeight;cv.width=W*d;cv.height=H*d;c.setTransform(d,0,0,d,0,0)}size();addEventListener('resize',size);
- hero.addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();pts.push({x:e.clientX-r.left,y:e.clientY-r.top,a:1});if(pts.length>60)pts.shift();if(!run){run=true;requestAnimationFrame(draw)}});
- function draw(){c.clearRect(0,0,W,H);const col=getComputedStyle(document.body).getPropertyValue('--accent').trim()||'#6ee7c8';c.fillStyle=col;
-  pts.forEach(p=>{p.a*=.93;c.globalAlpha=p.a*.7;c.beginPath();c.arc(p.x,p.y,1.6,0,6.283);c.fill()});c.globalAlpha=1;pts=pts.filter(p=>p.a>.03);
-  if(pts.length)requestAnimationFrame(draw);else{run=false;c.clearRect(0,0,W,H)}}}
+ hero.addEventListener('pointermove',e=>{const r=cv.getBoundingClientRect();pts.push({x:e.clientX-r.left,y:e.clientY-r.top,a:1});if(pts.length>18)pts.shift();if(!run){run=true;requestAnimationFrame(draw)}},{passive:true});
+ function draw(){c.clearRect(0,0,W,H);c.strokeStyle=col;c.lineCap='round';c.lineWidth=1.6;
+  for(let i=1;i<pts.length;i++){const p=pts[i],q=pts[i-1];c.globalAlpha=p.a*.6;c.beginPath();c.moveTo(q.x,q.y);c.lineTo(p.x,p.y);c.stroke()}
+  c.globalAlpha=1;pts.forEach(p=>p.a*=.8);pts=pts.filter(p=>p.a>.05);
+  if(pts.length>1)requestAnimationFrame(draw);else{run=false;pts=[];c.clearRect(0,0,W,H)}}}
 /* shortcuts */
 const dlg=$('#keys'),ids=['research','publications','talks','background','skills','projects','contact'];
 addEventListener('keydown',e=>{if(e.ctrlKey||e.metaKey||e.altKey||/input|textarea/i.test(e.target.tagName))return;
