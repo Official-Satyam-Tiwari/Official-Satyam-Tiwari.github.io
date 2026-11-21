@@ -244,10 +244,10 @@ nav .wrap{max-width:1200px}
 .avwrap{width:220px;height:220px;position:relative;animation:floaty 6s ease-in-out infinite}
 .avwrap .avatar{width:220px;height:220px;margin:0;border:0;box-shadow:0 20px 60px rgba(0,0,0,.35)}
 .avwrap::before{content:"";position:absolute;inset:-14px;border-radius:50%;border:1.5px dashed color-mix(in srgb,var(--accent) 45%,transparent);animation:spin 50s linear infinite;pointer-events:none}
-.avwrap::after{content:""!important;display:block!important;position:absolute;inset:-14px;border-radius:50%;background:radial-gradient(circle at 50% 0,var(--accent) 0 5px,transparent 6px);animation:spin 9s linear infinite;pointer-events:none;opacity:1!important;transform:none;left:auto;top:auto;margin:0;padding:0;white-space:normal}
+.avwrap::after{content:""!important;display:block!important;position:absolute;inset:-14px;border-radius:50%;background:radial-gradient(circle at 50% 1px,var(--accent) 0 4px,transparent 5px);inset:-15px!important;filter:drop-shadow(0 0 6px var(--accent));animation:spin 9s linear infinite;pointer-events:none;opacity:1!important;transform:none;left:auto;top:auto;margin:0;padding:0;white-space:normal}
 @keyframes spin{to{transform:rotate(360deg)}}
 @keyframes floaty{50%{transform:translateY(-8px)}}
-@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}.hero .wrap>.avwrap{grid-row:auto;margin-bottom:34px}.hero .wrap>*:not(.avwrap){grid-column:1}.avwrap,.avwrap .avatar{width:150px;height:150px}}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}.hero .wrap>.avwrap{grid-row:auto;margin-bottom:34px}.hero .wrap>*:not(.avwrap){grid-column:1}.avwrap,.avwrap .avatar{width:150px;height:150px}.hero .wrap>.avwrap{margin-left:16px;margin-top:10px}.hero h1{font-size:2.15rem}}
 @media(prefers-reduced-motion:reduce){.avwrap,.avwrap::before,.avwrap::after{animation:none}}
 </style>
 </head>
