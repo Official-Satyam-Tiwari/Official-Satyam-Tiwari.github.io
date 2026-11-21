@@ -302,7 +302,7 @@ nav ul a.active{color:var(--accent);background:transparent}
 .chip.on{background:var(--text);color:#fff;border-color:var(--text)}.chip.on span{color:#ffffffaa}
 .clist{list-style:none;background:#fff;border-radius:20px;box-shadow:0 8px 24px rgba(30,20,10,.06);padding:6px 22px}
 .clist li{display:grid;grid-template-columns:56px 1fr auto;gap:14px;align-items:baseline;padding:13px 0;border-bottom:1px dashed var(--line)}
-.clist li:last-child{border-bottom:0}
+.clist li:last-child,.clist li.last{border-bottom:0}
 .clist li.hide{display:none}
 .yr{color:var(--accent);font-size:.85rem}
 .ct a{color:var(--text);font-weight:500;background:linear-gradient(currentColor,currentColor) 0 100%/0 1px no-repeat;transition:background-size .3s}
@@ -618,7 +618,7 @@ items.forEach(it=>{const b=document.createElement('button');b.type='button';b.cl
 <script>
 (()=>{const L=document.getElementById('clist'),M=document.getElementById('cmore'),items=[...L.children];let f='all',open=false;
 function draw(){let n=0;items.forEach(li=>{const ok=f==='all'||li.dataset.f===f;const show=ok&&(open||n<5);li.classList.toggle('hide',!show);if(ok)n++});
- M.hidden=n<=5;M.textContent=open?'Show fewer':'Show all '+n}
+ const vis=items.filter(li=>!li.classList.contains('hide'));items.forEach(li=>li.classList.remove('last'));if(vis.length)vis[vis.length-1].classList.add('last');M.hidden=n<=5;M.textContent=open?'Show fewer':'Show all '+n}
 document.querySelectorAll('.chip').forEach(c=>c.onclick=()=>{document.querySelectorAll('.chip').forEach(x=>x.classList.toggle('on',x===c));f=c.dataset.f;draw()});
 M.onclick=()=>{open=!open;draw();if(!open)L.scrollIntoView({block:'nearest'})};draw()})();
 </script>
