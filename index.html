@@ -209,7 +209,7 @@ code{font-family:'JetBrains Mono',monospace;font-size:.85em}
 h1{font-weight:300;font-size:clamp(2.8rem,7vw,4.6rem);letter-spacing:-.045em;line-height:1}
 .label{font-size:.78rem;color:var(--accent);letter-spacing:.08em}
 .facts-line{font-size:.8rem;color:var(--muted);margin-top:18px}
-.wrap{max-width:760px}
+.wrap{max-width:1200px;padding:0 40px}
 .card:hover,a.card:hover{transform:none}
 .reveal{transform:none!important;transition:opacity .9s ease}
 h2{clip-path:inset(0 0 100% 0);transform:translateY(18px);transition:clip-path .9s cubic-bezier(.2,.7,.2,1),transform .9s cubic-bezier(.2,.7,.2,1)}
@@ -220,6 +220,16 @@ a.ext:hover,footer .links a:hover,.pub a:hover,.pub-list a:hover,.flinks a:hover
 @media(prefers-reduced-motion:reduce){h2{clip-path:none;transform:none}.avatar{animation:none}}
 button.btn{background:transparent;color:var(--text);font:inherit;font-size:.9rem;cursor:pointer}
 .btn.primary{background:var(--text);color:var(--bg)}
+
+nav .wrap{max-width:1200px}
+.lead,#contact p,.k40{max-width:72ch}
+.hero h1{font-size:clamp(3rem,8vw,6rem)}
+.grid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+#talks .item,#background .item,#skills .item{grid-template-columns:140px 1fr}
+#worldmap{height:480px}
+.pub-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(460px,1fr));column-gap:40px}
+@media(max-width:1000px){.pub-list{grid-template-columns:1fr}}
+@media(max-width:560px){.wrap{padding:0 18px}#talks .item,#background .item,#skills .item{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
