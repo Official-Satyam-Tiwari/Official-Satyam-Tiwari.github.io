@@ -19,7 +19,7 @@
 <link rel="canonical" href="https://official-satyam-tiwari.github.io/">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
-<link rel="preload" as="image" href="Photo.jpg">
+<link rel="preload" as="image" href="Photo_full.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
@@ -249,6 +249,14 @@ nav .wrap{max-width:1200px}
 @keyframes floaty{50%{transform:translateY(-8px)}}
 @media(max-width:860px){.hero .wrap{grid-template-columns:1fr}.hero .wrap>.avwrap{grid-row:auto;margin-bottom:34px}.hero .wrap>*:not(.avwrap){grid-column:1}.avwrap,.avwrap .avatar{width:150px;height:150px}.hero .wrap>.avwrap{margin-left:16px;margin-top:10px}.hero h1{font-size:2.15rem}}
 @media(prefers-reduced-motion:reduce){.avwrap,.avwrap::before,.avwrap::after{animation:none}}
+
+/* full portrait card */
+.avwrap{width:280px!important;height:auto!important;aspect-ratio:640/970;rotate:-3deg;transition:rotate .5s cubic-bezier(.3,1.4,.5,1),scale .5s}
+.avwrap:hover{rotate:0deg;scale:1.02}
+.avwrap .avatar{width:100%!important;height:100%!important;border-radius:22px!important;object-fit:cover;box-shadow:0 30px 70px rgba(0,0,0,.45)}
+.avwrap::before{inset:16px -16px -16px 16px!important;border-radius:24px!important;border:1.5px solid color-mix(in srgb,var(--accent) 55%,transparent)!important;animation:none!important;z-index:-1}
+.avwrap::after{display:none!important}
+@media(max-width:860px){.avwrap{width:210px!important;rotate:-2deg}.hero .wrap>.avwrap{margin-left:0;margin-top:0;margin-bottom:44px}}
 </style>
 </head>
 <body>
@@ -271,7 +279,7 @@ nav .wrap{max-width:1200px}
 <header class="hero" id="top">
   <canvas id="trail" aria-hidden="true"></canvas>
   <div class="wrap">
-    <span class="avwrap"><img class="avatar" fetchpriority="high" decoding="async" src="Photo.jpg" alt="Portrait of Satyam Tiwari" width="220" height="220"></span>
+    <span class="avwrap"><img class="avatar" fetchpriority="high" decoding="async" src="Photo_full.jpg" alt="Portrait of Satyam Tiwari" width="280" height="424"></span>
     <p class="greet mono" id="greet"></p>
     <p class="eyebrow mono">PhD Researcher · Biophysics · Jagiellonian University</p>
     <h1>Hi, I am Satyam <span class="wave" aria-hidden="true">👋</span><span class="sr">Satyam Tiwari</span></h1>
