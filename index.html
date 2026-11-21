@@ -267,7 +267,7 @@ h1,h2,h3{font-family:'DM Sans',system-ui,sans-serif;letter-spacing:-.025em}
 h2{font-weight:700;font-size:clamp(1.7rem,3.4vw,2.3rem)}
 .mark{background:linear-gradient(transparent 58%,var(--mark) 58%,var(--mark) 92%,transparent 92%);padding:0 .08em;border-radius:2px}
 .hero .lead{font-size:clamp(1.1rem,1.8vw,1.35rem);color:var(--text);opacity:.85}
-.label{display:inline-block;background:var(--accent);color:#fff;font-size:.72rem;padding:3px 10px;border-radius:99px;letter-spacing:.04em}
+.label{display:table;margin-bottom:12px;background:var(--accent);color:#fff;font-size:.72rem;padding:3px 10px;border-radius:99px;letter-spacing:.04em}
 h2::after{height:3px;border-radius:3px}
 .card{border:0;border-radius:20px;box-shadow:0 1px 2px rgba(30,20,10,.04),0 8px 24px rgba(30,20,10,.06);transition:transform .25s,box-shadow .25s}
 a.card:hover,.card:hover{transform:translateY(-3px) rotate(-.4deg);box-shadow:0 2px 4px rgba(30,20,10,.05),0 16px 40px rgba(30,20,10,.10)}
@@ -333,16 +333,6 @@ nav ul a.active{color:var(--accent);background:transparent}
 <dialog id="keys" aria-labelledby="keys-h"><h3 id="keys-h">Shortcuts</h3>
   <ul><li><kbd>1</kbd>–<kbd>7</kbd> jump to sections</li><li><kbd>e</kbd> copy my email</li><li><kbd>c</kbd> open my CV</li><li><kbd>?</kbd> show this · <kbd>Esc</kbd> close</li></ul>
   <form method="dialog"><button class="btn">Close</button></form></dialog>
-<dialog id="tldr" class="dlg" aria-labelledby="tldr-h">
-  <h3 id="tldr-h">The 30-second version</h3>
-  <dl>
-    <dt>Who</dt><dd>Satyam Tiwari, PhD researcher in Biophysics, J-PET group, Jagiellonian University, Kraków.</dd>
-    <dt>What</dt><dd>Algorithms that reconstruct attenuation maps from detector-scattered coincidences, making PET possible without a CT scan. Patent pending; 16 publications.</dd>
-    <dt>Looking for</dt><dd>Collaborations in PET detector instrumentation: scintillators, readout and timing.</dd>
-    <dt>Contact</dt><dd><a href="mailto:satyam.tiwari@doctoral.uj.edu.pl">satyam.tiwari@doctoral.uj.edu.pl</a> · <a href="cv.pdf">CV</a> · <a href="https://orcid.org/0009-0006-2293-3946">ORCID</a></dd>
-  </dl>
-  <form method="dialog"><button class="btn">Close</button></form>
-</dialog>
 <main id="main">
 <section id="research"><div class="wrap">
   <div class="label mono">01</div>
@@ -562,10 +552,6 @@ addEventListener('scroll',f,{passive:true});apply();f();})();
 const toast=$('#toast');function say(m){toast.textContent=m;toast.classList.add('show');clearTimeout(say.t);say.t=setTimeout(()=>toast.classList.remove('show'),2200)}
 function copy(){(navigator.clipboard?navigator.clipboard.writeText(mail):Promise.reject()).then(()=>say('Email copied'),()=>say(mail))}
 $('#copymail').onclick=copy;
-/* ELI5 */
-const el=$('#eli5'),ps=[...document.querySelectorAll('#research .card p[data-eli5]')];
-el.onclick=()=>{const on=el.getAttribute('aria-pressed')!=='true';el.setAttribute('aria-pressed',on);el.textContent=on?'Back to expert mode':"Explain like I'm 5";
- ps.forEach(p=>{p.classList.add('fade');setTimeout(()=>{p.textContent=on?p.dataset.eli5:p.dataset.pro;p.classList.remove('fade')},RM?0:250)})};
 /* K-40 counter: ~4400 Bq in a 70 kg adult; beta+ branch ~1e-5 */
 const t0=performance.now(),k=$('#k40'),q=$('#pos');setInterval(()=>{const s=(performance.now()-t0)/1000,n=s*4400;k.textContent=Math.round(n).toLocaleString();q.textContent=(n*1e-5).toFixed(2)},250);
 /* photon trail in header */
@@ -595,9 +581,9 @@ const say=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');clearT
 /* greeting in Krakow time */
 function greet(){const now=new Date(),h=+now.toLocaleString('en-GB',{timeZone:'Europe/Warsaw',hour:'2-digit',hour12:false}),tm=now.toLocaleTimeString('en-GB',{timeZone:'Europe/Warsaw',hour:'2-digit',minute:'2-digit'});
  const g=h<5?'Working late in Kraków':h<12?'Good morning from Kraków':h<18?'Good afternoon from Kraków':'Good evening from Kraków';$('#greet').textContent=g+' · '+tm+' local time'}
-greet();setInterval(greet,30000);
+if($('#greet')){greet();setInterval(greet,30000)}
 /* dialogs */
-$('#tldr-open').onclick=()=>$('#tldr').showModal();
+
 /* DOIs: citations + cite buttons */
 const items=[...document.querySelectorAll('#publications .pub, #publications .pub-list li')].map(el=>{const a=el.querySelector('a[href*="doi.org/"]');if(!a)return null;return{el,a,doi:a.href.split('doi.org/')[1].toLowerCase()}}).filter(Boolean);
 items.forEach(it=>{const b=document.createElement('button');b.type='button';b.className='cite-btn';b.textContent='Cite';b.setAttribute('aria-label','Copy BibTeX');it.a.after(b);
