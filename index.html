@@ -174,6 +174,17 @@ dialog#keys{margin:auto;border:1px solid var(--line);border-radius:14px;backgrou
 dialog#keys::backdrop{background:rgba(0,0,0,.5);backdrop-filter:blur(3px)}
 dialog#keys ul{list-style:none;margin:14px 0 18px;display:grid;gap:8px;font-size:.92rem;color:var(--muted)}
 @media(max-width:560px){.avwrap::after{display:none}.eli5{margin:0 0 20px 0;display:flex}}
+
+.feature{margin-bottom:14px;border-color:color-mix(in srgb,var(--accent) 35%,var(--line))}
+.feature .ftop{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-bottom:8px}.feature h3{font-size:1.15rem;margin:0}
+.tag2{color:var(--accent)!important;font-size:.88rem!important}
+.feature p{margin-bottom:12px}
+code{font-family:'JetBrains Mono',monospace;font-size:.85em}
+.code{display:flex;align-items:center;justify-content:space-between;gap:10px;background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:6px 0 12px;max-width:420px}
+.code code{color:var(--text)}.code code::before{content:"$ ";color:var(--muted)}
+.cp{font:inherit;font-size:.75rem;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:6px;padding:3px 9px;cursor:pointer}.cp:hover{color:var(--text);border-color:var(--muted)}
+.flinks a{color:var(--accent)}.flinks a:hover{text-decoration:underline}
+.cite{font-size:.8rem!important;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin:0!important;word-break:break-word}
 </style>
 </head>
 <body>
@@ -249,6 +260,8 @@ dialog#keys ul{list-style:none;margin:14px 0 18px;display:grid;gap:8px;font-size
     <div class="authors"><b>S. Tiwari</b>, S. K. Sharma, P. Moskal · <i>Bio-Algorithms and Med-Systems</i> 21, 13–20 (2025)</div>
     <a href="https://doi.org/10.5604/01.3001.0055.4655">doi:10.5604/01.3001.0055.4655 →</a>
   </div>
+  <h3 class="sub">Software</h3>
+  <ul class="pub-list"><li>BiblioAudit: Automated Citation Integrity &amp; Verification Tool (v2.2.2)<div class="j"><b>S. Tiwari</b> · <i>Zenodo (2025)</i> · <code>pip install biblioaudit</code></div><a href="https://doi.org/10.5281/zenodo.18155557">10.5281/zenodo.18155557 →</a></li></ul>
   <h3 class="sub">Co-authored journal articles &amp; preprints</h3>
   <ul class="pub-list">
 <li>First-in-human quantum entanglement imaging<div class="j">Paweł Moskal et al. (incl. <b>S. Tiwari</b>) · <i>arXiv preprint (2026)</i></div><a href="https://arxiv.org/abs/2606.29421">arXiv:2606.29421 →</a></li>
@@ -337,8 +350,15 @@ dialog#keys ul{list-style:none;margin:14px 0 18px;display:grid;gap:8px;font-size
 <section id="projects"><div class="wrap">
   <div class="label mono">// side quests</div>
   <h2>Fun Projects</h2>
+  <div class="card feature">
+      <div class="ftop"><h3>BiblioAudit <span class="pill talk">Open source</span></h3><p class="tag2">A fix for AI-hallucinated references</p></div>
+      <p>AI tools invent citations that look real but don't exist. BiblioAudit checks every entry in your <code>.bib</code> file against multiple academic databases: it confirms each paper exists, flags missing or broken DOIs, wrong years and journal names, and finds legal open-access PDFs.</p>
+      <div class="code"><code>pip install biblioaudit</code><button type="button" class="cp" data-copy="pip install biblioaudit" aria-label="Copy install command">Copy</button></div>
+      <p class="flinks"><a href="https://github.com/Official-Satyam-Tiwari/Reference-Architect" target="_blank" rel="noopener">GitHub ↗</a> · <a href="https://pypi.org/project/biblioaudit/" target="_blank" rel="noopener">PyPI ↗</a> · <a href="https://doi.org/10.5281/zenodo.18155557" target="_blank" rel="noopener">Zenodo DOI ↗</a></p>
+      <p class="cite">Tiwari, S. (2025). <i>BiblioAudit: Automated Citation Integrity &amp; Verification Tool</i> (Version 2.2.2) [Software]. Zenodo. https://doi.org/10.5281/zenodo.18155557</p>
+    </div>
   <div class="grid">
-    <a class="card" href="https://github.com/Official-Satyam-Tiwari/Reference-Architect"><h3>Reference-Architect ↗</h3><p>Tired of formatting references by hand, I wrote a tool that pulls them from Crossref, OpenAlex and PubMed.</p></a>
+    
     <a class="card" href="https://github.com/Official-Satyam-Tiwari/ROOT-Viewer"><h3>ROOT-Viewer ↗</h3><p>A quick viewer for ROOT files, for when opening a full analysis session is overkill.</p></a>
     <a class="card" href="https://github.com/Official-Satyam-Tiwari/MC_Codes"><h3>Monte Carlo playground ↗</h3><p>Mathematica experiments in random sampling: the toys behind my Monte Carlo lectures.</p></a>
     <a class="card" href="https://github.com/Official-Satyam-Tiwari/Advanced_Mathematical_Physics_Simulations"><h3>Physics simulations ↗</h3><p>Mathematical physics problems brought to life in Scilab and Python.</p></a>
@@ -454,5 +474,6 @@ console.log('%c👋 Hello, curious one.','font:600 16px Inter,sans-serif;color:#
 console.log('%cLooking for a collaborator on PET imaging or detector instrumentation?\nWrite to '+mail+'  (or press ? on the page for shortcuts)','font:13px Inter,sans-serif');
 })();
 </script>
+<script>document.querySelectorAll('.cp').forEach(b=>b.onclick=()=>{navigator.clipboard&&navigator.clipboard.writeText(b.dataset.copy).then(()=>{b.textContent='Copied ✓';setTimeout(()=>b.textContent='Copy',1600)})});</script>
 </body>
 </html>
