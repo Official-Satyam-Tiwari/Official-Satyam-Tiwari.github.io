@@ -123,6 +123,19 @@ h2::after{content:"";position:absolute;left:0;bottom:-8px;height:2px;width:100%;
 .ref{display:flex;gap:16px;align-items:flex-start}
 .ini{flex:none;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-weight:600;font-size:.9rem;color:var(--accent);border:1px solid rgba(110,231,200,.35);background:rgba(110,231,200,.06)}
 .ref .rc{margin-top:10px;font-size:.85rem}.ref .rc a{color:var(--accent)}.ref .rc a:hover{text-decoration:underline}
+
+#buddy{position:fixed;right:24px;bottom:24px;z-index:70;display:flex;align-items:center;gap:10px;background:none;border:0;cursor:pointer;font-family:inherit;opacity:0;transform:translateY(30px) scale(.6);pointer-events:none;transition:opacity .45s ease,transform .55s cubic-bezier(.3,1.5,.5,1)}
+#buddy.on{opacity:1;transform:none;pointer-events:auto}
+#buddy img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--accent);box-shadow:0 6px 24px rgba(0,0,0,.5);transition:transform .3s}
+#buddy:hover img{transform:rotate(-8deg) scale(1.06)}
+#buddy.talk img{animation:bob .6s ease}
+@keyframes bob{30%{transform:translateY(-6px) rotate(-6deg)}60%{transform:translateY(0) rotate(4deg)}}
+.bubble{position:relative;background:var(--text);color:var(--bg);font-size:.82rem;font-weight:500;padding:8px 12px;border-radius:12px;white-space:nowrap;box-shadow:0 6px 24px rgba(0,0,0,.4);transition:opacity .25s,transform .25s}
+.bubble::after{content:"";position:absolute;right:-6px;top:50%;margin-top:-6px;border:6px solid transparent;border-right:0;border-left-color:var(--text)}
+.bubble.swap{opacity:0;transform:translateX(8px)}
+#buddy:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:30px}
+@media(max-width:560px){#buddy{right:14px;bottom:14px}#buddy img{width:46px;height:46px}.bubble{font-size:.75rem;padding:6px 10px}}
+@media(prefers-reduced-motion:reduce){#buddy,#buddy img,.bubble{transition:none;animation:none!important}}
 </style>
 </head>
 <body>
@@ -132,7 +145,6 @@ h2::after{content:"";position:absolute;left:0;bottom:-8px;height:2px;width:100%;
   <a href="#top" class="logo">satyam<span>.</span>tiwari</a>
   <ul>
     <li><a href="#research">Research</a></li>
-    <li><a href="#patent">Patent</a></li>
     <li><a href="#publications">Publications</a></li>
     <li><a href="#talks">Talks</a></li>
     <li><a href="#map">Map</a></li>
@@ -156,6 +168,10 @@ h2::after{content:"";position:absolute;left:0;bottom:-8px;height:2px;width:100%;
   </div>
 </header>
 
+<button id="buddy" type="button" aria-label="Jump to next section">
+  <span class="bubble" id="bubbleText">Now look at my research</span>
+  <img src="Photo.jpg" alt="" width="56" height="56">
+</button>
 <main id="main">
 <section id="research"><div class="wrap">
   <div class="label mono">// research</div>
@@ -174,21 +190,18 @@ h2::after{content:"";position:absolute;left:0;bottom:-8px;height:2px;width:100%;
   <p style="color:var(--muted);margin-top:20px;font-size:.92rem">Supervisors: Prof. Paweł Moskal &amp; Dr. Sushil K. Sharma · Team member, MAESTRO grant project</p>
 </div></section>
 
-<section id="patent"><div class="wrap">
-  <div class="label mono">// patent</div>
-  <h2>Patent</h2>
-  <div class="pub" style="border-left-color:var(--accent2)">
+<section id="publications"><div class="wrap">
+  <div class="label mono">// publications</div>
+  <h2>Publications</h2>
+  <h3 class="sub" style="margin-top:0">Patent</h3>
+  <div class="pub" id="patent">
     <span class="pill" style="margin:0 0 10px">Patent pending</span>
     <h3>Generating Attenuation Map from Detector-Scattered Coincidence Events in Positron Emission Tomography</h3>
     <div class="authors"><b>S. Tiwari</b>, P. Moskal, S. Sharma, E. Stępień</div>
     <div class="authors">US Patent Application No. 19/859,844 · filed 2 Nov 2026 · Applicant: Jagiellonian University</div>
     <div class="authors">Priority: Polish Patent Application No. P.457524 · filed 29 Oct 2026</div>
   </div>
-</div></section>
-
-<section id="publications"><div class="wrap">
-  <div class="label mono">// publications</div>
-  <h2>Publications</h2>
+  <h3 class="sub">First-author article</h3>
   <div class="pub">
     <span class="pill talk" style="margin:0 0 10px">First author</span>
     <h3>Feasibility Study of Using Detector-Scattered Photons for Attenuation Correction in CT-less PET Imaging</h3>
@@ -335,6 +348,18 @@ function init(){const css=document.createElement('link');css.rel='stylesheet';cs
    L.marker([la,lo],{icon:L.divIcon({className:'',html:`<div class="pin ${k==='c'?'':k}"></div>`,iconSize:[14,14]}),title:t,keyboard:true}).bindPopup(`<b>${t}</b><br>${d}`).addTo(m)});
   m.fitBounds(P.map(p=>[p[0],p[1]]),{padding:[30,30]})};document.body.appendChild(sc)}
 const io=new IntersectionObserver(([e])=>{if(e.isIntersecting){io.disconnect();init()}},{rootMargin:'300px'});io.observe(el)})();
+</script>
+<script>
+(()=>{const b=document.getElementById('buddy'),t=document.getElementById('bubbleText'),hero=document.querySelector('.hero');
+const msg={research:'Now look at my research 🔬',publications:'Here are my patent & papers 📄',talks:"Places I've presented 🎤",map:'Where research took me ✈️',background:'How I got here 🎓',projects:'Now the fun stuff 🛠️',contact:"Let's talk! 👋"};
+const order=Object.keys(msg);let cur='';
+function upd(){const show=scrollY>hero.offsetHeight*.55;b.classList.toggle('on',show);
+ let c='research';order.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<innerHeight*.5)c=id});
+ if(innerHeight+scrollY>=document.documentElement.scrollHeight-4)c='contact';
+ if(c!==cur){cur=c;t.classList.add('swap');setTimeout(()=>{t.textContent=msg[c];t.classList.remove('swap');b.classList.remove('talk');void b.offsetWidth;b.classList.add('talk')},200)}}
+addEventListener('scroll',upd,{passive:true});upd();
+b.addEventListener('click',()=>{const i=order.indexOf(cur),n=order[i+1];const el=n?document.getElementById(n):document.getElementById('top');el.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})});
+b.title='Click to go to the next section';})();
 </script>
 </body>
 </html>
