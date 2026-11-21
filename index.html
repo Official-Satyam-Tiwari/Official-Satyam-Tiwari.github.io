@@ -124,18 +124,28 @@ h2::after{content:"";position:absolute;left:0;bottom:-8px;height:2px;width:100%;
 .ini{flex:none;width:48px;height:48px;border-radius:50%;display:grid;place-items:center;font-weight:600;font-size:.9rem;color:var(--accent);border:1px solid rgba(110,231,200,.35);background:rgba(110,231,200,.06)}
 .ref .rc{margin-top:10px;font-size:.85rem}.ref .rc a{color:var(--accent)}.ref .rc a:hover{text-decoration:underline}
 
-#buddy{position:fixed;right:24px;bottom:24px;z-index:70;display:flex;align-items:center;gap:10px;background:none;border:0;cursor:pointer;font-family:inherit;opacity:0;transform:translateY(30px) scale(.6);pointer-events:none;transition:opacity .45s ease,transform .55s cubic-bezier(.3,1.5,.5,1)}
-#buddy.on{opacity:1;transform:none;pointer-events:auto}
-#buddy img{width:56px;height:56px;border-radius:50%;object-fit:cover;border:2px solid var(--accent);box-shadow:0 6px 24px rgba(0,0,0,.5);transition:transform .3s}
-#buddy:hover img{transform:rotate(-8deg) scale(1.06)}
-#buddy.talk img{animation:bob .6s ease}
-@keyframes bob{30%{transform:translateY(-6px) rotate(-6deg)}60%{transform:translateY(0) rotate(4deg)}}
-.bubble{position:relative;background:var(--text);color:var(--bg);font-size:.82rem;font-weight:500;padding:8px 12px;border-radius:12px;white-space:nowrap;box-shadow:0 6px 24px rgba(0,0,0,.4);transition:opacity .25s,transform .25s}
+
+#buddy{position:fixed;left:0;top:0;z-index:70;display:flex;align-items:center;gap:10px;background:none;border:0;cursor:pointer;font-family:inherit;opacity:0;pointer-events:none;
+ transition:opacity .4s ease,left 1s cubic-bezier(.55,0,.25,1),top .8s cubic-bezier(.3,.9,.3,1)}
+#buddy.on{opacity:1;pointer-events:auto}
+#buddy.left{flex-direction:row-reverse}
+#buddy .av{position:relative;animation:float 3.2s ease-in-out infinite}
+#buddy img{display:block;width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid var(--accent);box-shadow:0 10px 30px rgba(0,0,0,.55);transition:transform .3s}
+#buddy .av::after{content:"";position:absolute;left:50%;bottom:-14px;width:40px;height:6px;margin-left:-20px;border-radius:50%;background:rgba(0,0,0,.45);filter:blur(3px);animation:shadow 3.2s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-10px)}}
+@keyframes shadow{50%{transform:scale(.7);opacity:.5}}
+#buddy.fly img{animation:spin 1s cubic-bezier(.55,0,.25,1)}
+@keyframes spin{to{transform:rotate(360deg)}}
+#buddy.talk .bubble{animation:pop .45s cubic-bezier(.3,1.6,.5,1)}
+@keyframes pop{0%{transform:scale(.6);opacity:0}}
+#buddy:hover img{transform:scale(1.08) rotate(-6deg)}
+.bubble{position:relative;background:var(--text);color:var(--bg);font-size:.82rem;font-weight:500;padding:8px 12px;border-radius:12px;white-space:nowrap;box-shadow:0 6px 24px rgba(0,0,0,.4);transform-origin:right center}
+#buddy.left .bubble{transform-origin:left center}
 .bubble::after{content:"";position:absolute;right:-6px;top:50%;margin-top:-6px;border:6px solid transparent;border-right:0;border-left-color:var(--text)}
-.bubble.swap{opacity:0;transform:translateX(8px)}
-#buddy:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:30px}
-@media(max-width:560px){#buddy{right:14px;bottom:14px}#buddy img{width:46px;height:46px}.bubble{font-size:.75rem;padding:6px 10px}}
-@media(prefers-reduced-motion:reduce){#buddy,#buddy img,.bubble{transition:none;animation:none!important}}
+#buddy.left .bubble::after{right:auto;left:-6px;border-left:0;border-right:6px solid var(--text)}
+#buddy:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:40px}
+@media(max-width:1100px){#buddy img{width:48px;height:48px}.bubble{font-size:.75rem;padding:6px 10px}}
+@media(prefers-reduced-motion:reduce){#buddy{transition:opacity .2s}#buddy .av,#buddy .av::after,#buddy img,.bubble{animation:none!important}}
 </style>
 </head>
 <body>
@@ -170,7 +180,7 @@ h2::after{content:"";position:absolute;left:0;bottom:-8px;height:2px;width:100%;
 
 <button id="buddy" type="button" aria-label="Jump to next section">
   <span class="bubble" id="bubbleText">Now look at my research</span>
-  <img src="Photo.jpg" alt="" width="56" height="56">
+  <span class="av"><img src="Photo.jpg" alt="" width="64" height="64"></span>
 </button>
 <main id="main">
 <section id="research"><div class="wrap">
@@ -178,7 +188,7 @@ h2::after{content:"";position:absolute;left:0;bottom:-8px;height:2px;width:100%;
   <h2>What I work on</h2>
   <div class="grid">
     <div class="card"><h3>CT-less PET</h3><p>Quantitative attenuation correction from detector-scattered and annihilation data in plastic-scintillator PET.</p></div>
-    <div class="card"><h3>J-PET reconstruction</h3><p>Simulation-driven methods (GATE / Monte Carlo) for attenuation-map estimation and better lesion localisation.</p></div>
+    <div class="card"><h3>Image reconstruction</h3><p>Simulation-driven methods (GATE / Monte Carlo) for attenuation-map estimation and better lesion localisation.</p></div>
     <div class="card"><h3>AI for medical imaging</h3><p>Deep-learning denoising and enhancement of attenuation maps for robust CT-less workflows.</p></div>
   </div>
   <div class="grid" style="margin-top:16px">
@@ -349,16 +359,25 @@ function init(){const css=document.createElement('link');css.rel='stylesheet';cs
   m.fitBounds(P.map(p=>[p[0],p[1]]),{padding:[30,30]})};document.body.appendChild(sc)}
 const io=new IntersectionObserver(([e])=>{if(e.isIntersecting){io.disconnect();init()}},{rootMargin:'300px'});io.observe(el)})();
 </script>
+
 <script>
-(()=>{const b=document.getElementById('buddy'),t=document.getElementById('bubbleText'),hero=document.querySelector('.hero');
+(()=>{const b=document.getElementById('buddy'),t=document.getElementById('bubbleText'),hero=document.querySelector('.hero'),RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const msg={research:'Now look at my research 🔬',publications:'Here are my patent & papers 📄',talks:"Places I've presented 🎤",map:'Where research took me ✈️',background:'How I got here 🎓',projects:'Now the fun stuff 🛠️',contact:"Let's talk! 👋"};
-const order=Object.keys(msg);let cur='';
-function upd(){const show=scrollY>hero.offsetHeight*.55;b.classList.toggle('on',show);
+const order=Object.keys(msg);let cur='',side='';
+function place(){const wide=innerWidth>1100,m=wide?28:12,w=b.offsetWidth,h=b.offsetHeight;
+ const el=document.getElementById(cur),r=el?el.getBoundingClientRect():{top:0,height:1};
+ let p=Math.min(1,Math.max(0,(innerHeight*.5-r.top)/r.height));
+ const top=wide?innerHeight*(.2+p*.55):innerHeight-h-m-6;
+ b.style.top=Math.round(top)+'px';b.style.left=(side==='left'?m:innerWidth-w-m)+'px'}
+function upd(){b.classList.toggle('on',scrollY>hero.offsetHeight*.55);
  let c='research';order.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<innerHeight*.5)c=id});
  if(innerHeight+scrollY>=document.documentElement.scrollHeight-4)c='contact';
- if(c!==cur){cur=c;t.classList.add('swap');setTimeout(()=>{t.textContent=msg[c];t.classList.remove('swap');b.classList.remove('talk');void b.offsetWidth;b.classList.add('talk')},200)}}
-addEventListener('scroll',upd,{passive:true});upd();
-b.addEventListener('click',()=>{const i=order.indexOf(cur),n=order[i+1];const el=n?document.getElementById(n):document.getElementById('top');el.scrollIntoView({behavior:matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'})});
+ if(c!==cur){cur=c;const ns=order.indexOf(c)%2?'left':'right';
+  if(ns!==side){if(side&&!RM){b.classList.remove('fly');void b.offsetWidth;b.classList.add('fly')}side=ns;b.classList.toggle('left',side==='left')}
+  t.textContent=msg[c];b.classList.remove('talk');void b.offsetWidth;b.classList.add('talk')}
+ place()}
+addEventListener('scroll',upd,{passive:true});addEventListener('resize',place);upd();
+b.addEventListener('click',()=>{const i=order.indexOf(cur),n=order[i+1];(n?document.getElementById(n):document.getElementById('top')).scrollIntoView({behavior:RM?'auto':'smooth'})});
 b.title='Click to go to the next section';})();
 </script>
 </body>
