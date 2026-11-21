@@ -222,7 +222,7 @@ button.btn{background:transparent;color:var(--text);font:inherit;font-size:.9rem
 .btn.primary{background:var(--text);color:var(--bg)}
 
 nav .wrap{max-width:1200px}
-.lead,#contact p,.k40{max-width:72ch}
+.lead,#contact p,.k40{max-width:none}
 .hero h1{font-size:clamp(3rem,8vw,6rem)}
 .grid{grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
 #talks .item,#background .item,#skills .item{grid-template-columns:140px 1fr}
@@ -230,6 +230,12 @@ nav .wrap{max-width:1200px}
 .pub-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(460px,1fr));column-gap:40px}
 @media(max-width:1000px){.pub-list{grid-template-columns:1fr}}
 @media(max-width:560px){.wrap{padding:0 18px}#talks .item,#background .item,#skills .item{grid-template-columns:1fr}}
+
+.wave{display:inline-block;transform-origin:70% 70%;animation:wave 1.8s ease 1s 2}
+@keyframes wave{0%,60%,100%{transform:rotate(0)}10%,30%{transform:rotate(14deg)}20%{transform:rotate(-8deg)}40%{transform:rotate(-4deg)}50%{transform:rotate(10deg)}}
+.sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
+.avwrap::after{display:none}
+@media(prefers-reduced-motion:reduce){.wave{animation:none}}
 </style>
 </head>
 <body>
@@ -252,10 +258,10 @@ nav .wrap{max-width:1200px}
 <header class="hero" id="top">
   <canvas id="trail" aria-hidden="true"></canvas>
   <div class="wrap">
-    <span class="avwrap" data-hi="Hi, I'm Satyam"><img class="avatar" fetchpriority="high" decoding="async" src="Photo.jpg" alt="Portrait of Satyam Tiwari" width="80" height="80"></span>
+    <span class="avwrap"><img class="avatar" fetchpriority="high" decoding="async" src="Photo.jpg" alt="Portrait of Satyam Tiwari" width="80" height="80"></span>
     <p class="greet mono" id="greet"></p>
     <p class="eyebrow mono">PhD Researcher · Biophysics · Jagiellonian University</p>
-    <h1>Satyam Tiwari</h1>
+    <h1>Hi, I am Satyam <span class="wave" aria-hidden="true">👋</span><span class="sr">Satyam Tiwari</span></h1>
     <p class="lead">I am developing algorithms for reconstructing attenuation maps from detector-scattered coincidences in PET imaging: photons that scanners usually throw away. The goal is CT-less PET, across the J-PET scanner family and its prototypes.</p>
     <p class="facts-line mono">16 publications · 9 conference contributions · 1 patent pending</p>
     <div class="btns">
@@ -433,7 +439,7 @@ nav .wrap{max-width:1200px}
 <section id="contact"><div class="wrap">
   <div class="label mono">07</div>
   <h2>Let's collaborate</h2>
-  <p style="color:var(--muted);max-width:560px">I'm looking to collaborate on <b style="color:var(--text)">PET detector instrumentation</b>. So far my experience is in image reconstruction and attenuation correction: Monte Carlo simulation, iterative algorithms and deep learning for CT-less PET. Next, I want to broaden my horizon to the hardware side, from scintillators and readout electronics to timing and detector characterisation, so I understand the whole chain from photon to image. If you work on detectors and see a fit, I'd love to hear from you.</p>
+  <p style="color:var(--muted)">I'm looking to collaborate on <b style="color:var(--text)">PET detector instrumentation</b>. So far my experience is in image reconstruction and attenuation correction: Monte Carlo simulation, iterative algorithms and deep learning for CT-less PET. Next, I want to broaden my horizon to the hardware side, from scintillators and readout electronics to timing and detector characterisation, so I understand the whole chain from photon to image. If you work on detectors and see a fit, I'd love to hear from you.</p>
   <div class="btns"><a class="btn primary" href="mailto:satyam.tiwari@doctoral.uj.edu.pl">Email me</a><button class="btn" id="copymail" type="button">Copy email</button><a class="btn" href="satyam-tiwari.vcf" download>Save contact</a><a class="btn" href="cv.pdf">Download CV</a></div>
 </div></section>
 
