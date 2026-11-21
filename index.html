@@ -15,9 +15,10 @@
 <link rel="canonical" href="https://official-satyam-tiwari.github.io/">
 <link rel="icon" type="image/png" href="favicon.png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
+<link rel="preload" as="image" href="Photo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#0a0a0b;--card:#111113;--line:#1f1f23;--text:#ededef;--muted:#8f8f98;--accent:#6ee7c8}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -136,6 +137,9 @@ body::before{content:"";position:fixed;inset:-20%;z-index:-1;pointer-events:none
 a.ext{color:inherit;border-bottom:1px dotted color-mix(in srgb,var(--accent) 60%,transparent);transition:color .2s}
 a.ext:hover{color:var(--accent)}
 @media(prefers-reduced-motion:reduce){body{transition:none}body::before{animation:none}}
+
+@media(max-width:560px){.wrap{padding:0 18px}.hero{padding:110px 0 60px}h1{font-size:2.3rem}.lead{font-size:1rem}section{padding:56px 0}h2{font-size:1.35rem}.btns .btn{flex:1 1 auto;justify-content:center}.pub{padding:18px}.pub-list li{font-size:.9rem}nav ul a{padding:6px 8px}}
+img{max-width:100%}html,body{overflow-x:hidden}
 </style>
 </head>
 <body>
@@ -155,7 +159,7 @@ a.ext:hover{color:var(--accent)}
 
 <header class="hero" id="top">
   <div class="wrap">
-    <img class="avatar" src="Photo.jpg" alt="Portrait of Satyam Tiwari" width="80" height="80">
+    <img class="avatar" fetchpriority="high" decoding="async" src="Photo.jpg" alt="Portrait of Satyam Tiwari" width="80" height="80">
     <p class="eyebrow mono">PhD Researcher · Biophysics · Jagiellonian University</p>
     <h1>Satyam Tiwari</h1>
     <p class="lead">I am developing algorithms for reconstructing attenuation maps from detector-scattered coincidences in PET imaging: photons that scanners usually throw away. The goal is CT-less PET, across the J-PET scanner family and its prototypes.</p>
