@@ -1,0 +1,31 @@
+\newsavebox{\headerinfobox}
+\savebox{\headerinfobox}{%
+\begin{minipage}[t]{0.81\linewidth}
+    \vspace{0pt}%
+    {\LARGE \textbf{\textcolor{accentblue}{Satyam Tiwari}}}\\[-1pt]
+    {\large Doctoral Researcher in Biophysics \textbar{} Jagiellonian University}\\[5pt]
+    \normalsize
+    \begin{tabularx}{\linewidth}{@{}>{\bfseries}l X >{\bfseries}l X@{}}
+        Location: & Krakow, Poland & Email: & \href{mailto:satyam.tiwari@doctoral.uj.edu.pl}{satyam.tiwari@doctoral.uj.edu.pl} \\
+        LinkedIn: & \href{https://www.linkedin.com/in/satyam-tiwari-204a3a174/}{linkedin.com/in/satyam-tiwari} & ORCID: & \href{https://orcid.org/0009-0006-2293-3946}{0009-0006-2293-3946} \\
+        Publications: & \href{https://koza.if.uj.edu.pl/staff/stiwari}{koza.if.uj.edu.pl/staff/stiwari} & ResearchGate: & \href{https://www.researchgate.net/profile/Satyam-Tiwari-35/research}{Satyam-Tiwari-35} \\
+        Website: & \multicolumn{3}{l@{}}{\href{https://official-satyam-tiwari.github.io}{official-satyam-tiwari.github.io}} \\
+    \end{tabularx}
+\end{minipage}%
+}
+
+\noindent
+\begin{minipage}[t]{0.16\linewidth}
+    \vspace{0pt}%
+    \centering
+    \includegraphics[height=\dimexpr\ht\headerinfobox+\dp\headerinfobox\relax]{pic.png}
+\end{minipage}\hfill
+\usebox{\headerinfobox}
+
+\vspace{0.18cm}
+\noindent\color{accentblue}\rule{\linewidth}{0.8pt}\color{black}
+\vspace{0.08cm}
+
+{\begin{spacing}{1.20}
+\noindent\textit{Doctoral researcher developing CT-less PET reconstruction methods that estimate attenuation maps from detector-scattered coincidences, with interests spanning quantitative image reconstruction, simulation, and AI-assisted medical imaging.}\par
+\end{spacing}}
