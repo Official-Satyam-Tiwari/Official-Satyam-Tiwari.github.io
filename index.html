@@ -236,6 +236,19 @@ nav .wrap{max-width:1200px}
 .sr{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
 .avwrap::after{display:none}
 @media(prefers-reduced-motion:reduce){.wave{animation:none}}
+
+/* big animated portrait */
+.hero .wrap{display:grid;grid-template-columns:auto 1fr;column-gap:64px;align-items:center}
+.hero .wrap>.avwrap{grid-row:1/span 6;align-self:center}
+.hero .wrap>*:not(.avwrap){grid-column:2}
+.avwrap{width:220px;height:220px;position:relative;animation:floaty 6s ease-in-out infinite}
+.avwrap .avatar{width:220px;height:220px;margin:0;border:0;box-shadow:0 20px 60px rgba(0,0,0,.35)}
+.avwrap::before{content:"";position:absolute;inset:-14px;border-radius:50%;border:1.5px dashed color-mix(in srgb,var(--accent) 45%,transparent);animation:spin 50s linear infinite;pointer-events:none}
+.avwrap::after{content:""!important;display:block!important;position:absolute;inset:-14px;border-radius:50%;background:radial-gradient(circle at 50% 0,var(--accent) 0 5px,transparent 6px);animation:spin 9s linear infinite;pointer-events:none;opacity:1!important;transform:none;left:auto;top:auto;margin:0;padding:0;white-space:normal}
+@keyframes spin{to{transform:rotate(360deg)}}
+@keyframes floaty{50%{transform:translateY(-8px)}}
+@media(max-width:860px){.hero .wrap{grid-template-columns:1fr}.hero .wrap>.avwrap{grid-row:auto;margin-bottom:34px}.hero .wrap>*:not(.avwrap){grid-column:1}.avwrap,.avwrap .avatar{width:150px;height:150px}}
+@media(prefers-reduced-motion:reduce){.avwrap,.avwrap::before,.avwrap::after{animation:none}}
 </style>
 </head>
 <body>
@@ -258,7 +271,7 @@ nav .wrap{max-width:1200px}
 <header class="hero" id="top">
   <canvas id="trail" aria-hidden="true"></canvas>
   <div class="wrap">
-    <span class="avwrap"><img class="avatar" fetchpriority="high" decoding="async" src="Photo.jpg" alt="Portrait of Satyam Tiwari" width="80" height="80"></span>
+    <span class="avwrap"><img class="avatar" fetchpriority="high" decoding="async" src="Photo.jpg" alt="Portrait of Satyam Tiwari" width="220" height="220"></span>
     <p class="greet mono" id="greet"></p>
     <p class="eyebrow mono">PhD Researcher · Biophysics · Jagiellonian University</p>
     <h1>Hi, I am Satyam <span class="wave" aria-hidden="true">👋</span><span class="sr">Satyam Tiwari</span></h1>
