@@ -369,6 +369,21 @@ a.ext .fav,.flinks .fav{width:14px;height:14px;margin-right:5px;vertical-align:-
 .soc:hover::after,.soc:focus-visible::after{opacity:1;transform:translate(-50%,0)}
 .soc:first-child svg{color:var(--accent)}
 .socfb{font:700 .8rem 'DM Sans',sans-serif;color:var(--text)}
+
+/* collaborate two-column */
+.collab{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.swap{display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:14px;background:#fff;border-radius:24px;padding:26px;box-shadow:0 8px 24px rgba(30,20,10,.06)}
+.sw-h{font-size:.78rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:10px}
+.sw-col ul{list-style:none;display:grid;gap:8px}
+.sw-col li{font-size:.92rem;padding:7px 12px;border-radius:12px;background:#e9f7f1;color:#0e6b57;transition:transform .25s cubic-bezier(.3,1.6,.5,1)}
+.sw-col.want li{background:#fff0e8;color:#b5401f;border:1px dashed #f3b9a3}
+.sw-col li:hover{transform:translateX(4px)}
+.sw-arrow{color:var(--accent);width:54px}
+.sw-arrow svg{width:100%;animation:nudge 1.8s ease-in-out infinite}
+@keyframes nudge{50%{transform:translateX(6px)}}
+@media(max-width:900px){.collab{grid-template-columns:1fr;gap:28px}}
+@media(max-width:520px){.swap{grid-template-columns:1fr;padding:20px}.sw-arrow{transform:rotate(90deg);margin:0 auto;width:40px}}
+@media(prefers-reduced-motion:reduce){.sw-arrow svg{animation:none}}
 </style>
 </head>
 <body>
@@ -557,8 +572,16 @@ a.ext .fav,.flinks .fav{width:14px;height:14px;margin-right:5px;vertical-align:-
 <section id="contact"><div class="wrap">
   <div class="label mono">07</div>
   <h2>Let's collaborate</h2>
+  <div class="collab"><div>
   <p class="big">Next up: <span class="mark">PET detector instrumentation</span>. Working on detectors? Let's talk.</p>
   <div class="btns"><a class="btn primary" href="mailto:satyam.tiwari@doctoral.uj.edu.pl">Email me</a><button class="btn" id="copymail" type="button">Copy email</button><a class="btn" href="satyam-tiwari.vcf" download>Save contact</a><a class="btn" href="cv.pdf">Download CV</a></div>
+  </div>
+  <div class="swap" aria-label="What I bring and what I want to learn">
+    <div class="sw-col"><p class="sw-h">I bring</p><ul><li>Image reconstruction</li><li>Attenuation correction</li><li>Monte Carlo · GATE</li><li>Deep learning</li></ul></div>
+    <div class="sw-arrow" aria-hidden="true"><svg viewBox="0 0 60 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M2 12h52M46 4l8 8-8 8"/></svg></div>
+    <div class="sw-col want"><p class="sw-h">I want to learn</p><ul><li>Scintillators</li><li>SiPM readout</li><li>Timing · TOF</li><li>Detector characterisation</li></ul></div>
+  </div>
+  </div>
 </div></section>
 
 </main>
