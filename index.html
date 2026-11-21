@@ -125,27 +125,16 @@ h2::after{content:"";position:absolute;left:0;bottom:-8px;height:2px;width:100%;
 .ref .rc{margin-top:10px;font-size:.85rem}.ref .rc a{color:var(--accent)}.ref .rc a:hover{text-decoration:underline}
 
 
-#buddy{position:fixed;left:0;top:0;z-index:70;display:flex;align-items:center;gap:10px;background:none;border:0;cursor:pointer;font-family:inherit;opacity:0;pointer-events:none;
- transition:opacity .4s ease,left 1s cubic-bezier(.55,0,.25,1),top .8s cubic-bezier(.3,.9,.3,1)}
-#buddy.on{opacity:1;pointer-events:auto}
-#buddy.left{flex-direction:row-reverse}
-#buddy .av{position:relative;animation:float 3.2s ease-in-out infinite}
-#buddy img{display:block;width:64px;height:64px;border-radius:50%;object-fit:cover;border:2px solid var(--accent);box-shadow:0 10px 30px rgba(0,0,0,.55);transition:transform .3s}
-#buddy .av::after{content:"";position:absolute;left:50%;bottom:-14px;width:40px;height:6px;margin-left:-20px;border-radius:50%;background:rgba(0,0,0,.45);filter:blur(3px);animation:shadow 3.2s ease-in-out infinite}
-@keyframes float{50%{transform:translateY(-10px)}}
-@keyframes shadow{50%{transform:scale(.7);opacity:.5}}
-#buddy.fly img{animation:spin 1s cubic-bezier(.55,0,.25,1)}
-@keyframes spin{to{transform:rotate(360deg)}}
-#buddy.talk .bubble{animation:pop .45s cubic-bezier(.3,1.6,.5,1)}
-@keyframes pop{0%{transform:scale(.6);opacity:0}}
-#buddy:hover img{transform:scale(1.08) rotate(-6deg)}
-.bubble{position:relative;background:var(--text);color:var(--bg);font-size:.82rem;font-weight:500;padding:8px 12px;border-radius:12px;white-space:nowrap;box-shadow:0 6px 24px rgba(0,0,0,.4);transform-origin:right center}
-#buddy.left .bubble{transform-origin:left center}
-.bubble::after{content:"";position:absolute;right:-6px;top:50%;margin-top:-6px;border:6px solid transparent;border-right:0;border-left-color:var(--text)}
-#buddy.left .bubble::after{right:auto;left:-6px;border-left:0;border-right:6px solid var(--text)}
-#buddy:focus-visible{outline:2px solid var(--accent);outline-offset:4px;border-radius:40px}
-@media(max-width:1100px){#buddy img{width:48px;height:48px}.bubble{font-size:.75rem;padding:6px 10px}}
-@media(prefers-reduced-motion:reduce){#buddy{transition:opacity .2s}#buddy .av,#buddy .av::after,#buddy img,.bubble{animation:none!important}}
+
+@property --accent{syntax:'<color>';inherits:true;initial-value:#6ee7c8}
+@property --glow{syntax:'<color>';inherits:true;initial-value:rgba(110,231,200,.07)}
+@property --bgc{syntax:'<color>';inherits:true;initial-value:#0a0a0b}
+body{background:var(--bgc);transition:--accent 1.4s ease,--glow 1.4s ease,--bgc 1.4s ease}
+body::before{content:"";position:fixed;inset:-20%;z-index:-1;pointer-events:none;background:radial-gradient(40% 40% at 80% 20%,var(--glow),transparent 70%),radial-gradient(35% 35% at 10% 85%,var(--glow),transparent 70%);animation:drift 24s ease-in-out infinite alternate}
+@keyframes drift{to{transform:translate(-4%,3%) rotate(4deg)}}
+a.ext{color:inherit;border-bottom:1px dotted color-mix(in srgb,var(--accent) 60%,transparent);transition:color .2s}
+a.ext:hover{color:var(--accent)}
+@media(prefers-reduced-motion:reduce){body{transition:none}body::before{animation:none}}
 </style>
 </head>
 <body>
@@ -177,10 +166,6 @@ h2::after{content:"";position:absolute;left:0;bottom:-8px;height:2px;width:100%;
   </div>
 </header>
 
-<button id="buddy" type="button" aria-label="Jump to next section">
-  <span class="bubble" id="bubbleText">Now look at my research</span>
-  <span class="av"><img src="Photo.jpg" alt="" width="64" height="64"></span>
-</button>
 <main id="main">
 <section id="research"><div class="wrap">
   <div class="label mono">// research</div>
@@ -242,18 +227,18 @@ h2::after{content:"";position:absolute;left:0;bottom:-8px;height:2px;width:100%;
 <section id="talks"><div class="wrap">
   <div class="label mono">// talks &amp; posters</div>
   <h2>Conferences</h2>
-<div class="item"><div class="when mono">Nov 2026</div><div><h3>CT-less J-PET with the full detector-scatter framework (incl. MLTR) · DSAC in LYSO vs plastic scintillators <span class="pill">Poster</span></h3><div class="where">IEEE NSS/MIC/RTSD 2026 · Granada, Spain</div></div></div>
-<div class="item"><div class="when mono">Sep 2026</div><div><h3>CT-Less Attenuation Correction Using Detector-Scattered Photons in Plastic Scintillator-Based Total-Body PET: A Monte Carlo Study <span class="pill">Poster</span> <span class="pill">Presentation Award</span></h3><div class="where">Total-Body PET 2026 · UC Davis, USA</div></div></div>
-<div class="item"><div class="when mono">Jul 2026</div><div><h3>Analytical Modelling of Blank Scan in DSAC <span class="pill talk">Talk</span></h3><div class="where">6th Jagiellonian Symposium (core organizer) · Kraków</div></div></div>
+<div class="item"><div class="when mono">Nov 2026</div><div><h3>CT-less J-PET with the full detector-scatter framework (incl. MLTR) · DSAC in LYSO vs plastic scintillators <span class="pill">Poster</span></h3><div class="where"><a class="ext" href="https://nssmic.ieee.org/2026/" target="_blank" rel="noopener">IEEE NSS/MIC/RTSD 2026 ↗</a> · Granada, Spain</div></div></div>
+<div class="item"><div class="when mono">Sep 2026</div><div><h3>CT-Less Attenuation Correction Using Detector-Scattered Photons in Plastic Scintillator-Based Total-Body PET: A Monte Carlo Study <span class="pill">Poster</span> <span class="pill">Presentation Award</span></h3><div class="where"><a class="ext" href="https://tbpet2026.ucdavis.edu/" target="_blank" rel="noopener">Total-Body PET 2026 ↗</a> · UC Davis, USA</div></div></div>
+<div class="item"><div class="when mono">Jul 2026</div><div><h3>Analytical Modelling of Blank Scan in DSAC <span class="pill talk">Talk</span></h3><div class="where"><a class="ext" href="https://indico.koza.if.uj.edu.pl/event/21/" target="_blank" rel="noopener">6th Jagiellonian Symposium ↗</a> (core organizer) · Kraków</div></div></div>
 <div class="item"><div class="when mono">May 2026</div><div><h3>Deep-learning enhancement of detector-scatter attenuation maps for CT-less plastic-scintillator PET <span class="pill talk">Talk</span></h3><div class="where">MCSB 2026 · Kraków</div></div></div>
-<div class="item"><div class="when mono">May 2026</div><div><h3>DSAC: A Novel CT-less Attenuation Correction Approach for Cost-Effective Plastic Scintillator based Total-body PET <span class="pill talk">Talk</span></h3><div class="where">FTMI-TBPET-PSMR 2026 · Valencia, Spain</div></div></div>
-<div class="item"><div class="when mono">Mar 2026</div><div><h3>CT-less Attenuation Correction via ML Reconstruction (DS-MLAA) <span class="pill ">Poster</span></h3><div class="where">EMIM 2026 · Slovenia</div></div></div>
-<div class="item"><div class="when mono">Jan 2026</div><div><h3>Detector-scattered coincidences for quantitative attenuation estimation <span class="pill talk">Talk</span></h3><div class="where">2nd Total-Body J-PET General Meeting (core organizer) · Kraków</div></div></div>
-<div class="item"><div class="when mono">Sep 2025</div><div><h3>Detector-scattered photons for attenuation map generation in J-PET <span class="pill ">Poster</span></h3><div class="where">2nd Symposium on New Trends in Nuclear &amp; Medical Physics (organizer) · UJ &amp; AGH, Kraków</div></div></div>
+<div class="item"><div class="when mono">May 2026</div><div><h3>DSAC: A Novel CT-less Attenuation Correction Approach for Cost-Effective Plastic Scintillator based Total-body PET <span class="pill talk">Talk</span></h3><div class="where"><a class="ext" href="https://indico.cern.ch/event/1554530/" target="_blank" rel="noopener">FTMI-TBPET-PSMR 2026 ↗</a> · Valencia, Spain</div></div></div>
+<div class="item"><div class="when mono">Mar 2026</div><div><h3>CT-less Attenuation Correction via ML Reconstruction (DS-MLAA) <span class="pill ">Poster</span></h3><div class="where"><a class="ext" href="https://e-smi.eu/meetings/emim/past-meetings/2026-ljubljana/" target="_blank" rel="noopener">EMIM 2026 ↗</a> · Slovenia</div></div></div>
+<div class="item"><div class="when mono">Jan 2026</div><div><h3>Detector-scattered coincidences for quantitative attenuation estimation <span class="pill talk">Talk</span></h3><div class="where"><a class="ext" href="https://indico.koza.if.uj.edu.pl/event/23/" target="_blank" rel="noopener">2nd Total-Body J-PET General Meeting ↗</a> (core organizer) · Kraków</div></div></div>
+<div class="item"><div class="when mono">Sep 2025</div><div><h3>Detector-scattered photons for attenuation map generation in J-PET <span class="pill ">Poster</span></h3><div class="where"><a class="ext" href="https://indico.koza.if.uj.edu.pl/event/18/" target="_blank" rel="noopener">2nd Symposium on New Trends in Nuclear &amp; Medical Physics ↗</a> (organizer) · UJ &amp; AGH, Kraków</div></div></div>
 <div class="item"><div class="when mono">Oct 2024</div><div><h3>PhD project plan: CT-less PET with J-PET <span class="pill talk">Talk</span></h3><div class="where">1st Total-Body J-PET General Meeting · Kraków</div></div></div>
   <h3 class="sub">Schools</h3>
-  <div class="item"><div class="when mono">Jul 2025</div><div><h3>AI in Medical Imaging Summer School</h3><div class="where">Radboud University, Netherlands</div></div></div>
-  <div class="item"><div class="when mono">Mar 2024</div><div><h3>SymPhy 2024</h3><div class="where">IIT Bombay</div></div></div>
+  <div class="item"><div class="when mono">Jul 2025</div><div><h3>AI in Medical Imaging Summer School</h3><div class="where"><a class="ext" href="https://www.ru.nl/en" target="_blank" rel="noopener">Radboud University ↗</a>, Netherlands</div></div></div>
+  <div class="item"><div class="when mono">Mar 2024</div><div><h3>SymPhy 2024</h3><div class="where"><a class="ext" href="https://www.iitb.ac.in/" target="_blank" rel="noopener">IIT Bombay ↗</a></div></div></div>
 </div></section>
 
 <section id="map" aria-label="Map of places research took me"><div class="wrap">
@@ -264,11 +249,11 @@ h2::after{content:"";position:absolute;left:0;bottom:-8px;height:2px;width:100%;
 <section id="background" class="edu"><div class="wrap">
   <div class="label mono">// background</div>
   <h2>Education, teaching &amp; awards</h2>
-  <div class="item"><div class="when mono">2024–2028</div><div><h3>PhD, Biophysics <span>· Jagiellonian University</span></h3><div class="where">J-PET Research Group, Kraków</div></div></div>
-  <div class="item"><div class="when mono">2022–2024</div><div><h3>MSc, Physics <span>· IIT Bombay</span></h3><div class="where">Thesis: using scattered data in PET imaging (Prof. Pragya Das)</div></div></div>
-  <div class="item"><div class="when mono">2019–2022</div><div><h3>BSc (Hons.), Physics <span>· University of Delhi</span></h3><div class="where">Kirori Mal College · CPI 9.42/10</div></div></div>
+  <div class="item"><div class="when mono">2024–2028</div><div><h3>PhD, Biophysics <span>· <a class="ext" href="https://www.uj.edu.pl/en" target="_blank" rel="noopener">Jagiellonian University ↗</a></span></h3><div class="where">J-PET Research Group, Kraków</div></div></div>
+  <div class="item"><div class="when mono">2022–2024</div><div><h3>MSc, Physics <span>· <a class="ext" href="https://www.iitb.ac.in/" target="_blank" rel="noopener">IIT Bombay ↗</a></span></h3><div class="where">Thesis: using scattered data in PET imaging (Prof. Pragya Das)</div></div></div>
+  <div class="item"><div class="when mono">2019–2022</div><div><h3>BSc (Hons.), Physics <span>· <a class="ext" href="https://www.du.ac.in/" target="_blank" rel="noopener">University of Delhi ↗</a></span></h3><div class="where"><a class="ext" href="https://kmc.du.ac.in/" target="_blank" rel="noopener">Kirori Mal College ↗</a> · CPI 9.42/10</div></div></div>
   <h3 class="sub">Teaching</h3>
-  <div class="item"><div class="when mono">2024–now</div><div><h3>Teaching Assistant <span>· Jagiellonian University</span></h3><div class="where">Lectures on Monte Carlo methods · Python programming course for beginners</div></div></div>
+  <div class="item"><div class="when mono">2024–now</div><div><h3>Teaching Assistant <span>· <a class="ext" href="https://www.uj.edu.pl/en" target="_blank" rel="noopener">Jagiellonian University ↗</a></span></h3><div class="where">Lectures on Monte Carlo methods · Python programming course for beginners</div></div></div>
   <h3 class="sub">Grants &amp; honours</h3>
   <div class="skills">
     <span>TBPET 2026 Presentation Award</span><span>TBPET 2026 Travel Grant</span><span>NAWA STER Mobility Grant (2026)</span><span>TD-UJ Grant ×4 (2024–2026)</span><span>ID UJ Visibility &amp; Mobility Grant 2026</span><span>NAWA PROM Grant 2025</span><span>MAESTRO Project Team</span><span>NGPE National Topper, Top 1% (2022)</span><span>IIT JAM Physics AIR 15</span>
@@ -357,24 +342,10 @@ const io=new IntersectionObserver(([e])=>{if(e.isIntersecting){io.disconnect();i
 </script>
 
 <script>
-(()=>{const b=document.getElementById('buddy'),t=document.getElementById('bubbleText'),hero=document.querySelector('.hero'),RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
-const msg={research:'Now look at my research 🔬',publications:'Here are my patent & papers 📄',talks:"Places I've presented 🎤",map:'Places research took me ✈️',background:'How I got here 🎓',projects:'Now the fun stuff 🛠️',contact:"Let's talk! 👋"};
-const order=Object.keys(msg);let cur='',side='';
-function place(){const wide=innerWidth>1100,m=wide?28:12,w=b.offsetWidth,h=b.offsetHeight;
- const el=document.getElementById(cur),r=el?el.getBoundingClientRect():{top:0,height:1};
- let p=Math.min(1,Math.max(0,(innerHeight*.5-r.top)/r.height));
- const top=wide?innerHeight*(.2+p*.55):innerHeight-h-m-6;
- b.style.top=Math.round(top)+'px';b.style.left=(side==='left'?m:innerWidth-w-m)+'px'}
-function upd(){b.classList.toggle('on',scrollY>hero.offsetHeight*.55);
- let c='research';order.forEach(id=>{const el=document.getElementById(id);if(el&&el.getBoundingClientRect().top<innerHeight*.5)c=id});
- if(innerHeight+scrollY>=document.documentElement.scrollHeight-4)c='contact';
- if(c!==cur){cur=c;const ns=order.indexOf(c)%2?'left':'right';
-  if(ns!==side){if(side&&!RM){b.classList.remove('fly');void b.offsetWidth;b.classList.add('fly')}side=ns;b.classList.toggle('left',side==='left')}
-  t.textContent=msg[c];b.classList.remove('talk');void b.offsetWidth;b.classList.add('talk')}
- place()}
-addEventListener('scroll',upd,{passive:true});addEventListener('resize',place);upd();
-b.addEventListener('click',()=>{const i=order.indexOf(cur),n=order[i+1];(n?document.getElementById(n):document.getElementById('top')).scrollIntoView({behavior:RM?'auto':'smooth'})});
-b.title='Click to go to the next section';})();
+(()=>{const V={top:['#6ee7c8','rgba(110,231,200,.07)','#0a0a0b'],research:['#6ee7c8','rgba(110,231,200,.09)','#090c0d'],publications:['#a99bff','rgba(150,130,255,.09)','#0b0a10'],talks:['#7cc4ff','rgba(110,180,255,.09)','#090b10'],map:['#7cc4ff','rgba(110,180,255,.06)','#09090c'],background:['#ffb86b','rgba(255,170,90,.08)','#0f0b09'],projects:['#ff8fb1','rgba(255,130,170,.08)','#0f090c'],contact:['#6ee7c8','rgba(110,231,200,.10)','#090d0c']};
+const b=document.body;let cur='';function set(id){if(id===cur||!V[id])return;cur=id;const[a,g,c]=V[id];b.style.setProperty('--accent',a);b.style.setProperty('--glow',g);b.style.setProperty('--bgc',c)}
+function f(){let id='top';document.querySelectorAll('section[id]').forEach(x=>{if(x.getBoundingClientRect().top<innerHeight*.55)id=x.id});set(id)}
+addEventListener('scroll',f,{passive:true});f();})();
 </script>
 </body>
 </html>
