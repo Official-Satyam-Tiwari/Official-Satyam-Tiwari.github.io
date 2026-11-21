@@ -63,7 +63,7 @@ h2{font-size:1.5rem;letter-spacing:-.02em;margin-bottom:26px;font-weight:600}
 a.card:hover{border-color:#34343b}
 .card h3{font-size:.98rem;font-weight:600;margin-bottom:6px}
 .card p{color:var(--muted);font-size:.9rem}
-.stat{font-size:1.8rem;font-weight:600;letter-spacing:-.03em;line-height:1.2;color:var(--text)}
+
 .item{display:grid;grid-template-columns:100px 1fr;gap:20px;padding:16px 0;border-bottom:1px solid var(--line)}
 .item:last-child{border-bottom:none}
 .item .when{color:var(--muted);font-size:.8rem;padding-top:3px}
@@ -100,14 +100,14 @@ footer a:hover{color:var(--text)}
 h2{position:relative;display:inline-block}
 h2::after{content:"";position:absolute;left:0;bottom:-8px;height:2px;width:100%;background:var(--accent);transform:scaleX(0);transform-origin:left;transition:transform .9s cubic-bezier(.2,.7,.2,1) .2s}
 .reveal.in h2::after{transform:scaleX(.18)}
-.st{opacity:0;transform:translateY(16px);transition:opacity .6s ease,transform .6s cubic-bezier(.2,.7,.2,1);transition-delay:var(--d,0s)}
-.st.in{opacity:1;transform:none}
+
+
 #talks .item{position:relative;padding-left:18px}
 #talks .item::before{content:"";position:absolute;left:0;top:24px;width:7px;height:7px;border-radius:50%;background:var(--bg);border:1.5px solid var(--accent);transform:scale(0);transition:transform .4s ease .3s}
 #talks .item.in::before{transform:scale(1)}
 .card{transition:border-color .2s,transform .25s}
 .card:hover{transform:translateY(-3px)}
-@media(prefers-reduced-motion:reduce){.hero .wrap>*{opacity:1;transform:none;animation:none}.st{opacity:1;transform:none}h2::after{transform:scaleX(.18)}}
+@media(prefers-reduced-motion:reduce){.hero .wrap>*{opacity:1;transform:none;animation:none}h2::after{transform:scaleX(.18)}}
 
 #worldmap{height:420px;border:1px solid var(--line);border-radius:12px;overflow:hidden;background:var(--card)}
 @media(max-width:560px){#worldmap{height:320px}}
@@ -148,25 +148,25 @@ img{max-width:100%}html,body{overflow-x:clip}
 
 :root{--navbg:rgba(10,10,11,.82);color-scheme:dark}
 [data-theme=light]{--bg:#fafaf9;--card:#ffffff;--line:#e5e5ea;--text:#121216;--muted:#5b5b66;--navbg:rgba(250,250,249,.85);color-scheme:light}
-[data-theme=light] .btn.primary:hover{background:#000}
-[data-theme=light] a.card:hover{border-color:#c9c9d2}
+
+
 [data-theme=light] #worldmap .leaflet-tile-pane{filter:grayscale(.5) brightness(1.02)}
 [data-theme=light] .leaflet-control-attribution{background:rgba(255,255,255,.8)!important}
-#theme{margin-left:6px;width:34px;height:34px;flex:none;display:grid;place-items:center;border-radius:8px;border:1px solid var(--line);background:transparent;color:var(--text);cursor:pointer;font-size:15px;transition:border-color .2s,transform .3s}
-#theme:hover{border-color:var(--muted);transform:rotate(-20deg)}
-#theme:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+
+
+
 html{transition:background-color .4s}
 
 .avwrap{position:relative;display:inline-block}
 .avwrap::after{content:attr(data-hi);position:absolute;left:100%;top:50%;margin-left:14px;white-space:nowrap;font-size:.85rem;background:var(--text);color:var(--bg);padding:6px 10px;border-radius:10px;opacity:0;transform:translate(-6px,-50%);transition:.25s;pointer-events:none}
 .avwrap:hover::after{opacity:1;transform:translate(0,-50%)}
 .avwrap:hover .avatar{transform:rotate(-6deg) scale(1.04)}.avatar{transition:transform .3s}
-.now{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:.84rem;color:var(--muted);margin:-4px 0 18px}
+
 .hero{position:relative}#trail{position:absolute;inset:0;width:100%;height:100%;pointer-events:none}
 .hero .wrap{position:relative;z-index:1}
-.eli5{display:inline-flex;margin:0 0 22px 16px;vertical-align:6px;font:inherit;font-size:.8rem;padding:5px 12px;border-radius:99px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer;transition:.2s}
-.eli5:hover{color:var(--text);border-color:var(--muted)}.eli5[aria-pressed=true]{color:var(--accent);border-color:var(--accent)}
-#research .card p{transition:opacity .25s}#research .card p.fade{opacity:0}
+
+
+
 .facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:10px;margin-top:10px}
 .facts div{border:1px solid var(--line);border-radius:10px;padding:14px;background:var(--card)}
 .facts b{display:block;font-size:1.3rem;color:var(--accent);letter-spacing:-.02em}.facts span{font-size:.84rem;color:var(--muted)}
@@ -177,7 +177,7 @@ kbd{font-family:'DM Mono',ui-monospace,monospace;font-size:.75rem;border:1px sol
 dialog#keys{margin:auto;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--text);padding:24px 26px;min-width:280px;max-width:90vw}
 dialog#keys::backdrop{background:rgba(0,0,0,.5);backdrop-filter:blur(3px)}
 dialog#keys ul{list-style:none;margin:14px 0 18px;display:grid;gap:8px;font-size:.92rem;color:var(--muted)}
-@media(max-width:560px){.avwrap::after{display:none}.eli5{margin:0 0 20px 0;display:flex}}
+@media(max-width:560px){.avwrap::after{display:none}}
 
 .feature{margin-bottom:14px;border-color:color-mix(in srgb,var(--accent) 35%,var(--line))}
 .feature .ftop{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px;margin-bottom:8px}.feature h3{font-size:1.15rem;margin:0}
@@ -190,7 +190,7 @@ code{font-family:'DM Mono',ui-monospace,monospace;font-size:.85em}
 .flinks a{color:var(--accent)}.flinks a:hover{text-decoration:underline}
 .cite{font-size:.8rem!important;color:var(--muted);border-top:1px solid var(--line);padding-top:10px;margin:0!important;word-break:break-word}
 
-.greet{font-size:.8rem;color:var(--muted);margin-bottom:6px;min-height:1.2em}
+
 .dlg{margin:auto;border:1px solid var(--line);border-radius:14px;background:var(--card);color:var(--text);padding:24px 26px;width:min(520px,92vw)}
 .dlg::backdrop{background:rgba(0,0,0,.5);backdrop-filter:blur(3px)}
 .dlg .btn,#keys .btn{background:transparent;color:var(--text);font:inherit;font-size:.9rem;cursor:pointer}
@@ -260,7 +260,7 @@ nav .wrap{max-width:1200px}
 
 /* ===== light & playful redesign ===== */
 [data-theme=light]{--bg:#fbf7f1;--card:#ffffff;--line:#ece4d8;--text:#1d1b22;--muted:#6b6672;--navbg:rgba(251,247,241,.85);--mark:#ffd84d}
-#theme{display:none}
+
 body{font-size:17px;line-height:1.65;letter-spacing:-.005em}
 h1,h2,h3{font-family:'DM Sans',system-ui,sans-serif;letter-spacing:-.025em}
 .hero h1{font-weight:700;letter-spacing:-.04em}
@@ -368,6 +368,7 @@ a.ext .fav,.flinks .fav{width:14px;height:14px;margin-right:5px;vertical-align:-
 .soc::after{content:attr(data-label);position:absolute;bottom:calc(100% + 8px);left:50%;transform:translate(-50%,4px);background:var(--text);color:#fff;font:500 .75rem 'DM Sans',sans-serif;padding:4px 9px;border-radius:8px;white-space:nowrap;opacity:0;pointer-events:none;transition:opacity .2s,transform .2s}
 .soc:hover::after,.soc:focus-visible::after{opacity:1;transform:translate(-50%,0)}
 .soc:first-child svg{color:var(--accent)}
+.socfb{font:700 .8rem 'DM Sans',sans-serif;color:var(--text)}
 </style>
 </head>
 <body>
@@ -566,12 +567,12 @@ a.ext .fav,.flinks .fav{width:14px;height:14px;margin-right:5px;vertical-align:-
   <p class="k40" aria-live="off"><b id="k40">0</b> potassium-40 decays in your body since you arrived <span id="pos" hidden></span></p>
   <div class="links socials">
     <a class="soc" href="mailto:satyam.tiwari@doctoral.uj.edu.pl" aria-label="Email" data-label="Email"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg></a>
-    <a class="soc" href="https://orcid.org/0009-0006-2293-3946" aria-label="ORCID" data-label="ORCID" target="_blank" rel="noopener"><img src="https://cdn.simpleicons.org/orcid/1d1b22" alt="" width="20" height="20" loading="lazy"></a>
+    <a class="soc" href="https://orcid.org/0009-0006-2293-3946" aria-label="ORCID" data-label="ORCID" target="_blank" rel="noopener"><img src="https://cdn.simpleicons.org/orcid/1d1b22" alt="" width="20" height="20" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('b'),{className:'socfb',textContent:'iD'}))"></a>
     <a class="soc" href="https://koza.if.uj.edu.pl/staff/stiwari" aria-label="J-PET profile" data-label="J-PET profile" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><circle cx="20.00" cy="12.00" r="1.6"/><circle cx="18.93" cy="16.00" r="1.6"/><circle cx="16.00" cy="18.93" r="1.6"/><circle cx="12.00" cy="20.00" r="1.6"/><circle cx="8.00" cy="18.93" r="1.6"/><circle cx="5.07" cy="16.00" r="1.6"/><circle cx="4.00" cy="12.00" r="1.6"/><circle cx="5.07" cy="8.00" r="1.6"/><circle cx="8.00" cy="5.07" r="1.6"/><circle cx="12.00" cy="4.00" r="1.6"/><circle cx="16.00" cy="5.07" r="1.6"/><circle cx="18.93" cy="8.00" r="1.6"/><circle cx="12" cy="12" r="2.4"/></svg></a>
-    <a class="soc" href="https://github.com/Official-Satyam-Tiwari" aria-label="GitHub" data-label="GitHub" target="_blank" rel="noopener"><img src="https://cdn.simpleicons.org/github/1d1b22" alt="" width="20" height="20" loading="lazy"></a>
+    <a class="soc" href="https://github.com/Official-Satyam-Tiwari" aria-label="GitHub" data-label="GitHub" target="_blank" rel="noopener"><img src="https://cdn.simpleicons.org/github/1d1b22" alt="" width="20" height="20" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('b'),{className:'socfb',textContent:'GH'}))"></a>
     <a class="soc" href="https://www.linkedin.com/in/satyam-tiwari-204a3a174/" aria-label="LinkedIn" data-label="LinkedIn" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor"><rect x="2" y="2" width="20" height="20" rx="4"/><rect x="6" y="10" width="2.6" height="8" fill="#fff"/><circle cx="7.3" cy="6.9" r="1.5" fill="#fff"/><path d="M11 10h2.5v1.2c.5-.8 1.4-1.4 2.7-1.4 2.2 0 3 1.4 3 3.6V18h-2.6v-4.1c0-1.1-.3-1.8-1.3-1.8s-1.6.7-1.6 1.8V18H11z" fill="#fff"/></svg></a>
-    <a class="soc" href="https://www.researchgate.net/profile/Satyam-Tiwari-35/research" aria-label="ResearchGate" data-label="ResearchGate" target="_blank" rel="noopener"><img src="https://cdn.simpleicons.org/researchgate/1d1b22" alt="" width="20" height="20" loading="lazy"></a>
-    <a class="soc" href="https://x.com/SatyamTiwariJi" aria-label="X" data-label="X" target="_blank" rel="noopener"><img src="https://cdn.simpleicons.org/x/1d1b22" alt="" width="20" height="20" loading="lazy"></a>
+    <a class="soc" href="https://www.researchgate.net/profile/Satyam-Tiwari-35/research" aria-label="ResearchGate" data-label="ResearchGate" target="_blank" rel="noopener"><img src="https://cdn.simpleicons.org/researchgate/1d1b22" alt="" width="20" height="20" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('b'),{className:'socfb',textContent:'RG'}))"></a>
+    <a class="soc" href="https://x.com/SatyamTiwariJi" aria-label="X" data-label="X" target="_blank" rel="noopener"><img src="https://cdn.simpleicons.org/x/1d1b22" alt="" width="20" height="20" loading="lazy" onerror="this.replaceWith(Object.assign(document.createElement('b'),{className:'socfb',textContent:'X'}))"></a>
   </div>
   © 2026 Satyam Tiwari · J-PET Collaboration
 </div></footer>
@@ -651,10 +652,6 @@ console.log('%cLooking for a collaborator on PET imaging or detector instrumenta
 <script>
 (()=>{const $=q=>document.querySelector(q),RM=matchMedia('(prefers-reduced-motion: reduce)').matches;
 const say=m=>{const t=$('#toast');t.textContent=m;t.classList.add('show');clearTimeout(say.t);say.t=setTimeout(()=>t.classList.remove('show'),2200)};
-/* greeting in Krakow time */
-function greet(){const now=new Date(),h=+now.toLocaleString('en-GB',{timeZone:'Europe/Warsaw',hour:'2-digit',hour12:false}),tm=now.toLocaleTimeString('en-GB',{timeZone:'Europe/Warsaw',hour:'2-digit',minute:'2-digit'});
- const g=h<5?'Working late in Kraków':h<12?'Good morning from Kraków':h<18?'Good afternoon from Kraków':'Good evening from Kraków';$('#greet').textContent=g+' · '+tm+' local time'}
-if($('#greet')){greet();setInterval(greet,30000)}
 /* dialogs */
 
 /* DOIs: citations + cite buttons */
