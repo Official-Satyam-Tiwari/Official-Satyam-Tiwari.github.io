@@ -252,7 +252,7 @@ nav .wrap{max-width:1200px}
 
 /* full portrait card */
 .avwrap{width:200px!important;height:auto!important;aspect-ratio:640/970;rotate:-3deg;transition:rotate .5s cubic-bezier(.3,1.4,.5,1),scale .5s}
-.avwrap:hover{rotate:0deg;scale:1.02}
+.avwrap:hover{rotate:0deg;scale:calc(var(--z,1)*1.02)}
 .avwrap .avatar{width:100%!important;height:100%!important;border-radius:22px!important;object-fit:cover;box-shadow:0 30px 70px rgba(0,0,0,.45)}
 .avwrap::before{inset:16px -16px -16px 16px!important;border-radius:24px!important;border:1.5px solid color-mix(in srgb,var(--accent) 55%,transparent)!important;animation:none!important;z-index:-1}
 .avwrap::after{display:none!important}
@@ -421,10 +421,11 @@ a.ext .fav,.flinks .fav{width:14px;height:14px;margin-right:5px;vertical-align:-
 @media(max-width:340px){#projects .grid{grid-template-columns:1fr}}
 
 /* draggable portrait */
-.avwrap{cursor:grab;touch-action:none;user-select:none;z-index:5;translate:var(--dx,0) var(--dy,0)}
+.avwrap{cursor:grab;touch-action:none;user-select:none;z-index:5;translate:var(--dx,0) var(--dy,0);scale:var(--z,1)}
 .avwrap.dragging{cursor:grabbing;z-index:80;transition:none!important;animation-play-state:paused}
 .avwrap.dragging .avatar{box-shadow:0 40px 80px rgba(30,20,10,.35)}
-.avwrap.back{transition:translate .7s cubic-bezier(.3,1.4,.5,1),rotate .5s!important}
+.avwrap.back{transition:translate .7s cubic-bezier(.3,1.4,.5,1),rotate .5s,scale .6s cubic-bezier(.3,1.4,.5,1)!important}
+.avwrap.zooming{transition:scale .12s ease-out!important}
 .drag-hint{position:absolute;left:50%;bottom:-34px;transform:translateX(-50%);font-size:.75rem;color:var(--muted);white-space:nowrap;opacity:0;transition:opacity .3s;pointer-events:none;font-family:'DM Mono',monospace}
 .avwrap:hover .drag-hint{opacity:1}.avwrap.moved .drag-hint{opacity:0!important}
 </style>
@@ -448,7 +449,7 @@ a.ext .fav,.flinks .fav{width:14px;height:14px;margin-right:5px;vertical-align:-
 <header class="hero" id="top">
   <canvas id="trail" aria-hidden="true"></canvas>
   <div class="wrap">
-    <span class="avwrap" title="Drag me around. Double-click to send me home."><img class="avatar" draggable="false" fetchpriority="high" decoding="async" src="Photo_full.jpg" alt="Portrait of Satyam Tiwari" width="280" height="424"><span class="drag-hint" aria-hidden="true">drag me</span></span>
+    <span class="avwrap" title="Drag me around, scroll or pinch to zoom. Double-click to reset."><img class="avatar" draggable="false" fetchpriority="high" decoding="async" src="Photo_full.jpg" alt="Portrait of Satyam Tiwari" width="280" height="424"><span class="drag-hint" aria-hidden="true">drag · scroll or pinch to zoom</span></span>
     <p class="eyebrow mono">PhD Researcher · Biophysics · Jagiellonian University</p>
     <h1>Hi, I am <span class="mark">Satyam</span> <span class="wave" aria-hidden="true">👋</span><span class="sr">Satyam Tiwari</span></h1>
     <p class="lead">I am developing algorithms for reconstructing attenuation maps from <span class="mark">detector-scattered coincidences</span> in PET imaging.</p>
@@ -765,6 +766,15 @@ a.addEventListener('pointermove',e=>{if(!drag)return;x=ox+e.clientX-sx;y=oy+e.cl
 const end=()=>{if(!drag)return;drag=false;a.classList.remove('dragging');a.style.rotate=''};
 a.addEventListener('pointerup',end);a.addEventListener('pointercancel',end);
 a.addEventListener('dblclick',()=>{x=y=0;a.classList.add('back');a.style.setProperty('--dx','0px');a.style.setProperty('--dy','0px');a.classList.remove('moved')});})();
+</script>
+<script>
+(()=>{const a=document.querySelector('.avwrap');if(!a)return;let z=1;const set=v=>{z=Math.min(3,Math.max(.6,v));a.style.setProperty('--z',z.toFixed(3));a.classList.toggle('moved',z!==1||a.classList.contains('moved'))};
+a.addEventListener('wheel',e=>{e.preventDefault();a.classList.add('zooming');set(z*Math.exp(-e.deltaY*.0015));clearTimeout(a._zt);a._zt=setTimeout(()=>a.classList.remove('zooming'),150)},{passive:false});
+const pts=new Map();let d0=0,z0=1;
+a.addEventListener('pointerdown',e=>{pts.set(e.pointerId,e);if(pts.size===2){const[p,q]=[...pts.values()];d0=Math.hypot(p.clientX-q.clientX,p.clientY-q.clientY);z0=z}});
+a.addEventListener('pointermove',e=>{if(!pts.has(e.pointerId))return;pts.set(e.pointerId,e);if(pts.size===2&&d0){const[p,q]=[...pts.values()];set(z0*Math.hypot(p.clientX-q.clientX,p.clientY-q.clientY)/d0)}});
+const up=e=>{pts.delete(e.pointerId);if(pts.size<2)d0=0};a.addEventListener('pointerup',up);a.addEventListener('pointercancel',up);
+a.addEventListener('dblclick',()=>{z=1;a.style.setProperty('--z','1')});})();
 </script>
 </body>
 </html>
