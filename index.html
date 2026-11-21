@@ -198,10 +198,6 @@ code{font-family:'JetBrains Mono',monospace;font-size:.85em}
 .dlg dl{display:grid;grid-template-columns:100px 1fr;gap:10px 14px;font-size:.92rem;margin-bottom:18px}
 .dlg dt{color:var(--accent);font-size:.8rem;padding-top:2px}.dlg dd{color:var(--muted)}.dlg dd a{color:var(--accent)}
 @media(max-width:480px){.dlg dl{grid-template-columns:1fr;gap:2px}.dlg dd{margin-bottom:8px}}
-#pongc{width:100%;height:auto;aspect-ratio:8/5;background:#0b3d2e;border-radius:8px;display:block;touch-action:none;cursor:none}
-.pong-help{font-size:.84rem;color:var(--muted);margin-bottom:10px}
-#pong-score{text-align:center;margin:10px 0 14px;font-size:.95rem}
-.linkbtn{font:inherit;background:none;border:0;padding:0;color:var(--accent);cursor:pointer;border-bottom:1px dotted var(--accent)}
 .badges{display:flex;gap:6px;flex-wrap:wrap;margin:-2px 0 10px}
 .cite-btn{font:inherit;font-size:.74rem;margin-left:8px;border:1px solid var(--line);background:transparent;color:var(--muted);border-radius:6px;padding:1px 8px;cursor:pointer;vertical-align:1px}
 .cite-btn:hover{color:var(--text);border-color:var(--muted)}
@@ -244,7 +240,7 @@ code{font-family:'JetBrains Mono',monospace;font-size:.85em}
 
 <div id="toast" role="status" aria-live="polite"></div>
 <dialog id="keys" aria-labelledby="keys-h"><h3 id="keys-h">Shortcuts</h3>
-  <ul><li><kbd>1</kbd>–<kbd>7</kbd> jump to sections</li><li><kbd>t</kbd> switch light / dark</li><li><kbd>e</kbd> copy my email</li><li><kbd>c</kbd> open my CV</li><li><kbd>p</kbd> play table tennis</li><li><kbd>?</kbd> show this · <kbd>Esc</kbd> close</li></ul>
+  <ul><li><kbd>1</kbd>–<kbd>7</kbd> jump to sections</li><li><kbd>t</kbd> switch light / dark</li><li><kbd>e</kbd> copy my email</li><li><kbd>c</kbd> open my CV</li><li><kbd>?</kbd> show this · <kbd>Esc</kbd> close</li></ul>
   <form method="dialog"><button class="btn">Close</button></form></dialog>
 <dialog id="tldr" class="dlg" aria-labelledby="tldr-h">
   <h3 id="tldr-h">The 30-second version</h3>
@@ -254,13 +250,6 @@ code{font-family:'JetBrains Mono',monospace;font-size:.85em}
     <dt>Looking for</dt><dd>Collaborations in PET detector instrumentation: scintillators, readout and timing.</dd>
     <dt>Contact</dt><dd><a href="mailto:satyam.tiwari@doctoral.uj.edu.pl">satyam.tiwari@doctoral.uj.edu.pl</a> · <a href="cv.pdf">CV</a> · <a href="https://orcid.org/0009-0006-2293-3946">ORCID</a></dd>
   </dl>
-  <form method="dialog"><button class="btn">Close</button></form>
-</dialog>
-<dialog id="pong" class="dlg" aria-labelledby="pong-h">
-  <h3 id="pong-h">Table tennis</h3>
-  <p class="pong-help">Move your mouse, finger or the arrow keys. First to 5 wins.</p>
-  <canvas id="pongc" width="480" height="300" aria-label="Table tennis game"></canvas>
-  <p id="pong-score" class="mono" aria-live="polite">You 0 : 0 Satyam</p>
   <form method="dialog"><button class="btn">Close</button></form>
 </dialog>
 <main id="main">
@@ -414,7 +403,7 @@ code{font-family:'JetBrains Mono',monospace;font-size:.85em}
     <div><b>3 meetings</b><span>co-organised in Kraków</span></div>
     <div><b>2 journals</b><span>I peer-review for</span></div>
   </div>
-  <p style="color:var(--muted);margin-top:22px;font-size:.92rem">Off the clock: table tennis. <button type="button" class="linkbtn" id="pong-open">Fancy a rally?</button></p>
+  <p style="color:var(--muted);margin-top:22px;font-size:.92rem">Off the clock: table tennis.</p>
 </div></section>
 
 <section id="contact"><div class="wrap">
@@ -538,29 +527,7 @@ items.forEach(it=>{const b=document.createElement('button');b.type='button';b.cl
  const r=await fetch('https://api.openalex.org/works?filter=doi:'+d.join('|')+'&select=doi,cited_by_count&per-page=50&mailto=satyam.tiwari@doctoral.uj.edu.pl');const j=await r.json();
  const m={};j.results.forEach(w=>m[w.doi.replace('https://doi.org/','').toLowerCase()]=w.cited_by_count);
  items.forEach(it=>{const c=m[it.doi];if(c>0){const s=document.createElement('span');s.className='cites';s.textContent=c+(c===1?' citation':' citations');it.a.after(s)}})}catch(e){}})();
-/* table tennis */
-const dlg=$('#pong'),cv=$('#pongc'),c=cv.getContext('2d'),W=480,H=300,PH=56,PW=8;let st,raf;
-function reset(dir){st.bx=W/2;st.by=H/2;const a=(Math.random()*.6-.3);st.vx=4.2*dir*Math.cos(a);st.vy=4.2*Math.sin(a)}
-function start(){st={py:H/2,ay:H/2,you:0,me:0,over:false,serve:0};reset(1);loop()}
-function draw(){c.fillStyle='#0b3d2e';c.fillRect(0,0,W,H);c.strokeStyle='rgba(255,255,255,.55)';c.lineWidth=2;c.strokeRect(3,3,W-6,H-6);c.setLineDash([6,8]);c.beginPath();c.moveTo(W/2,6);c.lineTo(W/2,H-6);c.stroke();c.setLineDash([]);
- c.fillStyle='#ededef';c.fillRect(14,st.py-PH/2,PW,PH);c.fillStyle='#ffb86b';c.fillRect(W-14-PW,st.ay-PH/2,PW,PH);
- c.fillStyle='#fff';c.beginPath();c.arc(st.bx,st.by,6,0,6.283);c.fill();
- if(st.over){c.fillStyle='rgba(0,0,0,.55)';c.fillRect(0,0,W,H);c.fillStyle='#fff';c.font='600 22px Inter,sans-serif';c.textAlign='center';c.fillText(st.you>st.me?'You win. Rematch?':'Satyam wins. Rematch?',W/2,H/2-4);c.font='14px Inter,sans-serif';c.fillText('Click or press space',W/2,H/2+22);c.textAlign='start'}}
-function loop(){if(!dlg.open)return;if(!st.over){
- st.bx+=st.vx;st.by+=st.vy;if(st.by<9||st.by>H-9){st.vy*=-1;st.by=Math.max(9,Math.min(H-9,st.by))}
- const sp=3.1+st.me*.15;st.ay+=Math.max(-sp,Math.min(sp,(st.by-st.ay)*.12));st.ay=Math.max(PH/2,Math.min(H-PH/2,st.ay));
- if(st.vx<0&&st.bx<14+PW+6&&st.bx>10&&Math.abs(st.by-st.py)<PH/2+6){st.vx=Math.abs(st.vx)*1.05;st.vy+=(st.by-st.py)*.09}
- if(st.vx>0&&st.bx>W-14-PW-6&&st.bx<W-10&&Math.abs(st.by-st.ay)<PH/2+6){st.vx=-Math.abs(st.vx)*1.04;st.vy+=(st.by-st.ay)*.07}
- st.vx=Math.max(-11,Math.min(11,st.vx));
- if(st.bx<-10){st.me++;reset(1)}else if(st.bx>W+10){st.you++;reset(-1)}
- $('#pong-score').textContent='You '+st.you+' : '+st.me+' Satyam';if(st.you>=5||st.me>=5)st.over=true}
- draw();raf=requestAnimationFrame(loop)}
-function aim(e){const r=cv.getBoundingClientRect();st.py=Math.max(PH/2,Math.min(H-PH/2,(e.clientY-r.top)/r.height*H))}
-cv.addEventListener('pointermove',aim);cv.addEventListener('pointerdown',e=>{aim(e);if(st.over)start()});
-dlg.addEventListener('keydown',e=>{if(!st)return;if(e.key==='ArrowUp'){st.py=Math.max(PH/2,st.py-24);e.preventDefault()}if(e.key==='ArrowDown'){st.py=Math.min(H-PH/2,st.py+24);e.preventDefault()}if(e.key===' '&&st.over){e.preventDefault();start()}});
-dlg.addEventListener('close',()=>cancelAnimationFrame(raf));
-const openPong=()=>{dlg.showModal();cancelAnimationFrame(raf);start()};$('#pong-open').onclick=openPong;
-addEventListener('keydown',e=>{if(e.key==='p'&&!e.ctrlKey&&!e.metaKey&&!document.querySelector('dialog[open]')&&!/input|textarea/i.test(e.target.tagName))openPong()});
+
 })();
 </script>
 </body>
